@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(SolutionDir)$(SolutionName)_setting.props" Condition="exists('$(SolutionDir)$(SolutionName)_setting.props')" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros">
+    <!-- set default output path if not defined -->
+    <SolutionOutput Condition="'$(SolutionOutput)' == ''">$(SolutionDir)..\..\output</SolutionOutput>
+    <OutRoot Condition="'$(OutRoot)' == ''">$(SolutionOutput)\$(SolutionName)\$(Configuration)</OutRoot>
+    <LibDir>$(OutRoot)\libs</LibDir>
+  </PropertyGroup>
+  <PropertyGroup>
+    <_ProjectFileVersion>14.0.25431.1</_ProjectFileVersion>
+    <IntDir>$(OutRoot)\IntTemp\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <BuildLog>
+      <Path>$(OutRoot)\IntTemp\$(ProjectName).htm</Path>
+    </BuildLog>
+    <Link>
+      <AdditionalLibraryDirectories>$(LibDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="SolutionOutput">
+      <Value>$(SolutionOutput)</Value>
+      <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
+    <BuildMacro Include="OutRoot">
+      <Value>$(OutRoot)</Value>
+      <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
+    <BuildMacro Include="LibDir">
+      <Value>$(LibDir)</Value>
+      <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

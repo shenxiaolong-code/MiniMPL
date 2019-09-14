@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="UnitTestsMaterial"
+	InheritedPropertySheets="..\..\properties_sheet\project_setting\OsBase.vsprops;.\core_ut_project_path.vsprops"
+	>
+	<Tool
+		Name="VCCLCompilerTool"
+		AdditionalIncludeDirectories="&quot;$(projectDir)..\..\..\sources\UnitTest\UnitTestsMaterial\include&quot;;&quot;$(projectDir)..\..\..\sources\OsBase\include\&quot;;&quot;$(ProjectDir)..\..\..\sources\MiniMPL\include\&quot;;$(NOINHERIT)"
+	/>
+	<Tool
+		Name="VCLinkerTool"
+		AdditionalDependencies="UnitTestsMaterial.lib"
+	/>
+</VisualStudioPropertySheet>

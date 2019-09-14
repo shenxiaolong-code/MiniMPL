@@ -1,0 +1,27 @@
+
+bug list:
+OlePointer COleExcel::open( stlString fileName,bool bReadonly )
+bReadonly is not implemented. (always fails)
+
+feature:
+1.implement commandParamParser
+
+2. implement CSerialPort, include WaitCommEvent feature
+   refer : http://blog.csdn.net/hyw_mvp/article/details/8952219
+   WaitCommEvent
+   CCommunicator -> CCommunicatorSocket->CCommunicatorSocketWin
+                    CCommunicatorCom->CCommunicatorComWin
+
+2.1 implement CSocket/CSockTCP/CSockUdp/CSockServer/CSockClient
+read winsock.h to understand socket option
+setsockopt
+2.1.1 onConnect,onDisconnect,setSendBufferSize(SO_SNDBUF),setReceiveBufferSize(SO_RCVBUF)
+FD_READ/FD_WRITE/FD_ACCEPT/FD_CONNECT/FD_CLOSE
+WINDOWS 串口通信API 没有对输入、输出缓冲的大小做硬性规定， 你可以自己根据需要分配大小。
+SetInBufferSize、SetOutBufferSize最终将调用SetupComm(WINAPI)设置缓冲大小，你可以参考SetupComm的MSDN文档
+2.1.2 send/onReceive
+
+3. study OStream class and invoke it
+
+4. implment device manager
+4.1 refer to : RegisterDeviceNotification

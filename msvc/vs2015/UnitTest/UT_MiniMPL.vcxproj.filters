@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\UT_MiniMPL.cpp" />
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_addRemove.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_any_cast.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_anyObject.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_arrayTrait.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_atomic_counter.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_binaryFunction.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_bitsetEnum.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_callbacker.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_classObjectCreater.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_classRegister.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_classRegisterMacro.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_collector.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_comparer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_container.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_containerInitializer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_convert_enable_if.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_enumTrait.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_fromToString.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_functionParams.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_hasXXX.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_isXXX.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_isXXXEx.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_kitType.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_macro_assert.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_macro_class.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_macro_init.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_macro_longJump.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_macro_Loop.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_macro_makeTxt.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_macro_traceLog.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_macroDef.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_matchTypeLocater.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_memberPtr.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_paramPack.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_paramPackageCall.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_paramPackShift.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_placeHolder.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_platformEnv.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_pointer2value.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_productSpecialDef.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_sameQualifier.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_scanPrint.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_smartPointer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_stdAlgorithmEx.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_stringtrait.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_swap.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_tester.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_traverseCallbackMacro.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_traverseEnumRange.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_traverseTypeList.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_typeList.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_typeListMacro.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_typeLogic.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_unaryFunction.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_unaryFunctionAssemble.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_unaryFunctionCreater.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_unaryFunctionParams.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_unaryFunctionParamTransfer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_valueCompare.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_vldFix.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\include\UT_MiniMPL\ut_material.h" />
+    <ClInclude Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\testconfig_MiniMPL.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{3c030576-6400-4548-9706-14314b449ca0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

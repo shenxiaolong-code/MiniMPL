@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="UnitTestKit"
+	InheritedPropertySheets="..\..\properties_sheet\project_setting\MiniMPL.vsprops"
+	>
+	<Tool
+		Name="VCCLCompilerTool"
+		AdditionalIncludeDirectories="&quot;$(projectDir)..\..\..\sources\UnitTest\UnitTestKit\include\&quot;;&quot;$(projectDir)..\..\..\sources\MiniMPL\include\&quot;;$(NOINHERIT)"
+		RuntimeLibrary="0"
+	/>
+	<Tool
+		Name="VCLinkerTool"
+		AdditionalDependencies="UnitTestKit.lib"
+	/>
+</VisualStudioPropertySheet>

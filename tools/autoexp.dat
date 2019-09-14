@@ -1,0 +1,7 @@
+[AutoExpand]
+MiniMPL::SmartPtr_V2<*>=[<_c->m_count>] <_p>
+
+DemoUsage::S4=[<m_s4c>,<m_ss3.m_s3>,<m_ss3.m_ss2.m_ss1.m_s1>,<m_ss3.m_ss2.m_s2>,<m_s4>]
+DemoUsage::S3=[<m_s3>,<m_ss2.m_ss1.m_s1>,<m_ss2.m_s2>]
+DemoUsage::S2=[<m_ss1.m_s1>,<m_s2>]
+DemoUsage::S1=[<m_s1>]

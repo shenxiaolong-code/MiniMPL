@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="path_setting"
+	OutputDirectory="$(OutRoot)\bin"
+	IntermediateDirectory="$(OutRoot)\IntTemp\$(ProjectName)"
+	BuildLogFile="$(OutRoot)\IntTemp\$(ProjectName).htm"
+	>
+	<UserMacro
+		Name="SolutionOutput"
+		Value="$(SolutionDir)..\..\output"
+		PerformEnvironmentSet="true"
+	/>
+	<UserMacro
+		Name="OutRoot"
+		Value="$(SolutionOutput)\$(SolutionName)\$(ConfigurationName)"
+		PerformEnvironmentSet="true"
+	/>
+	<UserMacro
+		Name="LibDir"
+		Value="$(OutRoot)\libs"
+		PerformEnvironmentSet="true"
+	/>
+</VisualStudioPropertySheet>

@@ -1,0 +1,20 @@
+CPP 11 type&parameters transfer:
+1. various type template declare: class... MUST be last one
+	template<class... _Types>;
+    template<typename T1,class... _Types>;
+
+2. various real parameters transfer:
+    template<class... _Types>
+    myCls getCls(_Types&&... _Args);
+    template<typename T1,class... _Types>;
+    myCls1<T1> getCls1(_Types&&... _Args);
+    
+3.  inner transfer parameters    
+    _STD forward<_Types>(_Args)...
+
+4. example
+	template<typename _Ty,class... _Types>
+    _Ref_count_obj::_Ref_count_obj(_Types&&... _Args)
+    {	// construct from argument list
+      ::new ((void *)&_Storage) _Ty(_STD forward<_Types>(_Args)...);
+    }

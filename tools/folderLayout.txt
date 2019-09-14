@@ -1,0 +1,66 @@
+::layout 
+::sources
+:: │
+:: ├─ projectName
+:: │    │
+:: │    ├─ include
+:: │    │   ├─ componmentName_1
+:: │    │   │    │
+:: │    │   │    ├─ file1.h
+:: │    │   │    ├─ file2.hpp
+:: │    │   │    └─ subFolderName
+:: │    │   │            │
+:: │    │   │            ├─ file_1.h
+:: │    │   │            └─ file_2.hpp
+:: │    │   │
+:: │    │   └─ componmentName_2
+:: │    │           │     
+:: │    │          ...
+:: │    │
+:: │    └─ src
+:: │        ├─ componmentName_1
+:: │        │       │
+:: │        │       ├─ file1.c
+:: │        │       ├─ file2.cpp
+:: │        │       └─ subFolderName
+:: │        │               │
+:: │        │               ├─ file_1.c
+:: │        │               └─ file_2.cpp
+:: │        │
+:: │        └─ componmentName_2
+:: │               │
+:: │               ├─ file_3.c
+:: │               ├─ file_4.cpp
+:: │               │
+:: │               └─ PlatformName (assume win)
+:: │                      │
+:: │                      ├─ file3_win.cpp
+:: │                      ├─ file4_win.cpp
+:: │                      └─ inc
+:: │                          ├─ file3_win.h
+:: │                          └─ file4_win.h
+:: └─ UnitTest
+::      │
+::      ├─ testconfig.h
+::      └─ UT_projectName
+::              │
+::              ├─ testconfig_projectName.h
+::              ├─ UT_projectName.cpp
+::              ├─ UT_projectName.vcproj
+::              └─ src
+::                  ├─ UT_componmentName_1
+::                  │       │
+::                  │       ├─ tc_file1.cpp
+::                  │       ├─ tc_file2.cpp
+::                  │       └─ PlatformName (assume win)
+::                  │              │
+::                  │              ├─ tc_file3_win.cpp
+::                  │              ├─ tc_file4_win.cpp
+::                  │              └─ inc
+::                  │                  ├─ tc_file3_win.h
+::                  │                  └─ tc_file4_win.h
+::                  │        
+::                  └─ UT_componmentName_2
+::                          │
+::                         ....
+::

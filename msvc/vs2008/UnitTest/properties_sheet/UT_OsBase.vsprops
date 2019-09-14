@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="UT_OsBase"
+	InheritedPropertySheets=".\UT_core.vsprops"
+	>
+	<Tool
+		Name="VCCLCompilerTool"
+		AdditionalIncludeDirectories="&quot;$(projectDir)..\..\..\sources\UnitTest\UT_OsBase\include&quot;;&quot;$(projectDir)..\..\..\sources\UnitTest\UT_OsBase&quot;;&quot;$(projectDir)..\..\..\sources\OsBase\src&quot;"
+	/>
+</VisualStudioPropertySheet>

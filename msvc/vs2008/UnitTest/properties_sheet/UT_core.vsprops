@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="UT_core"
+	InheritedPropertySheets=".\UnitTestsMaterial.vsprops;.\UnitTestKit.vsprops;..\..\properties_sheet\general_setting\linker_switches_exe.vsprops"
+	>
+</VisualStudioPropertySheet>
