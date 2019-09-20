@@ -66,6 +66,7 @@
       <SubSystem>Console</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
       <AssemblyDebug>true</AssemblyDebug>
+      <AdditionalDependencies>MiniMPL.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command />
@@ -160,6 +161,7 @@
     <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_valueCompare.cpp" />
     <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_vldFix.cpp" />
     <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\UT_MiniMPL.cpp" />
+    <ClCompile Include="..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_stdwrapper.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="UnitTestKit.vcxproj">

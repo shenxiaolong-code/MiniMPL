@@ -182,6 +182,9 @@
     <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_vldFix.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_stdwrapper.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\include\UT_MiniMPL\ut_material.h" />

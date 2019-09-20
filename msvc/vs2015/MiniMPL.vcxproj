@@ -45,10 +45,10 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_MINIMPL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>MiniMPL.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -142,6 +142,7 @@
     <ClInclude Include="..\..\sources\MiniMPL\include\MiniMPL\scanPrint.hpp" />
     <ClInclude Include="..\..\sources\MiniMPL\include\MiniMPL\smartPointer.hpp" />
     <ClInclude Include="..\..\sources\MiniMPL\include\MiniMPL\stdAlgorithmEx.hpp" />
+    <ClInclude Include="..\..\sources\MiniMPL\include\MiniMPL\stdwrapper.hpp" />
     <ClInclude Include="..\..\sources\MiniMPL\include\MiniMPL\stringtrait.hpp" />
     <ClInclude Include="..\..\sources\MiniMPL\include\MiniMPL\swap.hpp" />
     <ClInclude Include="..\..\sources\MiniMPL\include\MiniMPL\tester.hpp" />

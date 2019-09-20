@@ -51,8 +51,8 @@ set testFolderName=UnitTests
 set tcKitFolderName=UnitTestKit
 
 ::set comment head info
-set AuthorInfo=Shen.Xiaolong ^(2009-%date:~0,4%^) , xlshen@126.com  xlshen2002@hotmail.com
-set CopyrightInfo=free to use / modify / sale in free and commercial software with those head comments.
+set "AuthorInfo=Shen.Xiaolong ^(at %date%^) , xlshen@126.com  xlshen2002@hotmail.com"
+set "CopyrightInfo=free to use / modify / sale in free and commercial software with those head comments."
 
 if {%fullFileName%}=={} @echo Empty parameter & goto :End
 call :parseFileName %fullFileName%
@@ -241,7 +241,7 @@ exit /b 0
 :generateTestFileBody
 @if Not {%subFolderName%}=={} set testconfigPath=../
 @if {%UseComponmentFolderInCpp%}=={1} set testconfigPath=%testconfigPath%../
-@echo #include "testconfig_%projectName%.h"
+@echo #include "../testconfig_%projectName%.h"
 @echo #include ^<MiniMPL/macro_init.h^>
 @echo /***********************************************************************************************************************
 @echo * Description         : test file for ^<%projectName%/%fileName%%extName%^>

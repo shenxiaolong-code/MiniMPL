@@ -61,6 +61,7 @@
 #include <MiniMPL/unaryFunctionParams.hpp> 
 #include <MiniMPL/unaryFunctionParamTransfer.hpp> 
 #include <MiniMPL/valueCompare.hpp> 
-#include <MiniMPL/vldFix.h> 
+#include <MiniMPL/vldFix.h>
+#include <MiniMPL/stdwrapper.hpp>
 
 #pragma warning(pop)
