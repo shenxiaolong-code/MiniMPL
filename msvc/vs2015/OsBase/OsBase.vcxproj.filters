@@ -53,177 +53,177 @@
     <Text Include="devPlan.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\sources\OsBase\include\communicator\CommuDef.h">
+    <ClInclude Include="..\..\..\sources\OsBase\include\communicator\CommuDef.h">
       <Filter>include\communicator</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\sources\OsBase\include\communicator\crc.h">
+    <ClInclude Include="..\..\..\sources\OsBase\include\communicator\crc.h">
       <Filter>include\communicator</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\sources\OsBase\include\communicator\ICommunicator.h">
+    <ClInclude Include="..\..\..\sources\OsBase\include\communicator\ICommunicator.h">
       <Filter>include\communicator</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\sources\OsBase\include\communicator\IReceiver.h">
+    <ClInclude Include="..\..\..\sources\OsBase\include\communicator\IReceiver.h">
       <Filter>include\communicator</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\sources\OsBase\include\network_win\clientPeerManager.h">
+    <ClInclude Include="..\..\..\sources\OsBase\include\network_win\clientPeerManager.h">
       <Filter>include\network_win</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\sources\OsBase\include\network_win\clientPeerMmonitor.h">
+    <ClInclude Include="..\..\..\sources\OsBase\include\network_win\clientPeerMmonitor.h">
       <Filter>include\network_win</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\sources\OsBase\include\network_win\socket_opt_def.h">
+    <ClInclude Include="..\..\..\sources\OsBase\include\network_win\socket_opt_def.h">
       <Filter>include\network_win</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\sources\OsBase\include\network_win\SocketEventMonitor.h">
+    <ClInclude Include="..\..\..\sources\OsBase\include\network_win\SocketEventMonitor.h">
       <Filter>include\network_win</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\sources\OsBase\include\network_win\WinSockDelegateReceiver.h">
+    <ClInclude Include="..\..\..\sources\OsBase\include\network_win\WinSockDelegateReceiver.h">
       <Filter>include\network_win</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\sources\OsBase\include\network_win\WinSocket.h">
+    <ClInclude Include="..\..\..\sources\OsBase\include\network_win\WinSocket.h">
       <Filter>include\network_win</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\sources\OsBase\include\network_win\WinSocketTCP.h">
+    <ClInclude Include="..\..\..\sources\OsBase\include\network_win\WinSocketTCP.h">
       <Filter>include\network_win</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\sources\OsBase\include\network_win\WinSocketTCPClient.h">
+    <ClInclude Include="..\..\..\sources\OsBase\include\network_win\WinSocketTCPClient.h">
       <Filter>include\network_win</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\sources\OsBase\include\network_win\WinSocketTcpClientPeer.h">
+    <ClInclude Include="..\..\..\sources\OsBase\include\network_win\WinSocketTcpClientPeer.h">
       <Filter>include\network_win</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\sources\OsBase\include\network_win\WinSocketTCPServer.h">
+    <ClInclude Include="..\..\..\sources\OsBase\include\network_win\WinSocketTCPServer.h">
       <Filter>include\network_win</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\sources\OsBase\include\serialport_win\WinSerialPort.h">
+    <ClInclude Include="..\..\..\sources\OsBase\include\serialport_win\WinSerialPort.h">
       <Filter>include\serialport_win</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\sources\OsBase\include\serialport_win\WinSerialPortDef.h">
+    <ClInclude Include="..\..\..\sources\OsBase\include\serialport_win\WinSerialPortDef.h">
       <Filter>include\serialport_win</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\sources\OsBase\include\thread\asyncCall.h">
+    <ClInclude Include="..\..\..\sources\OsBase\include\thread\asyncCall.h">
       <Filter>include\thread</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\sources\OsBase\include\thread\calllocker.hpp">
+    <ClInclude Include="..\..\..\sources\OsBase\include\thread\calllocker.hpp">
       <Filter>include\thread</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\sources\OsBase\include\thread\sync.h">
+    <ClInclude Include="..\..\..\sources\OsBase\include\thread\sync.h">
       <Filter>include\thread</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\sources\OsBase\include\thread\thread.h">
+    <ClInclude Include="..\..\..\sources\OsBase\include\thread\thread.h">
       <Filter>include\thread</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\sources\OsBase\include\thread\threadBase.h">
+    <ClInclude Include="..\..\..\sources\OsBase\include\thread\threadBase.h">
       <Filter>include\thread</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\sources\OsBase\include\thread\threadManager.h">
+    <ClInclude Include="..\..\..\sources\OsBase\include\thread\threadManager.h">
       <Filter>include\thread</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\sources\OsBase\include\utility\dynamicBuffer.hpp">
+    <ClInclude Include="..\..\..\sources\OsBase\include\utility\dynamicBuffer.hpp">
       <Filter>include\utility</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\sources\OsBase\include\utility\singleton.hpp">
+    <ClInclude Include="..\..\..\sources\OsBase\include\utility\singleton.hpp">
       <Filter>include\utility</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\sources\OsBase\include\win32\directory.h">
+    <ClInclude Include="..\..\..\sources\OsBase\include\win32\directory.h">
       <Filter>include\win32</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\sources\OsBase\include\win32\folderitemfounder.h">
+    <ClInclude Include="..\..\..\sources\OsBase\include\win32\folderitemfounder.h">
       <Filter>include\win32</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\sources\OsBase\include\win32\handleguard.h">
+    <ClInclude Include="..\..\..\sources\OsBase\include\win32\handleguard.h">
       <Filter>include\win32</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\sources\OsBase\include\win32\memmapfile.h">
+    <ClInclude Include="..\..\..\sources\OsBase\include\win32\memmapfile.h">
       <Filter>include\win32</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\sources\OsBase\include\win32\registry.h">
+    <ClInclude Include="..\..\..\sources\OsBase\include\win32\registry.h">
       <Filter>include\win32</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\sources\OsBase\include\win32\WinApiPack.h">
+    <ClInclude Include="..\..\..\sources\OsBase\include\win32\WinApiPack.h">
       <Filter>include\win32</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\sources\OsBase\src\thread\win32\inc\sync_win.h">
+    <ClInclude Include="..\..\..\sources\OsBase\src\thread\win32\inc\sync_win.h">
       <Filter>src\thread\win32\inc</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\sources\OsBase\src\thread\win32\inc\threadCreater_win.h">
+    <ClInclude Include="..\..\..\sources\OsBase\src\thread\win32\inc\threadCreater_win.h">
       <Filter>src\thread\win32\inc</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\sources\OsBase\src\communicator\CommuDef.cpp">
+    <ClCompile Include="..\..\..\sources\OsBase\src\communicator\CommuDef.cpp">
       <Filter>src\communicator</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\OsBase\src\communicator\crc.cpp">
+    <ClCompile Include="..\..\..\sources\OsBase\src\communicator\crc.cpp">
       <Filter>src\communicator</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\OsBase\src\communicator\ICommunicator.cpp">
+    <ClCompile Include="..\..\..\sources\OsBase\src\communicator\ICommunicator.cpp">
       <Filter>src\communicator</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\OsBase\src\network_win\clientPeerManager.cpp">
+    <ClCompile Include="..\..\..\sources\OsBase\src\network_win\clientPeerManager.cpp">
       <Filter>src\network_win</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\OsBase\src\network_win\clientPeerMmonitor.cpp">
+    <ClCompile Include="..\..\..\sources\OsBase\src\network_win\clientPeerMmonitor.cpp">
       <Filter>src\network_win</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\OsBase\src\network_win\WinSockDelegateReceiver.cpp">
+    <ClCompile Include="..\..\..\sources\OsBase\src\network_win\WinSockDelegateReceiver.cpp">
       <Filter>src\network_win</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\OsBase\src\network_win\WinSocket.cpp">
+    <ClCompile Include="..\..\..\sources\OsBase\src\network_win\WinSocket.cpp">
       <Filter>src\network_win</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\OsBase\src\network_win\WinSocketTCP.cpp">
+    <ClCompile Include="..\..\..\sources\OsBase\src\network_win\WinSocketTCP.cpp">
       <Filter>src\network_win</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\OsBase\src\network_win\WinSocketTCPClient.cpp">
+    <ClCompile Include="..\..\..\sources\OsBase\src\network_win\WinSocketTCPClient.cpp">
       <Filter>src\network_win</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\OsBase\src\network_win\WinSocketTcpClientPeer.cpp">
+    <ClCompile Include="..\..\..\sources\OsBase\src\network_win\WinSocketTcpClientPeer.cpp">
       <Filter>src\network_win</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\OsBase\src\network_win\WinSocketTCPServer.cpp">
+    <ClCompile Include="..\..\..\sources\OsBase\src\network_win\WinSocketTCPServer.cpp">
       <Filter>src\network_win</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\OsBase\src\serialport_win\WinSerialPort.cpp">
+    <ClCompile Include="..\..\..\sources\OsBase\src\serialport_win\WinSerialPort.cpp">
       <Filter>src\serialport_win</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\OsBase\src\thread\asyncCall.cpp">
+    <ClCompile Include="..\..\..\sources\OsBase\src\thread\asyncCall.cpp">
       <Filter>src\thread</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\OsBase\src\thread\sync.cpp">
+    <ClCompile Include="..\..\..\sources\OsBase\src\thread\sync.cpp">
       <Filter>src\thread</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\OsBase\src\thread\thread.cpp">
+    <ClCompile Include="..\..\..\sources\OsBase\src\thread\thread.cpp">
       <Filter>src\thread</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\OsBase\src\thread\threadBase.cpp">
+    <ClCompile Include="..\..\..\sources\OsBase\src\thread\threadBase.cpp">
       <Filter>src\thread</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\OsBase\src\thread\threadManager.cpp">
+    <ClCompile Include="..\..\..\sources\OsBase\src\thread\threadManager.cpp">
       <Filter>src\thread</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\OsBase\src\thread\win32\sync_win.cpp">
+    <ClCompile Include="..\..\..\sources\OsBase\src\thread\win32\sync_win.cpp">
       <Filter>src\thread\win32</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\OsBase\src\thread\win32\threadCreater_win.cpp">
+    <ClCompile Include="..\..\..\sources\OsBase\src\thread\win32\threadCreater_win.cpp">
       <Filter>src\thread\win32</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\OsBase\src\win32\directory.cpp">
+    <ClCompile Include="..\..\..\sources\OsBase\src\win32\directory.cpp">
       <Filter>src\win32</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\OsBase\src\win32\folderitemfounder.cpp">
+    <ClCompile Include="..\..\..\sources\OsBase\src\win32\folderitemfounder.cpp">
       <Filter>src\win32</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\OsBase\src\win32\handleguard.cpp">
+    <ClCompile Include="..\..\..\sources\OsBase\src\win32\handleguard.cpp">
       <Filter>src\win32</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\OsBase\src\win32\memmapfile.cpp">
+    <ClCompile Include="..\..\..\sources\OsBase\src\win32\memmapfile.cpp">
       <Filter>src\win32</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\OsBase\src\win32\registry.cpp">
+    <ClCompile Include="..\..\..\sources\OsBase\src\win32\registry.cpp">
       <Filter>src\win32</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sources\OsBase\src\win32\WinApiPack.cpp">
+    <ClCompile Include="..\..\..\sources\OsBase\src\win32\WinApiPack.cpp">
       <Filter>src\win32</Filter>
     </ClCompile>
   </ItemGroup>

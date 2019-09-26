@@ -33,11 +33,11 @@
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="properties_sheet\UnitTestKit.props" />
+    <Import Project="UnitTestKit.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="properties_sheet\UnitTestKit.props" />
+    <Import Project="UnitTestKit.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
@@ -56,16 +56,6 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MiniMPL.vcxproj">
-      <Project>{9b6aeefb-62c0-4a1d-b771-2cbac43c652a}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\OsBase.vcxproj">
-      <Project>{ca603705-c41e-4248-a3e0-c5960721f591}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-  </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(projectDir)..\..\..\sources\UnitTest\UnitTestKit\include\UnitTestKit\tc_dump.h" />
     <ClInclude Include="$(projectDir)..\..\..\sources\UnitTest\UnitTestKit\include\UnitTestKit\tc_path.h" />

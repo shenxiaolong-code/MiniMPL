@@ -1,7 +1,6 @@
-
-ÖØ¹¹fromToString_detail.hpp
-Ê¹ÓÃTFromTo£¬Çø·Ö´Ó×Ö·û´®¹¹ÔìºÍÀàµÄ×Ö·û´®²Ù×÷·ûµÈ×Ô¶¯×ª»»²Ù×÷£¬ÌØ±ðÊÇ´Ó×Ö·û´®¹¹Ôì¡£
-ÀàµÄ×Ö·û´®²Ù×÷·û¿ÉÒÔÌõ¼þ±àÒëµÈ£¬È»ºóÊ¹ÓÃÄ£°åwrapper
+é‡æž„fromToString_detail.hpp
+ä½¿ç”¨TFromToï¼ŒåŒºåˆ†ä»Žå­—ç¬¦ä¸²æž„é€ å’Œç±»çš„å­—ç¬¦ä¸²æ“ä½œç¬¦ç­‰è‡ªåŠ¨è½¬æ¢æ“ä½œï¼Œç‰¹åˆ«æ˜¯ä»Žå­—ç¬¦ä¸²æž„é€ ã€‚
+ç±»çš„å­—ç¬¦ä¸²æ“ä½œç¬¦å¯ä»¥æ¡ä»¶ç¼–è¯‘ç­‰ï¼Œç„¶åŽä½¿ç”¨æ¨¡æ¿wrapper
 
 feature:
 1.TypeListDat to replace ParamPackage

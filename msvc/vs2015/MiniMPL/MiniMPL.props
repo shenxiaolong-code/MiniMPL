@@ -1,8 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ImportGroup Label="PropertySheets">
-    <Import Project="..\..\properties_sheet\project_setting\OsBase.props" />
-    <Import Project="..\..\properties_sheet\general_setting\projectGeneral.props" />
+    <Import Project="..\properties_sheet\general_setting\projectGeneral.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
@@ -10,10 +9,10 @@
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
-      <AdditionalIncludeDirectories>$(projectDir)..\..\..\sources\UnitTest\UnitTestKit\include\;$(projectDir)..\..\..\sources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(projectDir)..\..\..\sources\MiniMPL\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>UnitTestKit.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>MiniMPL.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup />

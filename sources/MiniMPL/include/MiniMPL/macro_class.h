@@ -7,8 +7,19 @@
 ***********************************************************************************************************************/
 #include <MiniMPL/libConfig.h>
 
-#define Disable_Class_Default_Constructor(x)  private:  x ( )
-#define Disable_Class_Copy_Constructor(x)     private:  x ( x const& rOther )
-#define Disable_Class_Assign(x)               private:  x & operator=( x const& rOther)
+#define Disable_Class_Default_Constructor(x)	private:  x ( )
+#define Disable_Class_Copy_Constructor(x)		private:  x ( x const& rOther )
+#define Disable_Class_Assign(x)					private:  x & operator=( x const& rOther)
+
+
+#ifndef ZeroMemory	
+	#define ZeroMemory(Destination,Length)		memset((Destination),0,(Length))
+#endif
+
+template<typename T>							char _fDummy(T const*);
+#define ZeroThis()								ZeroMemory(this,sizeof(*this));
+#define ZeroThisNo(B)							typedef char (_pDummy)[sizeof(_fDummy<B>(this))]; ZeroMemory(this,sizeof(*this)-sizeof(B))
+#define ZeroThisUntil(M)						ZeroMemory(this,(char*)&M-(char*)this)			//offsetof(S,M)
+#define ZeroArray(x)							ZeroMemory(x,sizeof(x))
 
 #endif // __MACRO_CLASS_H__
