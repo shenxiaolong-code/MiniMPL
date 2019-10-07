@@ -11,15 +11,12 @@
 #define Disable_Class_Copy_Constructor(x)		private:  x ( x const& rOther )
 #define Disable_Class_Assign(x)					private:  x & operator=( x const& rOther)
 
-
-#ifndef ZeroMemory	
-	#define ZeroMemory(Destination,Length)		memset((Destination),0,(Length))
-#endif
-
+#define _ZeroMemory(Destination,Length)			memset((Destination),0,(Length))
 template<typename T>							char _fDummy(T const*);
-#define ZeroThis()								ZeroMemory(this,sizeof(*this));
-#define ZeroThisNo(B)							typedef char (_pDummy)[sizeof(_fDummy<B>(this))]; ZeroMemory(this,sizeof(*this)-sizeof(B))
-#define ZeroThisUntil(M)						ZeroMemory(this,(char*)&M-(char*)this)			//offsetof(S,M)
-#define ZeroArray(x)							ZeroMemory(x,sizeof(x))
+
+#define ZeroThis()								_ZeroMemory(this,sizeof(*this));
+#define ZeroThisNo(B)							typedef char (_pDummy)[sizeof(_fDummy<B>(this))]; _ZeroMemory(this,sizeof(*this)-sizeof(B))
+#define ZeroThisUntil(M)						_ZeroMemory(this,(char*)&M-(char*)this)			//offsetof(S,M)
+#define ZeroArray(x)							_ZeroMemory(x,sizeof(x))
 
 #endif // __MACRO_CLASS_H__

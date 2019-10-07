@@ -11,6 +11,9 @@
     <ClCompile>
       <AdditionalIncludeDirectories>$(projectDir)..\..\..\sources\UnitTest\UT_OsBase\include;$(projectDir)..\..\..\sources\UnitTest\UT_OsBase;$(projectDir)..\..\..\sources\OsBase\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <Link>
+      <AdditionalDependencies>OsBase.lib;MiniMPL.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemGroup />
 </Project>

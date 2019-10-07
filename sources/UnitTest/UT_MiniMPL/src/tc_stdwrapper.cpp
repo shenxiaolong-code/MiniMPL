@@ -6,7 +6,7 @@
 * Copyright           : free to use / modify / sale in free and commercial software with those head comments.
 * usage demo          : #define RUN_EXAMPLE_STDWRAPPER to run this demo
 ***********************************************************************************************************************/
-#define RUN_EXAMPLE_STDWRAPPER
+//#define RUN_EXAMPLE_STDWRAPPER
 
 #ifdef COMPILE_EXAMPLE_ALL
     #define COMPILE_EXAMPLE_STDWRAPPER
@@ -36,15 +36,25 @@ namespace UnitTest
 {
     using namespace MiniMPL;
 
+	DECLARE_PTRS_STRUCT(S3);
 	DECLARE_PTRS_STRUCT(S4);
 	DECLARE_PTRS_STRUCT(CParameters1);
 
     inline void TestCase_stdwrapper()
     {
 		PrintTestcase();
-       
-		S4Ptr pS4 = _sharedPtrGenerater;
+
+		S3Ptr	pS3 = _sharedPtrGenerater;
+		S4Ptr	pS4 = _sharedPtrGenerater;
 		CParameters1Ptr	pCParameters1 = _sharedPtrGenerater;
+
+		int val = 5;
+		CParameters1Ptr pCParameters2 = _sharedPtrGenerater(val);
+		AssertB((5== val));
+		CParameters1Ptr pCParameters2_1 = _sharedPtrGenerater(55);
+		CParameters1Ptr pCParameters3 = _sharedPtrGenerater(*pS4);
+		CParameters1Ptr pCParameters4 = _sharedPtrGenerater(val, '6');
+		AssertB((7 == val));
 
 		const int iMax = _maxValue;
 		AssertB((iMax == 0x7fffffff));

@@ -182,7 +182,10 @@
     <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_vldFix.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_stdwrapper.cpp">
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_stdwrapper.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_tupleUnpacker.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

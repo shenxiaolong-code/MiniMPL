@@ -108,6 +108,7 @@
     <ClInclude Include="..\..\..\sources\MiniMPL\include\MiniMPL\innerDetail\memberPtr_detail.hpp" />
     <ClInclude Include="..\..\..\sources\MiniMPL\include\MiniMPL\innerDetail\paramPackageCall_detail.hpp" />
     <ClInclude Include="..\..\..\sources\MiniMPL\include\MiniMPL\innerDetail\scanPrint_detail.hpp" />
+    <ClInclude Include="..\..\..\sources\MiniMPL\include\MiniMPL\innerDetail\stdwrapper_detail.hpp" />
     <ClInclude Include="..\..\..\sources\MiniMPL\include\MiniMPL\innerDetail\stringtrait_detail.hpp" />
     <ClInclude Include="..\..\..\sources\MiniMPL\include\MiniMPL\innerDetail\tester_detail.hpp" />
     <ClInclude Include="..\..\..\sources\MiniMPL\include\MiniMPL\innerDetail\traverseEnumRange_detail.hpp" />
@@ -148,6 +149,7 @@
     <ClInclude Include="..\..\..\sources\MiniMPL\include\MiniMPL\tester.hpp" />
     <ClInclude Include="..\..\..\sources\MiniMPL\include\MiniMPL\traverseCallbackMacro.hpp" />
     <ClInclude Include="..\..\..\sources\MiniMPL\include\MiniMPL\traverseTypeContainer.hpp" />
+    <ClInclude Include="..\..\..\sources\MiniMPL\include\MiniMPL\tupleUnpacker.hpp" />
     <ClInclude Include="..\..\..\sources\MiniMPL\include\MiniMPL\typeList.hpp" />
     <ClInclude Include="..\..\..\sources\MiniMPL\include\MiniMPL\typeListMacro.hpp" />
     <ClInclude Include="..\..\..\sources\MiniMPL\include\MiniMPL\typeLogic.hpp" />

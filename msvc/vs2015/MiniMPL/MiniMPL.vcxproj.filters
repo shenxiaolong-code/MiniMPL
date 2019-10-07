@@ -305,6 +305,12 @@
     <ClInclude Include="..\..\..\sources\MiniMPL\include\MiniMPL\stdwrapper.hpp">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\sources\MiniMPL\include\MiniMPL\innerDetail\stdwrapper_detail.hpp">
+      <Filter>include\innerDetail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\MiniMPL\include\MiniMPL\tupleUnpacker.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\sources\MiniMPL\src\atomic_counter.cpp">

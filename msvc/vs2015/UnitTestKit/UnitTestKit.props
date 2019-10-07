@@ -13,7 +13,7 @@
       <AdditionalIncludeDirectories>$(projectDir)..\..\..\sources\UnitTest\UnitTestKit\include\;$(projectDir)..\..\..\sources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>UnitTestKit.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup />

@@ -37,10 +37,13 @@ namespace MiniMPL
     {
     };
 
+#pragma warning(push)
+#pragma warning(disable:4505)
     static ParamPackage<> makeParamPackage_Ref()
     {
         return ParamPackage<>();
     }
+#pragma warning(pop)
 
     template<typename TP1> struct ParamPackage<TP1> : public ParamPackage<>
     {

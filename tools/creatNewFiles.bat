@@ -16,31 +16,67 @@ if {%EchoCmd%}=={1} @echo [Enter %~nx0] commandLine: %0 %*
 @title %0 %*
 if not defined NotResetVarialbe call :undefVariable
 ::********************Config begin***************************************
-::set default quick config
-rem call :quickConfig_MiniMPL
-call :quickConfig_OsBase
+call :quickConfig_MiniMPL
+rem call :quickConfig_OsBase
+call :quickConfig_default
+call :execute %*
+goto :End
 
-::override default config
-if not defined projectName 		set projectName=OsBase
-if not defined componmentName   set componmentName=thread
-::set subFolderName=innerDetail
-if not defined subFolderName 	set subFolderName=
-:: innerImplement indicates current header file lies in src\...\inc folder, instead of include folder
-if not defined innerImplement 	set innerImplement=0
-
+:quickConfig_default
+::set default quick config for not defined config. it is also complete config example
+::for .h/.cpp, innerImplement indicates current header file lies in src\...\inc folder, instead of include folder
+::for .hpp, innerImplement indicates current header file lies in include\innerDetail folder, instead of include folder directly
+if not defined innerImplement 	            set innerImplement=0
 :: set namespace config
-if not defined bAddNamespace 	set bAddNamespace=0
-if not defined defNamespace 	set defNamespace=MiniMPL
-if not defined MPLProject 		set MPLProject=MiniMPL
-
-if not defined UseComponmentFolderInCpp     set UseComponmentFolderInCpp=0
+if not defined bAddNamespace 	            set bAddNamespace=0
+if not defined MPLProject 		            set MPLProject=MiniMPL
+::override default config
+if not defined componmentName               set componmentName=%projectName%
 
 ::set svn config
 if not defined bAddIntoSvn 		            set bAddIntoSvn=1
-if not defined bGuardHeadWithProjectName 	set bGuardHeadWithProjectName=0
+if not defined bGuardHeadWithProjectName 	set bGuardHeadWithProjectName=1
+
+::set general folder name
+if not defined srcFolderName                set srcFolderName=src
+if not defined headFolderName               set headFolderName=include
+if not defined innerFolerName_hpp           set innerFolerName_hpp=innerDetail
+if not defined innerFolerName_h             set innerFolerName_h=inc
 
 ::set test config
+goto :eof
 ::********************Config end*****************************************
+
+:quickConfig_MiniMPL
+set projectName=MiniMPL
+::set subFolderName=innerDetail
+:: set namespace config
+set bAddNamespace=1
+set defNamespace=MiniMPL
+goto :eof
+
+:quickConfig_OsBase
+set projectName=OsBase
+:: set namespace config
+set componmentName=thread
+set subFolderName=
+set bAddNamespace=0
+set defNamespace=OS_Win32
+goto :eof
+
+::example
+:: projectName\implmentFolerName\componmentName\innerFolerName_hpp\.hpp
+:: projectName\implmentFolerName\componmentName\innerFolerName_h\.h
+:: MiniMPL\include\MiniMPL\featureSrc.h
+:: MiniMPL\include\MiniMPL\innerDetail\featureSrc.hpp
+:: MiniMPL\src\featureSrc.cpp
+:: OsBase\include\thread\featureSrc.h
+:: OsBase\src\thread\inc\featureSrc.h
+:: OsBase\src\thread\featureSrc.cpp
+:: name variable
+:: ProjectName  , headFolderName , srcFolderName , innerFolerName_hpp , innerFolerName_h
+
+:execute
 pushd %~dp0..\
 set rootDir=%cd%\sources
 popd
@@ -70,7 +106,7 @@ call :CreateCppFile
 call :CreateTestHeadFile
 call :CreateTestCppFile
 call :CreateTestMainEntry
-goto :End
+goto :eof
 
 :resetFile
 if {%EchoCmd%}=={1} @echo [Enter %~nx0] commandLine: %0 %*
@@ -87,7 +123,6 @@ set subFolderName=
 set bAddNamespace=
 set defNamespace=
 set MPLProject=
-set UseComponmentFolderInCpp=
 set bAddIntoSvn=
 set bGuardHeadWithProjectName=
 set innerImplement=
@@ -104,6 +139,12 @@ goto :eof
 
 :SetMiddleVars
 if {%EchoCmd%}=={1} @echo [Enter %~nx0] commandLine: %0 %*
+set projectPath=%rootDir%\%projectName%
+set projectPath_UT=%rootDir%\UnitTest\UT_%projectName%
+
+if      {"%projectName%"}=={"%componmentName%"} set implementComponmentName=
+if not  {"%projectName%"}=={"%componmentName%"} set implementComponmentName=%componmentName%
+
 rem path is used in source file (.h/.hpp/.cpp), tailed with '/'
 rem dir is used file system path, tailed with '\'
 set subFolder_Path=
@@ -112,28 +153,22 @@ if not {%subFolderName%}=={} (
 set subFolder_Path=%subFolderName%/
 set subFolder_Dir=%subFolderName%\
 )
-set projectPath=%rootDir%\%projectName%
-set projectPath_UT=%rootDir%\UnitTest\UT_%projectName%
-set headFolder=include
+
+set implementFolder=%headFolderName%
 set innerHead_Path=
 if {%innerImplement%}=={1} (
-set headFolder=src
-set innerHead_Path=inc/
+set implementFolder=%srcFolderName%
+set innerHead_Path=%innerFolerName_h%/
 )
 goto :eof
 
 :SetFilePath
 if {%EchoCmd%}=={1} @echo [Enter %~nx0] commandLine: %0 %*
 call :SetMiddleVars
-set innerHead_Dir=
-if {%innerImplement%}=={1} set innerHead_Dir=inc\
-set headFile=%projectPath%\%headFolder%\%componmentName%\%subFolder_Dir%%innerHead_Dir%%fileName%%extName%
-set cppComponment_Dir=
-if {%UseComponmentFolderInCpp%}=={1} set cppComponment_Dir=%componmentName%\
-if {%extName%}=={%h_%} (
-set cppFile=%projectPath%\src\%cppComponment_Dir%%subFolder_Dir%%fileName%.cpp
-)
-set testCppFile=%projectPath_UT%\src\%cppComponment_Dir%%subFolder_Dir%tc_%fileName%.cpp
+call :SetFilePath%extName%
+
+set testCppFile=%projectPath_UT%\%srcFolderName%\%middlePathH%\tc_%fileName%.cpp
+call :normizePath testCppFile
 
 set testConfig_project=%projectPath_UT%\testconfig_%projectName%.h
 set testEntry_project=%projectPath_UT%\UT_%projectName%.cpp
@@ -143,15 +178,57 @@ set testEntry_project=%projectPath_UT%\UT_%projectName%.cpp
 ::call :dumpOutFile
 goto :eof
 
+
+:SetFilePath.h
+if {%EchoCmd%}=={1} @echo [Enter %~nx0] commandLine: %0 %*
+if      {"%innerImplement%"}=={"1"}     set "middlePathH=%implementComponmentName%\%innerFolerName_h%"
+if not  {"%innerImplement%"}=={"1"}     set "middlePathH=%implementComponmentName%\"
+
+::e.g. OsBase\src\thread\inc
+if      {"%innerImplement%"}=={"1"}     set implmentFolerName=%srcFolderName%
+::e.g. MiniMPL\include\MiniMPL\innerDetail
+if not  {"%innerImplement%"}=={"1"}     set implmentFolerName=%headFolderName%
+
+set "headFile=%projectPath%\%implmentFolerName%\%middlePathH%\%fileName%%extName%"
+call :normizePath headFile
+
+set cppFile=%projectPath%\%srcFolderName%\%implementComponmentName%\%fileName%.cpp
+call :normizePath cppFile
+goto :eof
+
+:SetFilePath.hpp
+if {%EchoCmd%}=={1} @echo [Enter %~nx0] commandLine: %0 %*
+if      {"%innerImplement%"}=={"1"}     set "middlePathH=%implementComponmentName%\%innerFolerName_hpp%"
+if not  {"%innerImplement%"}=={"1"}     set "middlePathH=%implementComponmentName%"
+set implmentFolerName=%headFolderName%
+set "headFile=%projectPath%\%implmentFolerName%\%middlePathH%\%fileName%%extName%"
+call :normizePath headFile
+goto :eof
+
+:normizePath
+if {%EchoCmd%}=={1} @echo [Enter %~nx0] commandLine: %0 %*
+call set _tmpPath=%%%~1%%
+if not defined _tmpPath goto :eof
+if not {"%_tmpPath:\\=\%"}=={"%_tmpPath%"} set "_tmpPath=%_tmpPath:\\=\%"
+if not {"%_tmpPath://=/%"}=={"%_tmpPath%"} set "_tmpPath=%_tmpPath://=/%"
+set "%~1=%_tmpPath%"
+if not {"%_tmpPath%"}=={"%_tmpPath:\\=\%"} call :normizePath %~1
+if not {"%_tmpPath%"}=={"%_tmpPath://=/%"} call :normizePath %~1
+goto :eof
+
+:toIncludePath
+if {%EchoCmd%}=={1} @echo [Enter %~nx0] commandLine: %0 %*
+call set "_tmpPath1=%~1"
+call :normizePath _tmpPath1
+set "%~2=%_tmpPath1:\=/%"
+goto :eof
+
 :CreateHeadFile
 if {%EchoCmd%}=={1} @echo [Enter %~nx0] commandLine: %0 %*
 if {%headFile%}=={} goto :eof
 call :CreateFolder %headFile%
-if {%bGuardHeadWithProjectName%}=={1} (
-set guard_head_File=__%upperProjectName%_%upperFileName%_%upperExtName%__
-) else (
-set guard_head_File=__%upperFileName%_%upperExtName%__
-)
+if      {"%bGuardHeadWithProjectName%"}=={"1"}  set guard_head_File=__%upperProjectName%_%upperFileName%_%upperExtName%__
+if not  {"%bGuardHeadWithProjectName%"}=={"1"}  set guard_head_File=__%upperFileName%_%upperExtName%__
 @echo create "%headFile%"
 (
 @echo #ifndef %guard_head_File%
@@ -183,14 +260,15 @@ if {%bAddNamespace%}=={1} (
 call :AddSvn %headFile%
 exit /b 0
 
+::create cpp file for .h file
 :CreateCppFile
 if {%EchoCmd%}=={1} @echo [Enter %~nx0] commandLine: %0 %*
 if {%cppFile%}=={} goto :eof
 call :CreateFolder %cppFile%
+call :toIncludePath     "%middlePathH%\%fileName%%extName%"     _tmpInclude
 @echo create "%cppFile%"
 (
-@if {%innerImplement%}=={1} @echo #include "%innerHead_Path%%fileName%%extName%"
-@if not {%innerImplement%}=={1} @echo #include ^<%componmentName%/%subFolder_Path%%fileName%%extName%^>
+@echo #include "%_tmpInclude%"
 @echo.
 @echo.
 if {%bAddNamespace%}=={1} (
@@ -210,11 +288,8 @@ exit /b 0
 if {%EchoCmd%}=={1} @echo [Enter %~nx0] commandLine: %0 %*
 if {%testHeadFile%}=={} goto :eof
 call :CreateFolder %testHeadFile%
-if {%bGuardHeadWithProjectName%}=={1} (
-set guard_Test_head_File=__%upperTestProjectName%_TEST_%upperFileName%_%upperExtName%__
-) else (
-set guard_Test_head_File=__TEST_%upperFileName%_%upperExtName%__
-)
+if      {"%bGuardHeadWithProjectName%"}=={"1"}  set guard_Test_head_File=__%upperTestProjectName%_TEST_%upperFileName%_%upperExtName%__
+if not  {"%bGuardHeadWithProjectName%"}=={"1"}  set guard_Test_head_File=__TEST_%upperFileName%_%upperExtName%__
 @echo create "%testHeadFile%"
 (
 @echo #ifndef %guard_Test_head_File%
@@ -239,12 +314,13 @@ call :AddSvn %testCppFile%
 exit /b 0
 
 :generateTestFileBody
-@if Not {%subFolderName%}=={} set testconfigPath=../
-@if {%UseComponmentFolderInCpp%}=={1} set testconfigPath=%testconfigPath%../
-@echo #include "../testconfig_%projectName%.h"
+set testconfigPath=../
+if not {"%projectName%"}=={"%componmentName%"} set testconfigPath=%testconfigPath%../
+call :toIncludePath "%middlePathH%\%fileName%%extName%" testedHeadFile
+@echo #include "%testconfigPath%testconfig_%projectName%.h"
 @echo #include ^<MiniMPL/macro_init.h^>
 @echo /***********************************************************************************************************************
-@echo * Description         : test file for ^<%projectName%/%fileName%%extName%^>
+@echo * Description         : test file for ^<%testedHeadFile%^>
 @echo * Author              : %AuthorInfo%
 @echo * Copyright           : %CopyrightInfo%
 @echo * usage demo          : #define RUN_EXAMPLE_%upperFileName% to run this demo
@@ -268,7 +344,7 @@ exit /b 0
 @echo.
 @echo ////////////////////////////////////////////usage ^& test demo code//////////////////////////////////////////////////////////
 @echo #ifdef COMPILE_EXAMPLE_%upperFileName%
-@echo #include ^<%componmentName%/%subFolder_Path%%innerHead_Path%%fileName%%extName%^>
+@echo #include ^<%testedHeadFile%^>
 @echo #include ^<%tcKitFolderName%/tc_tracer.h^>
 @echo.
 @echo namespace UnitTest
@@ -283,7 +359,7 @@ exit /b 0
 @echo         PrintTestcase(^);
 @echo         ASSERT_AND_LOG_INFO(0,(TXT("Not implemented"^)^)^);	
 @echo         Static_Assert(0^);
-@echo         ALWAYS_COMPILE_MSG("NO Test context for <%componmentName%/%subFolder_Path%%innerHead_Path%%fileName%%extName%>"^);
+@echo         ALWAYS_COMPILE_MSG("NO Test context for <%testedHeadFile%>"^);
 @echo.
 @echo     }
 @echo.
@@ -447,22 +523,6 @@ if exist %%i    del /F /Q /A:-S %%i
 @echo.
 goto :eof
 
-:quickConfig_MiniMPL
-set projectName=MiniMPL
-set componmentName=MiniMPL
-set UseComponmentFolderInCpp=0
-:: set namespace config
-set bAddNamespace=1
-set defNamespace=MiniMPL
-goto :eof
-
-:quickConfig_OsBase
-set projectName=OsBase
-:: set namespace config
-set defNamespace=OS_Win32
-set UseComponmentFolderInCpp=1
-goto :eof
-
 :parseFileName
 if {%EchoCmd%}=={1} @echo [Enter %~nx0] commandLine: %0 %*
 set fileName=%~n1
@@ -497,10 +557,9 @@ for %%a in ("a=A" "b=B" "c=C" "d=D" "e=E" "f=F" "g=G" "h=H" "i=I"
 )
 goto :eof
 
-:toFirstLowerCase
+:toLower
 if {%EchoCmd%}=={1} @echo [%~nx0] commandLine: %0 %*
 call set "%~1= %%%~1%%"
-REM make first character lower case
 for %%a in ("A=a" "B=b" "C=c" "D=d" "E=e" "F=f" "G=g" "H=h" "I=i"
             "J=j" "K=k" "L=l" "M=m" "N=n" "O=o" "P=p" "Q=q" "R=r"
             "S=s" "T=t" "U=u" "V=v" "W=w" "X=x" "Y=y" "Z=z"
@@ -508,6 +567,14 @@ for %%a in ("A=a" "B=b" "C=c" "D=d" "E=e" "F=f" "G=g" "H=h" "I=i"
     call set "%~1=%%%~1:%%~a%%"
 )
 call set "%~1=%%%~1: =%%"
+goto :eof
+
+:toFirstLowerCase
+if {%EchoCmd%}=={1} @echo [%~nx0] commandLine: %0 %*
+call set "_tmptoFirstLowerCase=%%%~1%%"
+set "_tmptoFirstLowerCase1=%_tmptoFirstLowerCase:~0,1%"
+call :toLower _tmptoFirstLowerCase1
+set "%~1=%_tmptoFirstLowerCase1%%_tmptoFirstLowerCase:~1%"
 goto :eof
 
 :InsertStringInlast2Line

@@ -16,8 +16,14 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UnitTestsMaterial", "UnitTestsMaterial\UnitTestsMaterial.vcxproj", "{C453E5D5-2B30-48C7-A5DB-167490009B5D}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UT_MiniMPL", "MiniMPL\UT_MiniMPL.vcxproj", "{341184E7-260B-484A-A497-5B72D08113C2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9B6AEEFB-62C0-4A1D-B771-2CBAC43C652A} = {9B6AEEFB-62C0-4A1D-B771-2CBAC43C652A}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UT_OsBase", "OsBase\UT_OsBase.vcxproj", "{0931844E-96DF-4DA5-B83B-CCBCABF96843}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CA603705-C41E-4248-A3E0-C5960721F591} = {CA603705-C41E-4248-A3E0-C5960721F591}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

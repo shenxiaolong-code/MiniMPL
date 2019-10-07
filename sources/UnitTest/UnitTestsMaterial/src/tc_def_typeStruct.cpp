@@ -170,7 +170,8 @@ namespace UnitTest
     {
         m_int   = iVal;
         m_float = 0.0f;
-        m_char  = cVal;    
+        m_char  = cVal;
+		iVal += 2;
     }
 
     void printBlockMem( S3& obj )
