@@ -29,7 +29,7 @@
 #include <UT_material/tc_def_classregister.h>
 #include <MiniMPL/classRegisterMacro.hpp>
 
-#define Link_ClassRegister_Symbol_UnitTest(X)   Link_ClassRegister_Symbol_N1(UnitTest,X)
+#define Link_ClassRegister_Symbol_UnitTest(X)   Declare_ClassRegister_Symbol_N1(UnitTest,X)
 Link_ClassRegister_Symbol_UnitTest(CDri_Type1);
 Link_ClassRegister_Symbol_UnitTest(CDri_Type2);
 Link_ClassRegister_Symbol_UnitTest(CDri_Value1);

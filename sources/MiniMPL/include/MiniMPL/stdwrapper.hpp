@@ -21,7 +21,7 @@ namespace MiniMPL
 
 static MiniMPL::StdWrapper::maxValue					_maxValue;
 static MiniMPL::StdWrapper::minValue					_minValue;
-static MiniMPL::StdWrapper::sharedPtrGenerater			_sharedPtrGenerater;
+static MiniMPL::StdWrapper::sharedPtrGenerater			_sharedPtrGenerater; //it is not suitable to create derived class, return base class pointer
 static MiniMPL::StdWrapper::sharedPtrArray				_sharedPtrArray;
 
 #endif // __STDWRAPPER_HPP__

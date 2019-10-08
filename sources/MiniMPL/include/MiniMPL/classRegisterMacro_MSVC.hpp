@@ -14,6 +14,7 @@
 
 #include <MiniMPL/macroDef.h>
 #include <MiniMPL/classRegister.hpp>
+#include <MiniMPL/macro_init.h>
 
 //below code is compiler/linker dependency. it is MSVC specific , refer to : 
 // http://www.kegel.com/mangle.html
@@ -40,26 +41,41 @@
 #define Link_ClassRegister_Symbol_N2(N1,N2,X)       Force_Symbol_Reference(Symbol_N2(N1,N2,X))
 #define Link_ClassRegister_Symbol_N3(N1,N2,N3,X)    Force_Symbol_Reference(Symbol_N3(N1,N2,N3,X))
 
+//VS2015 release issue : it can't process /INCLUDE correctly when /OPT:REF . it might be fixed in later version
+//https://docs.microsoft.com/en-us/cpp/build/reference/opt-optimizations?view=vs-2019
+//below solution ensures user class is registered. (it can be replaced by linker option /OPT:NOREF)
+#define Init_ClassRegister_Symbol_N0(X)             extern void __cdecl  __##X();													InitRunFunc ( __##X ) 
+#define Init_ClassRegister_Symbol_N1(N1,X)          namespace N1 {  extern void __cdecl  __##X();									InitRunFunc ( __##X )   ;  }
+#define Init_ClassRegister_Symbol_N2(N1,N2,X)       namespace N1 { namespace N2 {  extern void __cdecl  __##X();					InitRunFunc ( __##X )   ;  } }
+#define Init_ClassRegister_Symbol_N3(N1,N2,N3,X)    namespace N1 { namespace N2 { namespace N3 {  extern void __cdecl  __##X();		InitRunFunc ( __##X )   ;  } } }
+
+#define Declare_ClassRegister_Symbol_N0(X)			Link_ClassRegister_Symbol_N0(X);			Init_ClassRegister_Symbol_N0(X)
+#define Declare_ClassRegister_Symbol_N1(N1,X)		Link_ClassRegister_Symbol_N1(N1,X);			Init_ClassRegister_Symbol_N1(N1,X)
+#define Declare_ClassRegister_Symbol_N2(N1,N2,X)	Link_ClassRegister_Symbol_N2(N1,N2,X);		Init_ClassRegister_Symbol_N2(N1,N2,X)
+#define Declare_ClassRegister_Symbol_N3(N1,N2,N3,X)	Link_ClassRegister_Symbol_N3(N1,N2,N3,X);	Init_ClassRegister_Symbol_N3(N1,N2,N3,X)
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //MUST XCD, after system CRT global symbol initialization and before user global symbol initialization
 #define ClassRegisterSECNAME ".CRT$XCD"
 #pragma section(ClassRegisterSECNAME,long, read)
 typedef void (__cdecl *_PVFV)();
+//#define DeclareGlobalFuncInitializer(X)	__declspec(allocate(ClassRegisterSECNAME)) _PVFV _##X[] = { __##X }		// see internal_shared.h
+#define ChainToGlobalFuncInitializer(X)																				// VS2015 release issue
 
 //parameter order : derived class name, base class name
 #define IMPLEMENT_CLASS(driT,baseT)																									                                    \
     void __cdecl  __##driT (){ static MiniMPL::ClassRegisterEx<baseT> _##driT(MAKESTR(driT),new MiniMPL::CTypeObjectCreaterImpl<driT,baseT>(),MiniMPL::NullType()); };  \
-    __declspec(allocate(ClassRegisterSECNAME)) _PVFV _##driT[] = { __##driT }  
+	ChainToGlobalFuncInitializer(driT)    
 
 //parameter order : derived class name, base class name,trait value
 #define IMPLEMENT_CLASS_BIND_DAT(driT,baseT,pExtra)                                                                                                                                             \
     void __cdecl  __##driT (){ static MiniMPL::ClassRegisterEx<baseT> _##driT(MAKESTR(driT),new MiniMPL::CTypeObjectCreaterImpl<driT,baseT>(),MiniMPL::InnerDetail::makeTraitData(pExtra)); };  \
-    __declspec(allocate(ClassRegisterSECNAME)) _PVFV _##driT[] = { __##driT }  
+    ChainToGlobalFuncInitializer(driT)
 
 //parameter order : derived class name, base class name,trait type
 #define IMPLEMENT_CLASS_BIND_TYPE(driT,baseT,AddT)                                                                                                                                          \
     void __cdecl  __##driT (){ static MiniMPL::ClassRegisterEx<baseT> _##driT(MAKESTR(driT),new MiniMPL::CTypeObjectCreaterImpl<driT,baseT>(),MiniMPL::InnerDetail::TraitType<AddT>()); }   \
-    __declspec(allocate(ClassRegisterSECNAME)) _PVFV _##driT[] = { __##driT }  
+    ChainToGlobalFuncInitializer(driT)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /******************************************************************************************************
