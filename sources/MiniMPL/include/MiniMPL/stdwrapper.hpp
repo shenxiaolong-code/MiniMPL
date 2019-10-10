@@ -12,16 +12,24 @@ namespace MiniMPL
 {
 	namespace StdWrapper
 	{
-		struct maxValue				{ template<typename T>  CompileValue	operator T() { return (std::numeric_limits<T>::max)(); } };
-		struct minValue				{ template<typename T>  CompileValue	operator T() { return (std::numeric_limits<T>::min)(); } };
-		struct sharedPtrGenerater	: public InnerDetail::sharedPtrGeneraterImpl		 {};	//replace std::make_shared interface
+		struct maxValue		: public InnerDetail::ValueComparer<maxValue>
+		{ 
+			template<typename T>  CompileValue	operator T() const { return (std::numeric_limits<T>::max)(); } 
+		};		
+
+		struct minValue		: public InnerDetail::ValueComparer<minValue>
+		{ 
+			template<typename T>  CompileValue	operator T() const { return (std::numeric_limits<T>::min)(); } 
+		};
+
+		struct sharedPtrGenerater	: public InnerDetail::sharedPtrGeneraterImpl		 {};	//replace std::make_shared interface except return base pointer when creating derived class object.
 		struct sharedPtrArray		: public InnerDetail::sharedPtrArrayImpl			 {};		
-	}
+	}	
 }
 
 static MiniMPL::StdWrapper::maxValue					_maxValue;
 static MiniMPL::StdWrapper::minValue					_minValue;
-static MiniMPL::StdWrapper::sharedPtrGenerater			_sharedPtrGenerater; //it is not suitable to create derived class, return base class pointer
+static MiniMPL::StdWrapper::sharedPtrGenerater			_sharedPtrGenerater;	//it is not suitable to create derived class, return base class pointer
 static MiniMPL::StdWrapper::sharedPtrArray				_sharedPtrArray;
 
 #endif // __STDWRAPPER_HPP__

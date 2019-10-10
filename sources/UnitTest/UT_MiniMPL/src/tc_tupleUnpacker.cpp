@@ -16,7 +16,7 @@
     #define RUN_EXAMPLE_TUPLEUNPACKER
 #endif
 
-#if defined(RUN_EXAMPLE_) && !defined(COMPILE_EXAMPLE_)
+#if defined(RUN_EXAMPLE_TUPLEUNPACKER) && !defined(COMPILE_EXAMPLE_TUPLEUNPACKER)
     #define COMPILE_EXAMPLE_TUPLEUNPACKER
 #endif
 
@@ -98,7 +98,7 @@ namespace UnitTest
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     #if defined(RUN_WARNING_NO_TESTCASE_RUN)
-    GLOBALVAR(RUN_)=(outputTxtV(TXT("[Unit test run disabled] tupleUnpacker.hpp\n%s(%d)\n"),TXT(__FILE__),__LINE__),1);
+    GLOBALVAR(RUN_TUPLEUNPACKER)=(outputTxtV(TXT("[Unit test run disabled] tupleUnpacker.hpp\n%s(%d)\n"),TXT(__FILE__),__LINE__),1);
     #endif
 
     #if defined(BUILD_WARNING_NO_TESTCASE_RUN)
@@ -109,7 +109,7 @@ namespace UnitTest
 
 #else //else of COMPILE_EXAMPLE_TUPLEUNPACKER
     #if defined(RUN_WARNING_NO_TESTCASE_COMPILE)
-    GLOBALVAR(COMPILE_)=(outputTxtV(TXT("[Unit test compile disabled] tupleUnpacker.hpp\n%s(%d)\n"),TXT(__FILE__),__LINE__),1);
+    GLOBALVAR(COMPILE_TUPLEUNPACKER)=(outputTxtV(TXT("[Unit test compile disabled] tupleUnpacker.hpp\n%s(%d)\n"),TXT(__FILE__),__LINE__),1);
     #endif
 
     #if defined(BUILD_WARNING_NO_TESTCASE_COMPILE)

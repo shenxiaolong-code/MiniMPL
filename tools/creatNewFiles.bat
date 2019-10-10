@@ -335,7 +335,7 @@ call :toIncludePath "%middlePathH%\%fileName%%extName%" testedHeadFile
 @echo     #define RUN_EXAMPLE_%upperFileName%
 @echo #endif
 @echo.
-@echo #if defined^(RUN_EXAMPLE_%NameMacro%^) ^&^& !defined(COMPILE_EXAMPLE_%NameMacro%^)
+@echo #if defined^(RUN_EXAMPLE_%upperFileName%^) ^&^& !defined(COMPILE_EXAMPLE_%upperFileName%^)
 @echo     #define COMPILE_EXAMPLE_%upperFileName%
 @echo #endif
 @echo.
@@ -369,7 +369,7 @@ call :toIncludePath "%middlePathH%\%fileName%%extName%" testedHeadFile
 @echo.
 @echo ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 @echo     #if defined^(RUN_WARNING_NO_TESTCASE_RUN^)
-@echo     GLOBALVAR^(RUN_%NameMacro%^)=^(outputTxtV^(TXT^("[Unit test run disabled] %fileName%%extName%\n%%s(%%d)\n"^),TXT^(__FILE__^),__LINE__^),1^);
+@echo     GLOBALVAR^(RUN_%upperFileName%^)=^(outputTxtV^(TXT^("[Unit test run disabled] %fileName%%extName%\n%%s(%%d)\n"^),TXT^(__FILE__^),__LINE__^),1^);
 @echo     #endif
 @echo.
 @echo     #if defined^(BUILD_WARNING_NO_TESTCASE_RUN^)
@@ -380,7 +380,7 @@ call :toIncludePath "%middlePathH%\%fileName%%extName%" testedHeadFile
 @echo.
 @echo #else //else of COMPILE_EXAMPLE_%upperFileName%
 @echo     #if defined^(RUN_WARNING_NO_TESTCASE_COMPILE^)
-@echo     GLOBALVAR^(COMPILE_%NameMacro%^)=^(outputTxtV^(TXT^("[Unit test compile disabled] %fileName%%extName%\n%%s(%%d)\n"^),TXT^(__FILE__^),__LINE__^),1^);
+@echo     GLOBALVAR^(COMPILE_%upperFileName%^)=^(outputTxtV^(TXT^("[Unit test compile disabled] %fileName%%extName%\n%%s(%%d)\n"^),TXT^(__FILE__^),__LINE__^),1^);
 @echo     #endif
 @echo.
 @echo     #if defined^(BUILD_WARNING_NO_TESTCASE_COMPILE^)

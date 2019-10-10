@@ -26,19 +26,19 @@ namespace MiniMPL
 		tuple_Unpacker(T& f) : m_functor(f) {};		
 
 		template<typename... TArgs>
-		inline auto apply(std::tuple<>&, TArgs&&... args)
+		inline auto apply(std::tuple<> const &, TArgs&&... args)
 		{
 			return m_functor(std::forward<TArgs>(args)...);
 		}
 
 		template<typename... TArgs1, typename... TArgs2>
-		inline auto apply(std::tuple<TArgs2...>& ps, TArgs1&&... args)
+		inline auto apply(std::tuple<TArgs2...> const & ps, TArgs1&&... args)
 		{
 			return apply(ps._Get_rest(), std::forward<TArgs1>(args)..., std::get<0>(ps));
 		}
 
 		template<typename T1, typename... TArgs>
-		inline auto apply(std::tuple<T1, TArgs...>& ps)
+		inline auto apply(std::tuple<T1, TArgs...> const & ps)
 		{
 			return apply(ps._Get_rest(), std::get<0>(ps));
 		}
@@ -51,7 +51,7 @@ namespace MiniMPL
 	}
 
 	template<typename T,typename... TArgs>
-	inline auto unpackCall(T& obj,std::tuple<TArgs...>& ps)
+	inline auto unpackCall(T& obj,std::tuple<TArgs...> const & ps)
 	{		
 		return make_tuple_Unpacker(obj).apply(ps);
 	}

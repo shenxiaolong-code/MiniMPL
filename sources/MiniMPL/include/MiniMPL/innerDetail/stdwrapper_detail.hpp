@@ -14,11 +14,28 @@ namespace MiniMPL
 	{
 		namespace InnerDetail
 		{
+			template<typename T>	struct ValueComparer
+			{
+				template<typename U>	bool operator==(U val) const	{	return val == (U)(T const&)(*this);	}
+				template<typename U>	bool operator!=(U val) const	{	return !(operator==(val));			}
+			};
+			template<typename T, typename U>
+			inline bool operator == (const T &  val, MiniMPL::StdWrapper::InnerDetail::ValueComparer<U> const& obj)
+			{
+				return obj == val;
+			}
+			template<typename T, typename U>
+			inline bool operator != (const T &  val, MiniMPL::StdWrapper::InnerDetail::ValueComparer<U> const& obj)
+			{
+				return obj != val;
+			}
+
+			//////////////////////////////////////////////////////////////////////////////////////////////////////
 			template<typename T>
 			struct newObjectGenerater
 			{
 				template<typename... TArgs>
-				T* operator()(TArgs&&... args)
+				T* operator()(TArgs&&... args) const
 				{
 					return new T(std::forward<TArgs>(args)...);
 				}
@@ -30,7 +47,7 @@ namespace MiniMPL
 				std::tuple<TArgs...>						m_arg;
 				tupleParameterTransfer(TArgs&&... args) :	m_arg(std::forward<TArgs>(args)...) {};
 
-				template<typename T> operator std::shared_ptr<T>()
+				template<typename T> operator std::shared_ptr<T>() const
 				{
 					return std::shared_ptr<T>(unpackCall(newObjectGenerater<T>(), m_arg));
 				}
@@ -40,13 +57,13 @@ namespace MiniMPL
 			struct sharedPtrGeneraterImpl
 			{
 				template<typename T>
-				operator std::shared_ptr<T>()
+				operator std::shared_ptr<T>() const
 				{
 					return std::shared_ptr<T>(new T());
 				}
 
 				template<typename ... TArgs>
-				tupleParameterTransfer<TArgs...> operator()(TArgs&&... args)
+				tupleParameterTransfer<TArgs...> operator()(TArgs&&... args) const
 				{
 					return tupleParameterTransfer<TArgs...>(std::forward<TArgs>(args)...);
 				}
@@ -59,13 +76,13 @@ namespace MiniMPL
 					size_t	m_iSize;
 					arrayInfo(size_t iSize) :m_iSize(iSize) {};
 
-					template<typename T> operator std::shared_ptr<T>()
+					template<typename T> operator std::shared_ptr<T>() const
 					{
 						return std::shared_ptr<T>(new T[m_iSize](), [](T* p) { delete[] p; });
 					}
 				};
 
-				arrayInfo operator()(size_t iSize) { return arrayInfo(iSize); }
+				arrayInfo operator()(size_t iSize) const { return arrayInfo(iSize); }
 			};
 		}
 	}

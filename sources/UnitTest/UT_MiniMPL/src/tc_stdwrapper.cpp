@@ -16,7 +16,7 @@
     #define RUN_EXAMPLE_STDWRAPPER
 #endif
 
-#if defined(RUN_EXAMPLE_) && !defined(COMPILE_EXAMPLE_)
+#if defined(RUN_EXAMPLE_STDWRAPPER) && !defined(COMPILE_EXAMPLE_STDWRAPPER)
     #define COMPILE_EXAMPLE_STDWRAPPER
 #endif
 
@@ -30,8 +30,6 @@
 #include <MiniMPL/macro_makeVar.h>
 #include <UT_material/tc_def_typeStruct.h>
 
-#pragma comment(lib,"MiniMPL.lib")
-
 namespace UnitTest
 {
     using namespace MiniMPL;
@@ -40,22 +38,17 @@ namespace UnitTest
 	DECLARE_PTRS_STRUCT(S4);
 	DECLARE_PTRS_STRUCT(CParameters1);
 
-    inline void TestCase_stdwrapper()
-    {
+	char				GetMaxChar()				{	return (std::numeric_limits<char>::max)();				}
+	int					GetMaxInt()					{	return (std::numeric_limits<int>::max)();				}
+	unsigned short		GetMaxUShort()				{	return (std::numeric_limits<unsigned short>::max)();	}
+	char				GetMinChar()				{	return (std::numeric_limits<char>::min)();				}
+	int					GetMinInt()					{	return (std::numeric_limits<int>::min)();				}
+	unsigned short		GetMinUShort()				{	return (std::numeric_limits<unsigned short>::min)();	}
+
+	inline void TestCase_maxMinValue()
+	{
 		PrintTestcase();
-
-		S3Ptr	pS3 = _sharedPtrGenerater;
-		S4Ptr	pS4 = _sharedPtrGenerater;
-		CParameters1Ptr	pCParameters1 = _sharedPtrGenerater;
-
-		int val = 5;
-		CParameters1Ptr pCParameters2 = _sharedPtrGenerater(val);
-		AssertB((5== val));
-		CParameters1Ptr pCParameters2_1 = _sharedPtrGenerater(55);
-		CParameters1Ptr pCParameters3 = _sharedPtrGenerater(*pS4);
-		CParameters1Ptr pCParameters4 = _sharedPtrGenerater(val, '6');
-		AssertB((7 == val));
-
+		
 		const int iMax = _maxValue;
 		AssertB((iMax == 0x7fffffff));
 		const unsigned int iuMax = _maxValue;
@@ -66,21 +59,74 @@ namespace UnitTest
 		const unsigned int iuMin = _minValue;
 		AssertB((iuMin == 0));
 
+		AssertB((_maxValue == GetMaxChar()));
+		AssertB((_maxValue == GetMaxInt()));
+		AssertB((_maxValue == GetMaxUShort()));
+		AssertB((_minValue != GetMaxChar()));
+		AssertB((_minValue != GetMaxInt()));
+		AssertB((_minValue != GetMaxUShort()));
+		AssertB((GetMaxChar()	== _maxValue));
+		AssertB((GetMaxInt()	== _maxValue));
+		AssertB((GetMaxUShort() == _maxValue));
+		AssertB((GetMaxChar()	!= _minValue));
+		AssertB((GetMaxInt()	!= _minValue));
+		AssertB((GetMaxUShort() != _minValue));
+
+		AssertB((_maxValue != GetMinChar()));
+		AssertB((_maxValue != GetMinInt()));
+		AssertB((_maxValue != GetMinUShort()));
+		AssertB((_minValue == GetMinChar()));
+		AssertB((_minValue == GetMinInt()));
+		AssertB((_minValue == GetMinUShort()));
+		AssertB((GetMinChar()	!= _maxValue));
+		AssertB((GetMinInt()	!= _maxValue));
+		AssertB((GetMinUShort() != _maxValue));
+		AssertB((GetMinChar()	== _minValue));
+		AssertB((GetMinInt()	== _minValue));
+		AssertB((GetMinUShort() == _minValue));
+	}
+
+	inline void TestCase_sharedArrayGenerator()
+	{
+		PrintTestcase();
+
 		std::shared_ptr<int> p = _sharedPtrArray(3);
 		int* pi = &*p;
 		p.get()[0] = 1;
+		AssertB((p.get()[0] == pi[0]));
 		p.get()[1] = 2;
+		AssertB((p.get()[1] == pi[1]));
 		p.get()[2] = 3;
+		AssertB((p.get()[2] == pi[2]));
 		p.reset();
+	}
+
+	inline void TestCase_sharedGenerator()
+    {
+		PrintTestcase();
+
+		S3Ptr	pS3							= _sharedPtrGenerater;
+		S4Ptr	pS4							= _sharedPtrGenerater;
+		CParameters1Ptr	pCParameters1		= _sharedPtrGenerater;
+
+		int val = 5;
+		CParameters1Ptr pCParameters2		= _sharedPtrGenerater(val);
+		AssertB((5== val));
+		CParameters1Ptr pCParameters2_1		= _sharedPtrGenerater(55);
+		CParameters1Ptr pCParameters3		= _sharedPtrGenerater(*pS4);
+		CParameters1Ptr pCParameters4		= _sharedPtrGenerater(val, '6');
+		AssertB((7 == val));		
     }
 
-#ifdef RUN_EXAMPLE_STDWRAPPER
-    InitRunFunc(TestCase_stdwrapper);
+#ifdef RUN_EXAMPLE_STDWRAPPER    
+	InitRunFunc(TestCase_maxMinValue);
+	InitRunFunc(TestCase_sharedArrayGenerator);
+	InitRunFunc(TestCase_sharedGenerator);
 #else //else of RUN_EXAMPLE_STDWRAPPER
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     #if defined(RUN_WARNING_NO_TESTCASE_RUN)
-    GLOBALVAR(RUN_)=(outputTxtV(TXT("[Unit test run disabled] stdwrapper.hpp\n%s(%d)\n"),TXT(__FILE__),__LINE__),1);
+    GLOBALVAR(RUN_STDWRAPPER)=(outputTxtV(TXT("[Unit test run disabled] stdwrapper.hpp\n%s(%d)\n"),TXT(__FILE__),__LINE__),1);
     #endif
 
     #if defined(BUILD_WARNING_NO_TESTCASE_RUN)
@@ -91,7 +137,7 @@ namespace UnitTest
 
 #else //else of COMPILE_EXAMPLE_STDWRAPPER
     #if defined(RUN_WARNING_NO_TESTCASE_COMPILE)
-    GLOBALVAR(COMPILE_)=(outputTxtV(TXT("[Unit test compile disabled] stdwrapper.hpp\n%s(%d)\n"),TXT(__FILE__),__LINE__),1);
+    GLOBALVAR(COMPILE_STDWRAPPER)=(outputTxtV(TXT("[Unit test compile disabled] stdwrapper.hpp\n%s(%d)\n"),TXT(__FILE__),__LINE__),1);
     #endif
 
     #if defined(BUILD_WARNING_NO_TESTCASE_COMPILE)
