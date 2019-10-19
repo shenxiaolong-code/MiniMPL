@@ -138,6 +138,9 @@
     <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_OsBase\src\win32\tc_registry.cpp" />
     <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_OsBase\src\win32\tc_WinApiPack.cpp" />
     <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_OsBase\UT_OsBase.cpp" />
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_OsBase\src\network_win\inc\tc_sockReceiver_completePort.cpp" />
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_OsBase\src\network_win\inc\tc_sockReceiver_newThread.cpp" />
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_OsBase\src\network_win\inc\tc_sockReceiver_overlapPort.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

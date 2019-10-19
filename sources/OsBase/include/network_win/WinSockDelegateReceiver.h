@@ -19,54 +19,6 @@ namespace OS_Win32
     };
 
     typedef stlSmartptr<IWinSockDelegateReceiver> TpWinSockDelegateReceiver;
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    class CWinSockDelegateReceiver_IOCP : public IWinSockDelegateReceiver
-    {   
-        HANDLE      m_hIOCP;
-        CThread     m_thread;
-
-    public:
-        CWinSockDelegateReceiver_IOCP();
-
-        virtual ~CWinSockDelegateReceiver_IOCP();
-
-        void IOCPThread();
-
-        virtual bool delegateRecv( WinSocketTcpClientPeer& rClientPeer );
-        virtual bool undelegateRecv(WinSocketTcpClientPeer& rClientPeer);
-    };
-
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    class CWinSockDelegateReceiver_EventSelect : public IWinSockDelegateReceiver
-    {
-        CSyncThread     m_locker;
-        CThread         m_recvThread;
-        stlVector<WinSocketTcpClientPeer*> m_clientPeers;
-        WSAEVENT        m_event[WSA_MAXIMUM_WAIT_EVENTS];
-        int             m_eventNumber;
-
-        bool remove(int idx);
-
-        bool remove(WinSocketTcpClientPeer& rClientPeer);
-
-        bool add(WinSocketTcpClientPeer& rClientPeer);
-
-    public:
-        CWinSockDelegateReceiver_EventSelect();
-
-        virtual ~CWinSockDelegateReceiver_EventSelect();
-
-        bool onClientNetworkEvent(unsigned idx, WSANETWORKEVENTS const& evt );
-
-        void recvThreadFunc();
-
-        virtual bool delegateRecv( WinSocketTcpClientPeer& rClientPeer );
-        virtual bool undelegateRecv(WinSocketTcpClientPeer& rClientPeer); 
-    };
-
 }
-
-
-
 
 #endif // __WINSOCKDELEGATERECEIVER_H__

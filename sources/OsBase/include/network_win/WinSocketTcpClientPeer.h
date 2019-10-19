@@ -10,6 +10,7 @@
 
 namespace OS_Win32
 {
+	enum  DelegateMode;
     class WinSocketTcpClientPeer : public WinSocketTCP
     {
     public:
@@ -19,9 +20,7 @@ namespace OS_Win32
         virtual EConnect getConnectType();
 
         bool    getPeerIpPort(HostAddr& ha);
-
-        //client peer share server recv thread
-        virtual bool setIndependentRecvThread(bool bUseIndependentRecvThread);
+		bool	setReceiveMode(DelegateMode recvMode);
 
         virtual bool start();
         virtual bool stop();
@@ -29,9 +28,8 @@ namespace OS_Win32
     protected:
         bool onClientNetworkEvent( WSANETWORKEVENTS const& evt );
 
-
     protected:
-        bool                m_bHasIndependentRecvThread;
+		DelegateMode		m_receiveMode;
         sockaddr            m_peerAddr;
         //WSAEVENT            m_event;
     };

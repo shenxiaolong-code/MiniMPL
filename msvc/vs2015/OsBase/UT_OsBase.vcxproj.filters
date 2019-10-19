@@ -26,6 +26,9 @@
     <Filter Include="src\utility">
       <UniqueIdentifier>{a91007a1-c632-429a-9aa8-747ddace06b3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\network_win\inc">
+      <UniqueIdentifier>{6ab21de9-484c-47b8-ae25-323f21cb6d0c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_OsBase\UT_OsBase.cpp" />
@@ -118,6 +121,15 @@
     </ClCompile>
     <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_OsBase\src\win32\tc_WinApiPack.cpp">
       <Filter>src\Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_OsBase\src\network_win\inc\tc_sockReceiver_completePort.cpp">
+      <Filter>src\network_win\inc</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_OsBase\src\network_win\inc\tc_sockReceiver_newThread.cpp">
+      <Filter>src\network_win\inc</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_OsBase\src\network_win\inc\tc_sockReceiver_overlapPort.cpp">
+      <Filter>src\network_win\inc</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

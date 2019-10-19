@@ -29,11 +29,12 @@ namespace OS_Win32
         virtual void onClientDisconnected(WinSocketTcpClientPeer& rClientPeer)=0;
     };
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    class CClientPeerManager 
+	enum DelegateMode { Delegate_newThread, Delegate_IOCP, Delegate_Overlap };
+	class CClientPeerManager 
         : public SingletonMultiInstance<CClientPeerManager>
     {
-        typedef std::pair<WinSocketTcpClientPeer*,WinSocketTCPServer*>     TPeerInfo;
-        typedef stlVector<TPeerInfo>                                        TPeerArray;
+        typedef std::pair<WinSocketTcpClientPeer*,WinSocketTCPServer*>		TPeerInfo;
+        typedef stlVector<TPeerInfo>										TPeerArray;
     public:
         CClientPeerManager();
         virtual ~CClientPeerManager();
@@ -43,16 +44,16 @@ namespace OS_Win32
 
         bool registerClientPeer(WinSocketTcpClientPeer& rPeer,WinSocketTCPServer* pOwnerServer); 
         bool unregisterClientPeer(WinSocketTcpClientPeer& rPeer);
-
-        bool delegateRecv(WinSocketTcpClientPeer& rPeer);
+				
+        bool delegateRecv(WinSocketTcpClientPeer& rPeer, DelegateMode iMode= Delegate_newThread);
         bool undelegateRecv(WinSocketTcpClientPeer& rPeer);
 
     protected:
-        CSyncThread                     m_lock;
-        bool                            m_bIOCPMode;
-        TpWinSockDelegateReceiver       m_delegateReceiver;
-        TPeerArray                      m_clientPeers;
-        stlVector<IClientPeerMonitor*>  m_clientPeerMonitors;
+        CSyncThread									m_lock;
+        bool										m_bIOCPMode;
+		std::map<WinSocketTcpClientPeer*, TpWinSockDelegateReceiver>		m_delegateReceivers;
+        TPeerArray									m_clientPeers;
+        stlVector<IClientPeerMonitor*>				m_clientPeerMonitors;
     };
 
 }

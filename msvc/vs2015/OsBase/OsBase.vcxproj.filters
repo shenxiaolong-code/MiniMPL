@@ -48,6 +48,9 @@
     <Filter Include="include\utility">
       <UniqueIdentifier>{647f7233-07ff-468d-a077-3ecd686d8c6c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\network_win\inc">
+      <UniqueIdentifier>{cfd525fb-967d-4b5a-ab8f-19ab6c13f6ed}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="devPlan.txt" />
@@ -149,6 +152,15 @@
     <ClInclude Include="..\..\..\sources\OsBase\src\thread\win32\inc\threadCreater_win.h">
       <Filter>src\thread\win32\inc</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\sources\OsBase\src\network_win\inc\sockReceiver_completePort.h">
+      <Filter>src\network_win\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\OsBase\src\network_win\inc\sockReceiver_overlapPort.h">
+      <Filter>src\network_win\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\OsBase\src\network_win\inc\sockReceiver_newThread.h">
+      <Filter>src\network_win\inc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\sources\OsBase\src\communicator\CommuDef.cpp">
@@ -164,9 +176,6 @@
       <Filter>src\network_win</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\sources\OsBase\src\network_win\clientPeerMmonitor.cpp">
-      <Filter>src\network_win</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\sources\OsBase\src\network_win\WinSockDelegateReceiver.cpp">
       <Filter>src\network_win</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\sources\OsBase\src\network_win\WinSocket.cpp">
@@ -225,6 +234,15 @@
     </ClCompile>
     <ClCompile Include="..\..\..\sources\OsBase\src\win32\WinApiPack.cpp">
       <Filter>src\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sources\OsBase\src\network_win\sockReceiver_completePort.cpp">
+      <Filter>src\network_win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sources\OsBase\src\network_win\sockReceiver_overlapPort.cpp">
+      <Filter>src\network_win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sources\OsBase\src\network_win\sockReceiver_newThread.cpp">
+      <Filter>src\network_win</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

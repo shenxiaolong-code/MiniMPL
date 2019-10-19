@@ -87,6 +87,9 @@
     <ClInclude Include="..\..\..\sources\OsBase\include\win32\memmapfile.h" />
     <ClInclude Include="..\..\..\sources\OsBase\include\win32\registry.h" />
     <ClInclude Include="..\..\..\sources\OsBase\include\win32\WinApiPack.h" />
+    <ClInclude Include="..\..\..\sources\OsBase\src\network_win\inc\sockReceiver_completePort.h" />
+    <ClInclude Include="..\..\..\sources\OsBase\src\network_win\inc\sockReceiver_newThread.h" />
+    <ClInclude Include="..\..\..\sources\OsBase\src\network_win\inc\sockReceiver_overlapPort.h" />
     <ClInclude Include="..\..\..\sources\OsBase\src\thread\win32\inc\sync_win.h" />
     <ClInclude Include="..\..\..\sources\OsBase\src\thread\win32\inc\threadCreater_win.h" />
   </ItemGroup>
@@ -96,7 +99,9 @@
     <ClCompile Include="..\..\..\sources\OsBase\src\communicator\ICommunicator.cpp" />
     <ClCompile Include="..\..\..\sources\OsBase\src\network_win\clientPeerManager.cpp" />
     <ClCompile Include="..\..\..\sources\OsBase\src\network_win\clientPeerMmonitor.cpp" />
-    <ClCompile Include="..\..\..\sources\OsBase\src\network_win\WinSockDelegateReceiver.cpp" />
+    <ClCompile Include="..\..\..\sources\OsBase\src\network_win\sockReceiver_completePort.cpp" />
+    <ClCompile Include="..\..\..\sources\OsBase\src\network_win\sockReceiver_newThread.cpp" />
+    <ClCompile Include="..\..\..\sources\OsBase\src\network_win\sockReceiver_overlapPort.cpp" />
     <ClCompile Include="..\..\..\sources\OsBase\src\network_win\WinSocket.cpp" />
     <ClCompile Include="..\..\..\sources\OsBase\src\network_win\WinSocketTCP.cpp" />
     <ClCompile Include="..\..\..\sources\OsBase\src\network_win\WinSocketTCPClient.cpp" />

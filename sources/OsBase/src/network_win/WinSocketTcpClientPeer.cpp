@@ -7,8 +7,7 @@
 namespace OS_Win32
 {
     WinSocketTcpClientPeer::WinSocketTcpClientPeer(SOCKET s, sockaddr const& sa)
-        : WinSocketTCP(s)
-        , m_bHasIndependentRecvThread(true)
+        : WinSocketTCP(s) , m_receiveMode(Delegate_newThread)
     {
         m_peerAddr  = sa;
         ASSERT_AND_LOG(INVALID_SOCKET != m_sock);
@@ -45,25 +44,22 @@ namespace OS_Win32
         return false;
     }
 
-    bool WinSocketTcpClientPeer::setIndependentRecvThread( bool bUseIndependentRecvThread )
-    {
-        //setBlockMode(!bShareThread);
-        m_bHasIndependentRecvThread = bUseIndependentRecvThread;
-        return true;
-    }
+	bool WinSocketTcpClientPeer::setReceiveMode(DelegateMode recvMode)
+	{
+		m_receiveMode = recvMode;
+		return true;
+	}
 
-    bool WinSocketTcpClientPeer::start()
+	bool WinSocketTcpClientPeer::start()
     {
         onConnected();
-        return m_bHasIndependentRecvThread ? startRecvThread() : 
-            CClientPeerManager::getInstance().delegateRecv(*this);
+		return CClientPeerManager::getInstance().delegateRecv(*this, m_receiveMode);
     }
 
     bool WinSocketTcpClientPeer::stop()
     {
         WinSocketTCP::close();
-        return m_bHasIndependentRecvThread ? stopRecvThread() : 
-            CClientPeerManager::getInstance().undelegateRecv(*this);
+        return CClientPeerManager::getInstance().undelegateRecv(*this);
     }
 
     /*

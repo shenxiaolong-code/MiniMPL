@@ -4,6 +4,9 @@
 #include <MiniMPL/stdAlgorithmEx.hpp>
 #include <MiniMPL/tester.hpp>
 #include "MiniMPL/unaryFunctionCreater.hpp"
+#include "inc/sockReceiver_newThread.h"
+#include "inc/sockReceiver_completePort.h"
+#include "inc/sockReceiver_overlapPort.h"
 
 namespace OS_Win32
 {
@@ -48,6 +51,7 @@ namespace OS_Win32
     bool CClientPeerManager::registerClientPeer( WinSocketTcpClientPeer& rPeer,WinSocketTCPServer* pOwnerServer )
     {
         using namespace MiniMPL;
+
         CHECK_TRUE_ELSE_RETURN_VAL(NULL==MiniMPL::find(m_clientPeers,makeUnaryTester_Result(&TPeerInfo::first,&rPeer,CEqual())),false);
 
         for (stlVector<IClientPeerMonitor*>::iterator it=m_clientPeerMonitors.begin();
@@ -85,25 +89,45 @@ namespace OS_Win32
         return true;
     }
 
-    bool CClientPeerManager::delegateRecv( WinSocketTcpClientPeer& rPeer )
+    bool CClientPeerManager::delegateRecv( WinSocketTcpClientPeer& rPeer, DelegateMode iMode)
     {
-        if (!m_delegateReceiver)
-        {
-            m_delegateReceiver = m_bIOCPMode ? 
-                TpSharedRecvThread(new CWinSockDelegateReceiver_IOCP()) :
-                TpSharedRecvThread(new CWinSockDelegateReceiver_EventSelect());
-        }
+		if (m_delegateReceivers.find(&rPeer)!= m_delegateReceivers.end())
+		{
+			return false;
+		}
 
-        m_delegateReceiver->delegateRecv(rPeer);
+		TpWinSockDelegateReceiver pReceiver;
+		switch (iMode)
+		{
+		case Delegate_newThread:
+			pReceiver = TpWinSockDelegateReceiver(new CWinSockDelegateReceiver_newThread());
+			break;
+		case Delegate_IOCP:
+			pReceiver = TpSharedRecvThread(new CWinSockDelegateReceiver_IOCP());
+			break;
+		case Delegate_Overlap:
+			pReceiver = TpSharedRecvThread(new CWinSockDelegateReceiver_EventSelect());
+			break;
+		default:
+			break;
+		}
+		if (pReceiver)
+		{
+			pReceiver->delegateRecv(rPeer);
+		}
+		m_delegateReceivers.insert_or_assign(&rPeer,pReceiver);
         return true;
     }
 
     bool CClientPeerManager::undelegateRecv( WinSocketTcpClientPeer& rPeer )
     {
-        if (m_delegateReceiver)
-        {
-            m_delegateReceiver->undelegateRecv(rPeer);
-        }
+		auto pReceiver = m_delegateReceivers.find(&rPeer);
+		if (pReceiver == m_delegateReceivers.end())
+		{
+			return false;
+		}
+		pReceiver->second->undelegateRecv(rPeer);
+		m_delegateReceivers.erase(pReceiver);
         return true;
     }
 

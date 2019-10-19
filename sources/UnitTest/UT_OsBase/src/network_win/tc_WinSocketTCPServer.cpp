@@ -29,6 +29,7 @@
 #include <network_win/WinSocketTCPServer.h>
 #include <UnitTestKit/tc_tracer.h>
 #include <thread/asyncCall.h>
+#include <network_win/clientPeerManager.h>
 
 #pragma warning(disable:4075)
 #pragma init_seg(".CRT$XCM")
@@ -44,7 +45,7 @@ namespace UnitTest
         TestNetClientPeer(SOCKET s, sockaddr const& sa)
             :WinSocketTcpClientPeer(s,sa)
         {
-            setIndependentRecvThread(false);
+            setReceiveMode(Delegate_IOCP);
         }
 
         virtual ~TestNetClientPeer()
@@ -97,7 +98,7 @@ namespace UnitTest
         virtual void onClientConnected( TpWinSocketTcpClientPeer const& pSlot )
         {
             MiniMPL::dbgOutput("client is connected on server.\n");
-            pSlot->setIndependentRecvThread(true);
+            pSlot->setReceiveMode(Delegate_newThread);
 
             char buf[]="UnitTest.TestNetServer.onClientConnected .\n";
             pSlot->send(buf,sizeof(buf));

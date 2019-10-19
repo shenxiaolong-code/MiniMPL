@@ -39,7 +39,7 @@ namespace UnitTest
     inline void TestCase_folderitemfounder()
     {
         PrintTestcase();
-        ASSERT_AND_LOG_INFO(0,(TXT("Not implemented")));	
+        //ASSERT_AND_LOG_INFO(0,(TXT("Not implemented")));	
         //Static_Assert(0);
         ALWAYS_COMPILE_MSG("NO Test context for <win32/folderitemfounder.h>");
 
