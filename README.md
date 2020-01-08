@@ -1,3 +1,9 @@
+This lib begins from VS2008, all template codes needn't C++11 compiler support. initial in vs2008 :
+-  use MiniMPL::ParamPackage implement the variant template.
+-  use MiniMPL::CGetType::xxx to implement decltype of C++11 from multiple input types.
+
+Now I might need to discard full VS2008 support because the C++11 compiler provides more simply&powerful features.
+
 # MiniMPL
 1. provide high-value basic componment for C++ meta-programming. 
  * it is the core componment in this lib.
