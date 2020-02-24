@@ -1,6 +1,6 @@
 # Valuable libs:
-1. provide high-value basic componment for C++ meta-programming.  
-2. provide basic C++ service object for application development (thread,sync and communication).
+1. provide high-value base component for C++ meta-programming.  
+2. provide C++ objects of basic services (thread, sync, and communication) for application development.
 
 This lib begins from VS2008, all template codes needn't C++11 compiler support. initial in vs2008 :
 -  use MiniMPL::ParamPackage implement the variant template.
