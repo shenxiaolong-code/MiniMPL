@@ -61,6 +61,11 @@ namespace MiniMPL
 				{
 					return std::shared_ptr<T>(new T());
 				}
+				template<typename T,unsigned LEN>
+				operator std::shared_ptr<T[LEN]>() const
+				{
+					return std::make_shared<T[LEN]>();
+				}
 
 				template<typename ... TArgs>
 				tupleParameterTransfer<TArgs...> operator()(TArgs&&... args) const
@@ -83,6 +88,8 @@ namespace MiniMPL
 				};
 
 				arrayInfo operator()(size_t iSize) const { return arrayInfo(iSize); }
+				template<typename T,unsigned LEN>
+				operator std::shared_ptr<T[LEN]>() const { return sharedPtrGeneraterImpl(); }
 			};
 		}
 	}

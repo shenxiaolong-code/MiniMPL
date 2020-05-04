@@ -5,7 +5,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros">
     <!-- set default output path if not defined -->
-    <SolutionOutput Condition="'$(SolutionOutput)' == ''">$(SolutionDir)..\..\output</SolutionOutput>
+    <SolutionOutput Condition="'$(SolutionOutput)' == ''">$(temp)\projects\$(solutionName)</SolutionOutput>
     <OutRoot Condition="'$(OutRoot)' == ''">$(SolutionOutput)\$(SolutionName)\$(Configuration)</OutRoot>
     <LibDir>$(OutRoot)\libs</LibDir>
   </PropertyGroup>

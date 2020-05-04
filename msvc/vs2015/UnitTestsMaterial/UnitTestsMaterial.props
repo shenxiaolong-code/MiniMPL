@@ -10,7 +10,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
-      <AdditionalIncludeDirectories>$(projectDir)..\..\..\sources\UnitTest\UnitTestsMaterial\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(CorePath)\sources\UnitTest\UnitTestsMaterial\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>UnitTestsMaterial.lib;%(AdditionalDependencies)</AdditionalDependencies>

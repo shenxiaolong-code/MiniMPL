@@ -12,7 +12,7 @@
 namespace OS_Win32
 {
     class CRegistry
-    {
+    {//or use ATL::CRegKey
     public:
         CRegistry(HKEY rootKey);
         virtual ~CRegistry();

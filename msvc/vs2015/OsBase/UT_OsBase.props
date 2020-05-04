@@ -9,7 +9,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
-      <AdditionalIncludeDirectories>$(projectDir)..\..\..\sources\UnitTest\UT_OsBase\include;$(projectDir)..\..\..\sources\UnitTest\UT_OsBase;$(projectDir)..\..\..\sources\OsBase\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(CorePath)\sources\UnitTest\UT_OsBase\include;$(CorePath)\sources\UnitTest\UT_OsBase;$(CorePath)\sources\OsBase\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>OsBase.lib;MiniMPL.lib;%(AdditionalDependencies)</AdditionalDependencies>
