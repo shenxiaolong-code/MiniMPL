@@ -71,7 +71,7 @@ namespace MiniMPL
     template<typename S,typename M,typename Ref_T,typename TCmp>
     UnaryTester_Result<CDataMemberPtr<M S::*>,Ref_T,TCmp> makeUnaryTester_Result(M S::* ptr,Ref_T retChk,TCmp rCmp,bool bExpected=true)
     {
-        return UnaryTester_Result<CDataMemberPtr<M S::*>,Ref_T,TCmp>(CDataMemberPtr<M S::*>(ptr),retChk,rCmp,bExpected);
+        return makeUnaryTester_Result(CDataMemberPtr<M S::*>(ptr),retChk,rCmp,bExpected);
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

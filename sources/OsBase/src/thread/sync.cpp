@@ -11,7 +11,7 @@ CSyncNotifier::CSyncNotifier( stlChar const* pName )
 
 }
 
-CSyncNotifier::CSyncNotifier( CSyncNotifier* pImpl )
+CSyncNotifier::CSyncNotifier( CSyncNotifier* /*pImpl*/ )
 {
 
 }
@@ -54,13 +54,13 @@ CSyncThread& getGlobalThreadLock()
     return gs_serialLock;
 }
 
-CSyncThread::CSyncThread( stlChar const* pName )
+CSyncThread::CSyncThread( stlChar const* /*pName*/ )
 : m_impl(getNewThreadLock())
 {
 
 }
 
-CSyncThread::CSyncThread( CSyncThread* pImpl )
+CSyncThread::CSyncThread( CSyncThread* /*pImpl*/ )
 {
 }
 
@@ -87,7 +87,7 @@ CSyncProcess::CSyncProcess( stlChar const* pName )
 
 }
 
-CSyncProcess::CSyncProcess( CSyncProcess* pImpl )
+CSyncProcess::CSyncProcess( CSyncProcess* /*pImpl*/ )
 {
 }
 

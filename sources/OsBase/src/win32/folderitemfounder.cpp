@@ -103,7 +103,7 @@ namespace OS_Win32
         }
     }
 
-    void CFolderItem::onItem( WCHAR const* pFile )
+    void CFolderItem::onItem( WCHAR const* /*pFile*/ )
     {
 
     }

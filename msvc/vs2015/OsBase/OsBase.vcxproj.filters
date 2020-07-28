@@ -161,6 +161,12 @@
     <ClInclude Include="..\..\..\sources\OsBase\src\network_win\inc\sockReceiver_newThread.h">
       <Filter>src\network_win\inc</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\sources\OsBase\include\win32\CmdLineParser.h">
+      <Filter>include\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\OsBase\include\win32\CmdLineParser.hpp">
+      <Filter>include\win32</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\sources\OsBase\src\communicator\CommuDef.cpp">
@@ -243,6 +249,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\sources\OsBase\src\network_win\sockReceiver_newThread.cpp">
       <Filter>src\network_win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sources\OsBase\src\win32\CmdLineParser.cpp">
+      <Filter>src\win32</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

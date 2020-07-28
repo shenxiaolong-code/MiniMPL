@@ -6,6 +6,7 @@
 *************************************************************************************/
 #include <MiniMPL\productSpecialDef.h>
 #include <thread/sync.h>
+#include <MiniMPL\stdwrapper.hpp>
 
 typedef unsigned long   ThreadID;
 
@@ -38,7 +39,7 @@ struct IOSThreadCreater
 {
     virtual ~IOSThreadCreater(){};
     virtual bool startThread(CThreadBase& rCallee)=0;
-    virtual bool waitThreadExit(unsigned timeoutMs=0xFFFFFFFE,bool bKillAfterTimeout=true)
+    virtual bool waitThreadExit(unsigned /*timeoutMs*/=_maxValue,bool /*bKillAfterTimeout*/=true)
     {return false;};
 };
 

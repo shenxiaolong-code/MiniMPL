@@ -105,7 +105,7 @@ namespace OS_Win32
 		return true;
 	}
 
-	bool CWinSockDelegateReceiver_IOCP::undelegateRecv(WinSocketTcpClientPeer& rClientPeer)
+	bool CWinSockDelegateReceiver_IOCP::undelegateRecv(WinSocketTcpClientPeer& /*rClientPeer*/)
 	{
 		return true;
 	}

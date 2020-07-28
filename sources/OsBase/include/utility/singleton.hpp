@@ -20,6 +20,10 @@ T::getInstance();
 T fail;         // it will trigger assert.
 */
 
+//don't move SingletonMultiInstance from OsBase to MiniMPL because it needs one thread lock which is based on OS feature.
+//std::mutex is one process lock with worse performance,  here one thread lock is best.
+//if we want OS decouple, so we have to compromise to use std:: mutex process lock with worse performance.
+
 template<typename T,bool bAllownMultiInstance=false>    struct SingletonMultiInstance;
 
 template<typename TImpl>

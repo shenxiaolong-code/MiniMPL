@@ -28,7 +28,7 @@ namespace MiniMPL
         UnaryFunctionParams_T   m_Ps;
         F                       m_f;
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        UnaryFunctionDirect(F f,UnaryFunctionParams_T& params)
+        UnaryFunctionDirect(F f,const UnaryFunctionParams_T& params)
             : m_f(f)
             , m_Ps(params)
         { }
@@ -44,7 +44,7 @@ namespace MiniMPL
     template<typename F,int Idx> 
     struct UnaryFunction: public UnaryFunctionDirect<F,Idx,typename UnaryFuncParams<F,Idx>::type> 
     {
-        UnaryFunction(F f,UnaryFunctionParams_T& params) :UnaryFunctionDirect(f,params){}; 
+        UnaryFunction(F f,const UnaryFunctionParams_T& params) :UnaryFunctionDirect(f,params){}; 
     };
 
     template<typename F> struct GetUnaryFunctionParam: public GetUFParamImpl<F> {};

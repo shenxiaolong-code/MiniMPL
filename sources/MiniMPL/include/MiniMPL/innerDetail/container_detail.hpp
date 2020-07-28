@@ -32,7 +32,7 @@ namespace MiniMPL
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     template<typename C,typename iterator_T>
-    typename MiniMPL::Get_Container_CPointer<C>::type iterator2CPointer(C& arr,iterator_T& it,ENABLE_IF((IsStlIterator<iterator_T>::value)))
+    typename MiniMPL::Get_Container_CPointer<C>::type iterator2CPointer(C& arr,const iterator_T& it,ENABLE_IF((IsStlIterator<iterator_T>::value)))
     {    
         return it==arr.end() ? NULL : &*it;
     }

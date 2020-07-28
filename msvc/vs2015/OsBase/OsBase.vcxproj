@@ -81,6 +81,8 @@
     <ClInclude Include="..\..\..\sources\OsBase\include\thread\threadManager.h" />
     <ClInclude Include="..\..\..\sources\OsBase\include\utility\dynamicBuffer.hpp" />
     <ClInclude Include="..\..\..\sources\OsBase\include\utility\singleton.hpp" />
+    <ClInclude Include="..\..\..\sources\OsBase\include\win32\CmdLineParser.h" />
+    <ClInclude Include="..\..\..\sources\OsBase\include\win32\CmdLineParser.hpp" />
     <ClInclude Include="..\..\..\sources\OsBase\include\win32\directory.h" />
     <ClInclude Include="..\..\..\sources\OsBase\include\win32\folderitemfounder.h" />
     <ClInclude Include="..\..\..\sources\OsBase\include\win32\handleguard.h" />
@@ -115,6 +117,7 @@
     <ClCompile Include="..\..\..\sources\OsBase\src\thread\threadManager.cpp" />
     <ClCompile Include="..\..\..\sources\OsBase\src\thread\win32\sync_win.cpp" />
     <ClCompile Include="..\..\..\sources\OsBase\src\thread\win32\threadCreater_win.cpp" />
+    <ClCompile Include="..\..\..\sources\OsBase\src\win32\CmdLineParser.cpp" />
     <ClCompile Include="..\..\..\sources\OsBase\src\win32\directory.cpp" />
     <ClCompile Include="..\..\..\sources\OsBase\src\win32\folderitemfounder.cpp" />
     <ClCompile Include="..\..\..\sources\OsBase\src\win32\handleguard.cpp" />

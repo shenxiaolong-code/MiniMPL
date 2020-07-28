@@ -86,8 +86,11 @@ protected:
 };
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-struct CSyncLockerBase{};
-typedef CSyncLockerBase&    CLocker;
+struct CSyncLockerBase 
+{
+	virtual ~CSyncLockerBase	() {};
+};
+typedef const CSyncLockerBase&    CLocker;
 
 template<typename T=CSyncThread>
 class CSyncLocker  : public CSyncLockerBase
@@ -117,6 +120,6 @@ template<typename T> inline CSyncLocker<T> makeLocker(T& locker)
     return CSyncLocker<T>(locker);
 }
 
-#define LockHere(x) CLocker MAKEVAR2(guard,UNIQUEID)=makeLocker( x )
+#define LockHere(x) CLocker MAKEVAR2(guard,__LINE__)=makeLocker( x );MAKEVAR2(guard,__LINE__)
 
 #endif // SYNC_H__

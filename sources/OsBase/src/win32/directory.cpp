@@ -30,7 +30,7 @@ namespace OS_Win32
     { 
     }
 
-    bool CFolderItemMonitor_subFolder::isExpectedItem( WIN32_FIND_DATA const& rFileData )
+    bool CFolderItemMonitor_subFolder::isExpectedItem( WIN32_FIND_DATA const& /*rFileData*/ )
     {
         return isDirectory();
     }

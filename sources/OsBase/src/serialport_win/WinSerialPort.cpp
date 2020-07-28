@@ -143,7 +143,7 @@ namespace OS_Win32
         return true;
     }
 
-    bool CSerialPort::onReceive( CCommBuffer const& rBuffer )
+    bool CSerialPort::onReceive( CCommBuffer const& /*rBuffer*/ )
     {
         static CSyncThread sync;
         CSyncLocker<CSyncThread> guard(sync);

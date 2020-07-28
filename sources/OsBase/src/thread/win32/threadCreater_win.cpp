@@ -64,7 +64,7 @@ namespace OS_Win32
 
         if (WAIT_OBJECT_0!=::WaitForSingleObject(m_ThrdHandle,timeoutMs) && bKillAfterTimeout)
         {
-            TerminateThread(m_ThrdHandle,-1);
+            TerminateThread(m_ThrdHandle,0);
             CloseHandle(m_ThrdHandle);      //free thread resource when terminate
             m_ThrdHandle = INVALID_HANDLE_VALUE;
             m_thrdId     = 0;

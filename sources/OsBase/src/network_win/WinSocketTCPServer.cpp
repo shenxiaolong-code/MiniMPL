@@ -12,7 +12,7 @@ namespace OS_Win32
         , m_bCloseFlag(true)
     { 
         // Get the local host information
-        struct addrinfo *result = WinSocketTCP::getAddrInfo("127.0.0.1");
+        //struct addrinfo *result = WinSocketTCP::getAddrInfo("127.0.0.1");
 
         WinSocketTCP::setTcpAddr("127.0.0.1", port, m_bindAddr);  //localIP is similar with 172.30.65.115 , it might be refused by gateway.
 

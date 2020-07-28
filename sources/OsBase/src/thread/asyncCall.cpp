@@ -23,7 +23,7 @@ struct AsyncExecutor : protected std::queue<MiniMPL::TpCallbacker>,public CThrea
         {
             while(size()>0)
             {
-                MiniMPL::TpCallbacker& pJob = getJob();
+                MiniMPL::TpCallbacker pJob = getJob();
                 if (pJob)
                 {
                     pJob->execute();
@@ -118,7 +118,7 @@ void asyncExecute( MiniMPL::TpCallbacker const& pCallback,EAsyncMode eMode/*=EAs
         }
         else
         {
-            unsigned thrdIdx = eMode-EAsync_ShareFixTheadIdx;
+            //unsigned thrdIdx = eMode-EAsync_ShareFixTheadIdx;
             ASSERT_AND_LOG_INFO(0,(TXT("TODO")));
             ALWAYS_COMPILE_MSG("TODO : EAsync_ShareFixTheadIdx is not implemented");
         }         

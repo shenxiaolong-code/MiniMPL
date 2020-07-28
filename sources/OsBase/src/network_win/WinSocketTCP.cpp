@@ -72,7 +72,7 @@ namespace OS_Win32
         memset(&addr, 0, sizeof(addr));
         addr.sin_family = AF_INET;
         setIP(pIp, addr);
-        setPort(sPort, addr);
+        setPort(USHORT(sPort), addr);
         return true;
     }
 

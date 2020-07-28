@@ -35,7 +35,7 @@ namespace MiniMPL
     template<typename TF,typename TPamams>
     struct TCallbacker : public ICallbacker
     {
-        TCallbacker(TF pFunc,TPamams& params)
+        TCallbacker(TF pFunc,const TPamams& params)
             : m_pFunc(pFunc)
             , m_params(params){};
 
@@ -51,7 +51,7 @@ namespace MiniMPL
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     template<typename TF,typename TParams>
-    inline ICallbacker* makeCallbackerDirect(TF f, TParams& params)
+    inline ICallbacker* makeCallbackerDirect(TF f, const TParams& params)
     {   
         // TF shouldn't be function object,if it is, pls convert it into TR T::operator()(...) formal. e.g.
         // TR (T::*pMF)(Tp1,Tp2,Tp3) = &T::operator()

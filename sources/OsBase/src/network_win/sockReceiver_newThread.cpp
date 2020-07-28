@@ -23,7 +23,7 @@ namespace OS_Win32
 		return m_thread.start();
 	}
 
-	bool CWinSockDelegateReceiver_newThread::undelegateRecv(WinSocketTcpClientPeer& rClientPeer)
+	bool CWinSockDelegateReceiver_newThread::undelegateRecv(WinSocketTcpClientPeer& /*rClientPeer*/)
 	{
 		m_bLoop = false;
 		return m_thread.stop();

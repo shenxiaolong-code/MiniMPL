@@ -13,13 +13,13 @@
 namespace MiniMPL
 {
     template<typename C,typename Tester_T>
-    ETP(C) find(C& arr,Tester_T& rTester)
+    ETP(C) find(C& arr, const Tester_T& rTester)
     {  
         return iterator2CPointer(arr,std::find_if(arr.begin(),arr.end(),rTester));
     }
 
     template<typename C,typename Compare_T>
-    void sort(C& arr,Compare_T& rCmp)
+    void sort(C& arr, const Compare_T& rCmp)
     {   
         std::sort(arr.begin(),arr.end(),rCmp);
     }
@@ -32,7 +32,7 @@ namespace MiniMPL
     }
 
     template<typename C,typename Process_T>
-    Process_T& forEach(C& arr,Process_T& rCmp)
+	const Process_T& forEach(C& arr,const Process_T& rCmp)
     {   
         if (0!=arr.size())
         {
@@ -43,14 +43,14 @@ namespace MiniMPL
 
     //Note:Compare_T should be CLesser
     template<typename C,typename Compare_T>
-    ETP(C) maxElement(C& arr,Compare_T& rCmp)
+    ETP(C) maxElement(C& arr, const Compare_T& rCmp)
     {  
         return iterator2CPointer(arr,std::max_element(arr.begin(),arr.end(),rCmp));
     }
 
     //Note:Compare_T should be CLesser
     template<typename C,typename Compare_T>
-    ETP(C) minElement(C& arr,Compare_T& rCmp)
+    ETP(C) minElement(C& arr, const Compare_T& rCmp)
     {   
         return iterator2CPointer(arr,std::min_element(arr.begin(),arr.end(),rCmp));
     }
