@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="src\Win32">
+      <UniqueIdentifier>{832a94d9-7ff9-422d-96bc-af8bb8742521}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\thread">
+      <UniqueIdentifier>{51f19922-cd7a-47c8-9729-339c54cbb220}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\thread\win32">
+      <UniqueIdentifier>{61d770d9-e014-4e17-bdfd-50077712cb0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\communicator">
+      <UniqueIdentifier>{b467c10a-0b7e-4e51-ac7e-ba257d555efd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\network_win">
+      <UniqueIdentifier>{8c9b6403-b962-468a-8a11-0b47adb93cb9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\serialport_win">
+      <UniqueIdentifier>{aa056c06-bc75-4295-917b-c1c30f4955c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\utility">
+      <UniqueIdentifier>{a91007a1-c632-429a-9aa8-747ddace06b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\network_win\inc">
+      <UniqueIdentifier>{6ab21de9-484c-47b8-ae25-323f21cb6d0c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_OsBase\UT_OsBase.cpp" />
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_OsBase\src\communicator\tc_CommuDef.cpp">
+      <Filter>src\communicator</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_OsBase\src\communicator\tc_crc.cpp">
+      <Filter>src\communicator</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_OsBase\src\communicator\tc_ICommunicator.cpp">
+      <Filter>src\communicator</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_OsBase\src\communicator\tc_IReceiver.cpp">
+      <Filter>src\communicator</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_OsBase\src\network_win\tc_clientPeerManager.cpp">
+      <Filter>src\network_win</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_OsBase\src\network_win\tc_clientPeerMmonitor.cpp">
+      <Filter>src\network_win</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_OsBase\src\network_win\tc_socket_opt_def.cpp">
+      <Filter>src\network_win</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_OsBase\src\network_win\tc_SocketEventMonitor.cpp">
+      <Filter>src\network_win</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_OsBase\src\network_win\tc_WinSockDelegateReceiver.cpp">
+      <Filter>src\network_win</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_OsBase\src\network_win\tc_WinSocket.cpp">
+      <Filter>src\network_win</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_OsBase\src\network_win\tc_WinSocketTCP.cpp">
+      <Filter>src\network_win</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_OsBase\src\network_win\tc_WinSocketTCPClient.cpp">
+      <Filter>src\network_win</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_OsBase\src\network_win\tc_WinSocketTcpClientPeer.cpp">
+      <Filter>src\network_win</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_OsBase\src\network_win\tc_WinSocketTCPServer.cpp">
+      <Filter>src\network_win</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_OsBase\src\serialport_win\tc_WinSerialPort.cpp">
+      <Filter>src\serialport_win</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_OsBase\src\thread\tc_asyncCall.cpp">
+      <Filter>src\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_OsBase\src\thread\tc_calllocker.cpp">
+      <Filter>src\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_OsBase\src\thread\tc_sync.cpp">
+      <Filter>src\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_OsBase\src\thread\tc_thread.cpp">
+      <Filter>src\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_OsBase\src\thread\tc_threadManager.cpp">
+      <Filter>src\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_OsBase\src\thread\win32\tc_sync_win.cpp">
+      <Filter>src\thread\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_OsBase\src\thread\win32\tc_threadCreater_win.cpp">
+      <Filter>src\thread\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_OsBase\src\utility\tc_dynamicBuffer.cpp">
+      <Filter>src\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_OsBase\src\utility\tc_singleton.cpp">
+      <Filter>src\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_OsBase\src\win32\tc_directory.cpp">
+      <Filter>src\Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_OsBase\src\win32\tc_folderitemfounder.cpp">
+      <Filter>src\Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_OsBase\src\win32\tc_handleguard.cpp">
+      <Filter>src\Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_OsBase\src\win32\tc_memmapfile.cpp">
+      <Filter>src\Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_OsBase\src\win32\tc_registry.cpp">
+      <Filter>src\Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_OsBase\src\win32\tc_WinApiPack.cpp">
+      <Filter>src\Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_OsBase\src\network_win\inc\tc_sockReceiver_completePort.cpp">
+      <Filter>src\network_win\inc</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_OsBase\src\network_win\inc\tc_sockReceiver_newThread.cpp">
+      <Filter>src\network_win\inc</Filter>
+    </ClCompile>
+    <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_OsBase\src\network_win\inc\tc_sockReceiver_overlapPort.cpp">
+      <Filter>src\network_win\inc</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(projectDir)..\..\..\sources\UnitTest\UT_OsBase\testconfig_OsBase.h" />
+  </ItemGroup>
+</Project>

@@ -69,8 +69,12 @@ https://msdn.microsoft.com/en-us/library/b0084kay.aspx
 //but any version VS always set __cplusplus=199711L
 #if __cplusplus >= 201103L || (defined(_MSC_VER) && _MSC_VER >= 1900)
 	#define CPP11_ENABLED       1
+    #define STLNS               _STD
+	#define STLTR1NS			_STD
 #else
 	#define CPP11_ENABLED       0
+	#define STLNS               _STD
+	#define STLTR1NS			_STD tr1::
 	#define final
 	#define override
 #endif

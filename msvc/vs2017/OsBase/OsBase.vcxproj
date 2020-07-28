@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{CA603705-C41E-4248-A3E0-C5960721F591}</ProjectGuid>
+    <RootNamespace>OsBase</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="OsBase.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="OsBase.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>14.0.25431.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Text Include="devPlan.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\sources\OsBase\include\communicator\CommuDef.h" />
+    <ClInclude Include="..\..\..\sources\OsBase\include\communicator\crc.h" />
+    <ClInclude Include="..\..\..\sources\OsBase\include\communicator\ICommunicator.h" />
+    <ClInclude Include="..\..\..\sources\OsBase\include\communicator\IReceiver.h" />
+    <ClInclude Include="..\..\..\sources\OsBase\include\network_win\clientPeerManager.h" />
+    <ClInclude Include="..\..\..\sources\OsBase\include\network_win\clientPeerMmonitor.h" />
+    <ClInclude Include="..\..\..\sources\OsBase\include\network_win\SocketEventMonitor.h" />
+    <ClInclude Include="..\..\..\sources\OsBase\include\network_win\socket_opt_def.h" />
+    <ClInclude Include="..\..\..\sources\OsBase\include\network_win\WinSockDelegateReceiver.h" />
+    <ClInclude Include="..\..\..\sources\OsBase\include\network_win\WinSocket.h" />
+    <ClInclude Include="..\..\..\sources\OsBase\include\network_win\WinSocketTCP.h" />
+    <ClInclude Include="..\..\..\sources\OsBase\include\network_win\WinSocketTCPClient.h" />
+    <ClInclude Include="..\..\..\sources\OsBase\include\network_win\WinSocketTcpClientPeer.h" />
+    <ClInclude Include="..\..\..\sources\OsBase\include\network_win\WinSocketTCPServer.h" />
+    <ClInclude Include="..\..\..\sources\OsBase\include\serialport_win\WinSerialPort.h" />
+    <ClInclude Include="..\..\..\sources\OsBase\include\serialport_win\WinSerialPortDef.h" />
+    <ClInclude Include="..\..\..\sources\OsBase\include\thread\asyncCall.h" />
+    <ClInclude Include="..\..\..\sources\OsBase\include\thread\calllocker.hpp" />
+    <ClInclude Include="..\..\..\sources\OsBase\include\thread\sync.h" />
+    <ClInclude Include="..\..\..\sources\OsBase\include\thread\thread.h" />
+    <ClInclude Include="..\..\..\sources\OsBase\include\thread\threadBase.h" />
+    <ClInclude Include="..\..\..\sources\OsBase\include\thread\threadManager.h" />
+    <ClInclude Include="..\..\..\sources\OsBase\include\utility\dynamicBuffer.hpp" />
+    <ClInclude Include="..\..\..\sources\OsBase\include\utility\singleton.hpp" />
+    <ClInclude Include="..\..\..\sources\OsBase\include\win32\CmdLineParser.h" />
+    <ClInclude Include="..\..\..\sources\OsBase\include\win32\CmdLineParser.hpp" />
+    <ClInclude Include="..\..\..\sources\OsBase\include\win32\directory.h" />
+    <ClInclude Include="..\..\..\sources\OsBase\include\win32\folderitemfounder.h" />
+    <ClInclude Include="..\..\..\sources\OsBase\include\win32\handleguard.h" />
+    <ClInclude Include="..\..\..\sources\OsBase\include\win32\memmapfile.h" />
+    <ClInclude Include="..\..\..\sources\OsBase\include\win32\registry.h" />
+    <ClInclude Include="..\..\..\sources\OsBase\include\win32\WinApiPack.h" />
+    <ClInclude Include="..\..\..\sources\OsBase\src\network_win\inc\sockReceiver_completePort.h" />
+    <ClInclude Include="..\..\..\sources\OsBase\src\network_win\inc\sockReceiver_newThread.h" />
+    <ClInclude Include="..\..\..\sources\OsBase\src\network_win\inc\sockReceiver_overlapPort.h" />
+    <ClInclude Include="..\..\..\sources\OsBase\src\thread\win32\inc\sync_win.h" />
+    <ClInclude Include="..\..\..\sources\OsBase\src\thread\win32\inc\threadCreater_win.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\sources\OsBase\src\communicator\CommuDef.cpp" />
+    <ClCompile Include="..\..\..\sources\OsBase\src\communicator\crc.cpp" />
+    <ClCompile Include="..\..\..\sources\OsBase\src\communicator\ICommunicator.cpp" />
+    <ClCompile Include="..\..\..\sources\OsBase\src\network_win\clientPeerManager.cpp" />
+    <ClCompile Include="..\..\..\sources\OsBase\src\network_win\clientPeerMmonitor.cpp" />
+    <ClCompile Include="..\..\..\sources\OsBase\src\network_win\sockReceiver_completePort.cpp" />
+    <ClCompile Include="..\..\..\sources\OsBase\src\network_win\sockReceiver_newThread.cpp" />
+    <ClCompile Include="..\..\..\sources\OsBase\src\network_win\sockReceiver_overlapPort.cpp" />
+    <ClCompile Include="..\..\..\sources\OsBase\src\network_win\WinSocket.cpp" />
+    <ClCompile Include="..\..\..\sources\OsBase\src\network_win\WinSocketTCP.cpp" />
+    <ClCompile Include="..\..\..\sources\OsBase\src\network_win\WinSocketTCPClient.cpp" />
+    <ClCompile Include="..\..\..\sources\OsBase\src\network_win\WinSocketTcpClientPeer.cpp" />
+    <ClCompile Include="..\..\..\sources\OsBase\src\network_win\WinSocketTCPServer.cpp" />
+    <ClCompile Include="..\..\..\sources\OsBase\src\serialport_win\WinSerialPort.cpp" />
+    <ClCompile Include="..\..\..\sources\OsBase\src\thread\asyncCall.cpp" />
+    <ClCompile Include="..\..\..\sources\OsBase\src\thread\sync.cpp" />
+    <ClCompile Include="..\..\..\sources\OsBase\src\thread\thread.cpp" />
+    <ClCompile Include="..\..\..\sources\OsBase\src\thread\threadBase.cpp" />
+    <ClCompile Include="..\..\..\sources\OsBase\src\thread\threadManager.cpp" />
+    <ClCompile Include="..\..\..\sources\OsBase\src\thread\win32\sync_win.cpp" />
+    <ClCompile Include="..\..\..\sources\OsBase\src\thread\win32\threadCreater_win.cpp" />
+    <ClCompile Include="..\..\..\sources\OsBase\src\win32\CmdLineParser.cpp" />
+    <ClCompile Include="..\..\..\sources\OsBase\src\win32\directory.cpp" />
+    <ClCompile Include="..\..\..\sources\OsBase\src\win32\folderitemfounder.cpp" />
+    <ClCompile Include="..\..\..\sources\OsBase\src\win32\handleguard.cpp" />
+    <ClCompile Include="..\..\..\sources\OsBase\src\win32\memmapfile.cpp" />
+    <ClCompile Include="..\..\..\sources\OsBase\src\win32\registry.cpp" />
+    <ClCompile Include="..\..\..\sources\OsBase\src\win32\WinApiPack.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

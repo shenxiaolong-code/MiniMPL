@@ -99,20 +99,6 @@ namespace UnitTest
 		p.get()[2] = 3;
 		AssertB((p.get()[2] == pm[2]));
 		p.reset();
-
-		std::shared_ptr<int[3] > p1 = _sharedPtrArray;		
-		int* pm1 = *p1;
-		pm1[0] = 4;
-		pm1[1] = 5;
-		pm1[2] = 6;
-		p1.reset();
-
-		std::shared_ptr<int[3] > p2 = _sharedPtrGenerater;
-		int* pm2 = *p2;
-		pm2[0] = 7;
-		pm2[1] = 8;
-		pm2[2] = 9;
-		p2.reset();
 	}
 
 	inline void TestCase_sharedGenerator()

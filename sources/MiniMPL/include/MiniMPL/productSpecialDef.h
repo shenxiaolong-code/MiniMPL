@@ -7,10 +7,8 @@
 * Copyright           : free to use / modify / sale in free and commercial software with those head comments.
 ***********************************************************************************************************************/
 #include <MiniMPL/libConfig.h>
+#include <MiniMPL/platformEnv.h>
 //////////////////////////////////////////////////STL replace //////////////////////////////////////////////////////
-//define external stl lib name space
-#define STLNS               _STD
-
 /*!  for customer STL library , it is the place to replace it */
 //define STL string
 #include <string>
@@ -44,8 +42,8 @@ typedef stlString::value_type       stlChar;
     #define stlSmartptr     ::MiniMPL::RefCountSmartPtr
 #else
     #include <memory>
-    #define stlSmartptr         STLNS tr1::shared_ptr 
-    #define stlSmartptrBase     STLNS tr1::enable_shared_from_this
+    #define stlSmartptr         STLTR1NS shared_ptr 
+    #define stlSmartptrBase     STLTR1NS enable_shared_from_this
 
     #define DeclarePtr(T)       typedef stlSmartptr< T >   T##Ptr
 #endif
