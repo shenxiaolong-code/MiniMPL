@@ -14,6 +14,8 @@ namespace OS_Win32
     class CRegistry
     {//or use ATL::CRegKey
     public:
+		//HKEY is called as hive
+		//https://docs.microsoft.com/en-us/windows/win32/sysinfo/registry-hives
         CRegistry(HKEY rootKey);
         virtual ~CRegistry();
 

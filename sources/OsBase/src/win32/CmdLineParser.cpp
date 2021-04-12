@@ -3,6 +3,25 @@
 #include <algorithm>
 //#include <regex>
 
+/*/
+#include <vector>
+std::vector<std::wstring> SplitCmdlineByBlank(const std::wstring & commandLine)
+{	//use windows API to split the command line string by blank char
+	std::vector<std::wstring>  opts;
+
+	LPWSTR	*szArglist	= nullptr;
+	int		nArgs		= 0;
+	szArglist = CommandLineToArgvW(commandLine.c_str(), &nArgs);
+	for (int i=0; i< nArgs; ++i)
+	{
+		opts.push_back(szArglist[i]);
+	}
+	LocalFree(szArglist);
+
+	return opts;
+}
+//*/
+
 CmdLineParser::CmdLineParser(const wchar_t* pLine/*=NULL*/)
 {
 	m_line = pLine ? pLine : ::GetCommandLineW();

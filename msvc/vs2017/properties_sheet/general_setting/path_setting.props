@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ImportGroup Label="PropertySheets">
-    <Import Project="$(SolutionDir)$(SolutionName)_setting.props" Condition="exists('$(SolutionDir)$(SolutionName)_setting.props')" />
+    <Import Project="$(SolutionDir)$(SolutionName).props" Condition="exists('$(SolutionDir)$(SolutionName).props')" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros">
     <!-- set default output path if not defined -->

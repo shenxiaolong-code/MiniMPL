@@ -9,11 +9,11 @@
 
 /******************************************************************************************************
 below refer to :  How to detect the compiler name and version using compiler predefined macros
-http://nadeausoftware.com/articles/2012/10/c_c_tip_how_detect_compiler_name_and_version_using_compiler_predefined_macros#Howtolistpredefinedmacros
 for MSVC specific:
 https://msdn.microsoft.com/en-us/library/b0084kay.aspx
 ******************************************************************************************************/
 #include <MiniMPL/macro_makeTxt.h>
+#include <cstdint>      //for bit32/bit64
 
 #if defined(__clang__)
     #define LLVM          /* Clang/LLVM */
@@ -34,11 +34,59 @@ https://msdn.microsoft.com/en-us/library/b0084kay.aspx
 #if defined(__IBMC__) || defined(__IBMCPP__)
     #define IBMCPP       /* IBM XL C/C++. */
 #endif 
+       
+#if INTPTR_MAX == INT32_MAX
+    #define BIT32
+    #define BIT_NUM     32
+    #define bit_info()  __pragma(message ("bit = BIT32 , value=" MAKESTRA(BIT_NUM))) 
+#elif INTPTR_MAX == INT64_MAX
+    #define BIT64
+    #define BIT_NUM     64
+    #define bit_info()  __pragma(message ("bit = BIT64 , value=" MAKESTRA(BIT_NUM))) 
+#else
+    #error "Environment not 32 or 64-bit."
+    #define BIT_NUM     00
+    #define bit_info()  __pragma(message ("bit = unknown , value=" MAKESTRA(BIT_NUM))) 
+#endif
+
+//https://sourceforge.net/p/predef/wiki/Architectures/
+//you need this definition if using assemble code (don't use header file which is dependent-based-on-platform)
+//for general architecture type x86 , amd64 , intel64 , arm 
+#if defined(i386) || defined(__i386) || defined(__i386) || defined(_M_I86) || defined(_M_IX86) || defined(__X86__) || defined(_X86_) || defined(__THW_INTEL__) || defined(__I86__) || defined(__INTEL__) || defined(__386)
+    #define     ASM_X86
+    #define     ASM_MOD   1
+    #define     asm_info()  __pragma(message ("ASM_MOD = ASM_X86 , value:" MAKESTRA(ASM_MOD) )) 
+#endif // _X86_
+#if defined(__amd64__) || defined(__amd64) || defined(__x86_64__) || defined(__x86_64) || defined(_M_X64) || defined(_M_AMD64)
+    #define     ASM_AMD64
+    #define     ASM_MOD   2
+    #define asm_info()  __pragma(message ("ASM_MOD = ASM_AMD64 , value:" MAKESTRA(ASM_MOD) )) 
+#endif // AMD64
+#if defined(_IA64) || defined(__ia64) || defined(_M_IA64) || defined(_M_IA64) || defined(__itanium__)
+    #define     ASM_INTEL64
+    #define     ASM_MOD   3
+    #define asm_info()  __pragma(message ("ASM_MOD = ASM_AMD64 , value:" MAKESTRA(ASM_MOD) )) 
+#endif // Intel 64
+#if defined(__arm__) || defined(_ARM) || defined(_M_ARM) || defined(_M_ARMT) || defined(__arm)
+    #define     ASM_ARM
+    #define     ASM_MOD   4
+    #define asm_info()  __pragma(message ("ASM_MOD = ASM_ARM , value:" MAKESTRA(ASM_MOD) )) 
+#endif // ARM
+//some other architectures for embed board are skipped. e.g.  MIPS , PowerPC , TMS470, SuperH , Motorola 68k ...
+#ifndef ASM_MOD
+    #error "Unknown Compiler Macros for CPU Architectures , ASM_MOD is not defined. "
+#endif // !ASM_MOD
 
 #if defined(_MSC_VER)
     #define MSVC        /* Microsoft Visual Studio.*/
 
     #define VSListDef(_)                                                                 \
+	_(_MSC_VER,       1923,       VC++ 14.23,   (Visual Studio 2019 version 16.3)     )  \
+	_(_MSC_VER,       1922,       VC++ 14.22,   (Visual Studio 2019 version 16.2)     )  \
+	_(_MSC_VER,       1921,       VC++ 14.21,   (Visual Studio 2019 version 16.1)     )  \
+	_(_MSC_VER,       1920,       VC++ 14.2 ,   (Visual Studio 2019 version 16.0)     )  \
+	_(_MSC_VER,       1916,       VC++ 14.16,   (Visual Studio 2017 version 15.9)     )  \
+	_(_MSC_VER,       1915,       VC++ 14.15,   (Visual Studio 2017 version 15.8)     )  \
     _(_MSC_VER,       1914,       VC++ 14.14,   (Visual Studio 2017 version 15.7)     )  \
     _(_MSC_VER,       1913,       VC++ 14.13,   (Visual Studio 2017 version 15.6)     )  \
     _(_MSC_VER,       1912,       VC++ 14.12,   (Visual Studio 2017 version 15.5)     )  \

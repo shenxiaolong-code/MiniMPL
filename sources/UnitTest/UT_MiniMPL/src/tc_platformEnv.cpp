@@ -44,6 +44,12 @@ namespace UnitTest
         #pragma message("\r\nC++11 support info:")
         plat_info_cpp();
 
+		#pragma message("\r\nAssemble info:")
+		asm_info();
+
+        #pragma message("\r\nbit info:")
+        bit_info();
+
         #pragma message("\r\nRTTI support info:")
         plat_info_rtti();
 #else
