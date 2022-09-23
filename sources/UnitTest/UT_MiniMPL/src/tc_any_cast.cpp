@@ -20,26 +20,55 @@
 #endif
 
 //#undef RUN_EXAMPLE_ANY_CAST
-#undef COMPILE_EXAMPLE_ANY_CAST
+//#undef COMPILE_EXAMPLE_ANY_CAST
 
 ////////////////////////////////////////////usage & test demo code//////////////////////////////////////////////////////////
 #ifdef COMPILE_EXAMPLE_ANY_CAST
 #include <MiniMPL/any_cast.hpp>
 #include <UnitTestKit/tc_tracer.h>
+#include <UT_material/tc_def_typeStruct.h>
 
 namespace UnitTest
 {
+	typedef     int MFStruct0_6::* PMemData_T;
+	typedef     int(__stdcall* PMemFunc_T)(int, char);
 
-    inline void TestCase_any_cast()
+	inline void TestCase_any_cast()
+	{
+		PrintTestcase();
+		PMemData_T  pData = MiniMPL::any_cast<PMemData_T>(11);
+		PMemFunc_T  pFunc = MiniMPL::any_cast<PMemFunc_T>(22);
+        // float/double and int/int-similar cast will cause the wrong result because of their different storage mechanism.
+        // PMemFunc_T  pFunc = MiniMPL::any_cast<PMemFunc_T>(33.33);        // wrong result , although compile pass
+
+		long  lData = MiniMPL::any_cast<long>(pData);
+        Assertb(11==lData);
+		long  lFunc = MiniMPL::any_cast<long>(pFunc);
+        Assertb(22==lFunc);
+
+        // float  fData = MiniMPL::any_cast<float>(pData);                  // wrong result , although compile pass
+	}
+
+    inline void TestCase_any_cast_object()
     {
         PrintTestcase();
-        ASSERT_AND_LOG_INFO(0,(TXT("Not implemented")));	
-        Static_Assert(0);
 
+        PMemData_T  pData  = _anycast(44);
+        PMemFunc_T  pFunc  = _anycast(55);
+        // float/double and int/int-similar cast will cause the wrong result because of their different storage mechanism.
+        // PMemFunc_T  pFunc  = _anycast(66.66);                            // wrong result , although compile pass
+
+        long        dData = _anycast(pData);
+        Assertb(44==dData);
+        long        dFunc = _anycast(pFunc);
+        Assertb(55==dFunc);
+
+        // double   dFunc  = _anycast(pData);                              // wrong result , although compile pass
     }
 
 #ifdef RUN_EXAMPLE_ANY_CAST
     InitRunFunc(TestCase_any_cast);
+    InitRunFunc(TestCase_any_cast_object);
 #else //else of RUN_EXAMPLE_ANY_CAST
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
