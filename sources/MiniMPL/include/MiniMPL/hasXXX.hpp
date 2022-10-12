@@ -29,8 +29,8 @@ public:                                                                         
     enum {value =  sizeof(MiniMPL::Yes_Type)==sizeof(test<T>(0)) };                                 \
 };
 
-#define HasXXXMember(M)                                                                             \
-template<typename T>  struct HasMember_##M                                                          \
+#define HasXXXData(M)                                                                             \
+template<typename T>  struct HasData_##M                                                          \
 {                                                                                                   \
 protected:                                                                                          \
     template <typename C> static MiniMPL::Yes_Type test( decltype( & C::M ) ) ;                     \
