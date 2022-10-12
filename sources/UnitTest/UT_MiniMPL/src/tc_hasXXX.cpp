@@ -41,6 +41,8 @@ namespace UnitTest
 
     HasXXXMethod(print1Param,void(U::*)(int),);
 
+    HasXXXMember(m_a);
+
     inline void TestCase_hasXXX()
     {
         PrintTestcase();
@@ -101,7 +103,12 @@ namespace UnitTest
         Static_Assert((HasType_type<Type2Type<S4> >::value));
 
         Static_Assert((HasType_int_T<structData>::value));
-        Static_Assert(!(HasType_abc<S4>::value)); 
+        Static_Assert(!(HasType_abc<S4>::value));
+
+        Static_Assert((HasMember_m_a<structData>::value));
+        Static_Assert((HasMember_m_a<ConstStruct>::value));
+        Static_Assert(!(HasMember_m_a<MFStruct0_6>::value));
+        Static_Assert(!(HasMember_m_a<S2>::value));
     }
 
 #ifdef RUN_EXAMPLE_HASXXX

@@ -16,7 +16,7 @@
     template<typename U,typename S=MiniMPL::NullType>    struct MAKEVAR(HasType_,M) : MiniMPL::FalseType {};                                    \
     template<typename S> struct MAKEVAR(HasType_,M)<S,typename MiniMPL::sfinae_helper<typename MAKEVAR(S::,M)>::type> : MiniMPL::TrueType  {}
 
-//M : methodName , TF : method signature , M2 : optional additional method flag
+//M : methodName , TF : method signature , M2 : optional additional method flag to recognize function overload
 #define HasXXXMethod(M,TF,M2)                                                                       \
 template<typename T>  struct HasMethod##M2##_##M                                                    \
 {                                                                                                   \
@@ -24,6 +24,17 @@ protected:                                                                      
     template <typename U,TF> struct sfinae_v_helper{};                                              \
     template <typename U>   static MiniMPL::Yes_Type test(sfinae_v_helper<U,MAKEVAR(&U::,M)> * );   \
     template <typename U>   static MiniMPL::No_Type  test(...);                                     \
+                                                                                                    \
+public:                                                                                             \
+    enum {value =  sizeof(MiniMPL::Yes_Type)==sizeof(test<T>(0)) };                                 \
+};
+
+#define HasXXXMember(M)                                                                             \
+template<typename T>  struct HasMember_##M                                                          \
+{                                                                                                   \
+protected:                                                                                          \
+    template <typename C> static MiniMPL::Yes_Type test( decltype( & C::M ) ) ;                     \
+    template <typename C> static MiniMPL::No_Type  test(...);                                       \
                                                                                                     \
 public:                                                                                             \
     enum {value =  sizeof(MiniMPL::Yes_Type)==sizeof(test<T>(0)) };                                 \
