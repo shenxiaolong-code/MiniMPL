@@ -30,24 +30,26 @@
 
 namespace UnitTest
 {
-	typedef     int MFStruct0_6::* PMemData_T;
-	typedef     int(__stdcall* PMemFunc_T)(int, char);
+    typedef     int MFStruct0_6::* PMemData_T;
+    typedef     int(__stdcall* PMemFunc_T)(int, char);
 
-	inline void TestCase_any_cast()
-	{
-		PrintTestcase();
-		PMemData_T  pData = MiniMPL::any_cast<PMemData_T>(11);
-		PMemFunc_T  pFunc = MiniMPL::any_cast<PMemFunc_T>(22);
+    inline void TestCase_any_cast_func()
+    {
+        PrintTestcase();
+        PMemData_T  pData = MiniMPL::any_cast(11);
+        PMemFunc_T  pFunc = MiniMPL::any_cast(22);
         // float/double and int/int-similar cast will cause the wrong result because of their different storage mechanism.
         // PMemFunc_T  pFunc = MiniMPL::any_cast<PMemFunc_T>(33.33);        // wrong result , although compile pass
 
-		long  lData = MiniMPL::any_cast<long>(pData);
+        long  lData = MiniMPL::any_cast(pData);
         Assertb(11==lData);
-		long  lFunc = MiniMPL::any_cast<long>(pFunc);
+        int   iData = MiniMPL::CAnyCast::make(pData);
+        Assertb(11 == iData);
+        long  lFunc = MiniMPL::any_cast(pFunc);
         Assertb(22==lFunc);
 
         // float  fData = MiniMPL::any_cast<float>(pData);                  // wrong result , although compile pass
-	}
+    }
 
     inline void TestCase_any_cast_object()
     {
@@ -67,7 +69,7 @@ namespace UnitTest
     }
 
 #ifdef RUN_EXAMPLE_ANY_CAST
-    InitRunFunc(TestCase_any_cast);
+    InitRunFunc(TestCase_any_cast_func);
     InitRunFunc(TestCase_any_cast_object);
 #else //else of RUN_EXAMPLE_ANY_CAST
 
@@ -79,7 +81,7 @@ namespace UnitTest
     #if defined(BUILD_WARNING_NO_TESTCASE_RUN)
     #pragma message (__FILE__ "(" MAKESTRA(__LINE__) "):No test code is runing for \"any_cast.hpp\".")
     #endif
-#endif  	// RUN_EXAMPLE_ANY_CAST
+#endif      // RUN_EXAMPLE_ANY_CAST
 }
 
 #else //else of COMPILE_EXAMPLE_ANY_CAST

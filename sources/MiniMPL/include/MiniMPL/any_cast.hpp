@@ -9,45 +9,53 @@
 ***********************************************************************************************************************/
 namespace MiniMPL
 {
-    namespace InnerDetail
+    //[ warning ] float/double and int/int-similar cast will cause the wrong result because of their different storage mechanism.
+    /*
+    static_assert( And_T< Not_T< Xor_T< std::is_floating_point< TP >,std::is_floating_point< TR > > > ,
+                          Not_T< Xor_T< std::is_integral< TP >,std::is_integral< TR > > > >::value ,
+                          "int and float cast" );
+    */
+    struct CAnyCast
     {
-        template <typename TR, typename TP>
-        union CAnyCastImpl
-        {
-            CAnyCastImpl(TP p) : m_P(p){};
-
-            TP m_P;
-            TR m_R;
-        };
-
+    protected:
         template <typename TP>
-        struct CAnyCast_bridge
+        struct Impl
         {
-            CAnyCast_bridge(TP p) : m_P(p){};
+            Impl(TP p) : m_p(p){};
 
             template <typename TR> 
             operator TR()
-            {
-                return CAnyCastImpl<TR, TP>(m_P).m_R;
+            {                
+                union
+                {
+                    TP m_p;
+                    TR m_r;
+                } castImpl;
+
+                castImpl.m_p = m_p;
+                return castImpl.m_r;
             }
 
-            TP m_P;
+            TP m_p;
         };
-    }
 
-    //[ warning ] float/double and int/int-similar cast will cause the wrong result because of their different storage mechanism.
-    struct CAnyCast
-	{
+    public:
         template<typename TP> 
-        InnerDetail::CAnyCast_bridge<TP> operator ()(TP p)
+        static Impl<TP> make(TP p)
         {
-            return InnerDetail::CAnyCast_bridge<TP>(p);
+            return Impl<TP>(p);
         }
-	};
 
-    template<typename TR,typename TP> inline TR any_cast(TP p)
+        template<typename TP> 
+        Impl<TP> operator ()(TP p)
+        {
+            return make(p);
+        }
+    };
+
+    template<typename TP> inline CAnyCast::Impl<TP> any_cast(TP p)
     {
-        return InnerDetail::CAnyCastImpl<TR,TP>(p).m_R;
+        return _anycast(p);     // or return CAnyCast::make(p);
     } 
 }
 
