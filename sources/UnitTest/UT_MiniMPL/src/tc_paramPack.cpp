@@ -40,6 +40,24 @@ namespace UnitTest
 		ParamPackage11<int, char, int, char> oPP11(3, 4, 5, 6);
 		oPP11 ;
 	}
+
+    template < typename TensorA, typename TensorB, typename TensorC, typename TensorD>  struct test_complex_type;
+    template <typename T>  struct getType_TensorB: public MiniMPL::getFormalParamterType_t<T,1> {};
+    template <typename T>  struct getType_TensorC: public MiniMPL::getFormalParamterType_t<T,2> {};
+
+    inline void TestCase_getFormalParamterType_cpp11()
+    {
+        PrintTestcase();
+
+        using namespace MiniMPL;
+
+        typedef test_complex_type<int, char, float, double>             complex_type;
+        typedef getType_TensorB<complex_type>::type                     TensorB_T;
+        Static_Assert((IsSameType<TensorB_T,char>::value));
+
+        typedef getType_TensorC<complex_type>::type                     TensorC_T;
+        Static_Assert((IsSameType<TensorC_T,float>::value));
+    }
 #endif
 
     inline void TestCase_paramPack()
@@ -90,6 +108,7 @@ namespace UnitTest
     InitRunFunc(TestCase_paramPack);
 #if CPP11_ENABLED
 	InitRunFunc(TestCase_paramPack_cpp11);
+    InitRunFunc(TestCase_getFormalParamterType_cpp11);
 #endif
 #else //else of RUN_EXAMPLE_PARAMPACK
 

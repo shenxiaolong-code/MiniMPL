@@ -31,6 +31,17 @@ namespace MiniMPL
     template<typename TP1,typename TP2,typename TP3,typename TP4,typename TP5,typename TP6,typename TP7> 
     struct IsParamPackage<ParamPackage<TP1,TP2,TP3,TP4,TP5,TP6,TP7> > : public TrueType{};
 
+#if CPP11_ENABLED
+    // Get Nth formal parameters type, Nth begin from 0 , need Cpp11 support
+    template<typename T>                                            struct getFormalParamterType ;
+    template <class... TArgs , template< class ... > class T >      struct getFormalParamterType< T <TArgs ...> > 
+    {
+        template<unsigned Nth>                                      struct apply : public std::tuple_element<Nth, std::tuple<TArgs ...> > {} ;
+    };
+    template<typename T , unsigned Nth> 
+    using getFormalParamterType_t=typename getFormalParamterType<T>::template apply<Nth> ;
+#endif
+
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     template<> 
     struct ParamPackage<>

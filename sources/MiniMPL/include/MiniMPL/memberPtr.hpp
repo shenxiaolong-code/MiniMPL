@@ -10,9 +10,9 @@
 #include <MiniMPL/innerDetail/memberPtr_detail.hpp>
 #include <MiniMPL/any_cast.hpp>
 
-#define makePtrToSelf(S)            MiniMPL::any_cast<S S::*>( 0 )
-#define makePtrToMember(S,M,V)      MiniMPL::any_cast<M S::*>( &((S*) (NULL))->##V )
-#define makePtrToMemberT(T,V)       MiniMPL::any_cast<T>( &((MiniMPL::GetStruct<T>::type*) (NULL))->##V )     //e.g.makePtrToMember(S4,int,m_ss3.m_ss2.m_ss1.m_s1)
+#define makePtrToSelf(S)            (S S::*)MiniMPL::any_cast( 0 )
+#define makePtrToMember(S,M,V)      (M S::*)MiniMPL::any_cast( &((S*) (NULL))->##V )
+#define makePtrToMemberT(T,V)       (T)MiniMPL::any_cast( &((MiniMPL::GetStruct<T>::type*) (NULL))->##V )     //e.g.makePtrToMember(S4,int,m_ss3.m_ss2.m_ss1.m_s1)
 
 #define MMP(M)                      MiniMPL::makeMemberPtr(M)
 #define MMP2(M1,M2)                 MiniMPL::linkMemberPtr(M1,M2)
@@ -37,7 +37,7 @@ namespace MiniMPL
     template<typename S,typename M1,typename M2>
     inline M2 S::*const linkMemberPtr(M1 S::*const ptr1,M2 M1::*const ptr2)
     {      
-        return any_cast<M2 S::*>(any_cast<TMemberOffset>(ptr1)+any_cast<TMemberOffset>(ptr2));
+        return (M2 S::*)any_cast((TMemberOffset)any_cast(ptr1)+(TMemberOffset)any_cast(ptr2));
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     template<typename T>

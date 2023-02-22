@@ -44,7 +44,7 @@
 #define ASSERT_AND_LOG(X)			ASSERT_AND_LOG_INFO(X,(MAKESTR(X)))
 
 //////////////////////////////////////////////static assert begin///////////////////////////////////////////////////////
-#define ENABLEFUNC_IF(X)    char(*)[(X)]=0      //sfinae rule :"Substitution Failure Is Not An Error"
+#define ENABLEFUNC_IF(X)    char(*)[(X)]=0      //sfinae rule :"Substitution Failure Is Not An Error". std::enable_if_t needs C++14
 #define ENABLE_IF           ENABLEFUNC_IF
 #define ENABLEFUNC_NOT(X)   ENABLEFUNC_IF(0==(X))
 #define ENABLE_NOT          ENABLEFUNC_NOT

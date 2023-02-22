@@ -43,6 +43,16 @@ public:                                                                         
 namespace MiniMPL
 {
     template<typename T>                        struct sfinae_helper : Type2Type<NullType>   {}; 
+
+    // test whether a type meets expected test bool sequence
+    template<typename T1, typename T2>              struct IsSameType;
+    template< template <class> class  ... Targs>    struct SequenceTestSet
+    {
+        template<bool ... Vals>     struct boolSequence {} ;
+        template<typename T>        struct genBoolSequence : public MiniMPL::Type2Type< boolSequence< Targs<T>::value ... > >  {};	
+
+        template<typename T , bool ... Vals > struct apply : public MiniMPL::IsSameType< boolSequence<Vals ... > , typename genBoolSequence<T>::type > {};	
+    };
 }
 
 #endif // __HASXXX_HPP__

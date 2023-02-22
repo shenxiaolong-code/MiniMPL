@@ -26,7 +26,9 @@
 #ifdef COMPILE_EXAMPLE_HASXXX
 #include <MiniMPL/hasXXX.hpp>
 #include <UnitTestKit/tc_tracer.h>
+#include <UnitTestKit/tc_dump.h>
 #include <UT_material/tc_def_typeStruct.h>
+#include <MiniMPL/macro_assert.h>
 
 namespace UnitTest
 {
@@ -43,7 +45,58 @@ namespace UnitTest
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     HasXXXData(m_a);
     HasXXXData(m_ss2);
+    HasXXXData(m_ss3);
 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    template<typename T , bool ... Vals >
+    using expectedSequence=::MiniMPL::SequenceTestSet< HasData_m_a, HasData_m_ss2, HasData_m_ss3 >::template apply<T, Vals ...> ;
+
+    template<typename T>
+    void testMember_auto_recongnize(T o, ENABLE_IF((expectedSequence<T,true,false,false>::value)) )
+    {
+        TRACE_HERE();
+        showType(o);
+        outputTxtStreamA("m_a : " << o.m_a);
+    }
+
+    template<typename T>
+    void testMember_auto_recongnize(T o, ENABLE_IF((expectedSequence<T,false,true,false>::value)) )
+    {
+        TRACE_HERE();
+        showType(o);
+        outputTxtStreamA("m_ss2.m_s2:" << o.m_ss2.m_s2);
+    }
+
+    template<typename T>
+    void testMember_auto_recongnize(T o, ENABLE_IF((expectedSequence<T,false,false,true>::value)) )
+    {
+        TRACE_HERE();
+        showType(o);
+        outputTxtStreamA("m_ss3.m_s3:"<< o.m_ss3.m_s3);
+    }
+
+    template<typename T>
+    void testMember_auto_recongnize(T o, ENABLE_IF((expectedSequence<T,false,false,false>::value)) )
+    {
+        TRACE_HERE();
+        showType(o);
+        // outputTxtStreamA("[compile error ] m_a:" << o.m_a);
+        // outputTxtStreamA("[compile error ] m_ss2:" << o.m_ss2);
+        // outputTxtStreamA("[compile error ] m_ss3:" << o.m_ss3);
+    }    
+    
+    inline void TestCase_hasXXX_combination()
+    {
+        PrintTestcase();
+        using namespace MiniMPL;
+        Static_Assert(true==(SequenceTestSet< HasData_m_a, HasData_m_ss2, HasData_m_ss3 >::template apply<S3, false,true,false>::value));
+        Static_Assert(false==(SequenceTestSet< HasData_m_a, HasData_m_ss2, HasData_m_ss3 >::template apply<S3, false,true,true>::value));
+        testMember_auto_recongnize(structData());
+        testMember_auto_recongnize(S3());
+        testMember_auto_recongnize(S4());
+        testMember_auto_recongnize(MFStruct0_6());
+    }
+    
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     inline void TestCase_hasXXX_type()
     {
@@ -129,6 +182,7 @@ namespace UnitTest
     InitRunFunc(TestCase_hasXXX_type);
     InitRunFunc(TestCase_hasXXX_function);
     InitRunFunc(TestCase_hasXXX_dataMember);
+    InitRunFunc(TestCase_hasXXX_combination);
 #else //else of RUN_EXAMPLE_HASXXX
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

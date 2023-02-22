@@ -13,21 +13,21 @@ namespace MiniMPL
 
     template<typename T>    struct Type2Type        { typedef T type;       };
 
-    template<bool x> struct BoolType                { enum  { value=(x) };  };
-    struct  TrueType      : public BoolType<true>   { };
-    struct  FalseType     : public BoolType<false>  { };
+    template<bool x> struct BoolType                { enum  { value=(x) };  };      // std::bool_constant<x>
+    struct  TrueType      : public BoolType<true>   { };                            // std::true_type 
+    struct  FalseType     : public BoolType<false>  { };                            // std::false_type
 
     //Int2Type::value is compile-period constant expression, it can apply for compile period calculation, e.g Static_Assert
     //and the T can only integer or enum type
-    template<int TVal>       struct Int2Type        { enum { value=TVal  };  };
+    template<int TVal>       struct Int2Type        { enum { value=TVal  };  };     // std::integral_constant<int, TVal>
 
     //Value2Type::value is not compile-period constant expression, it can't apply for compile period calculation, e.g Static_Assert
     //but it works well in runtime period, and it can hold non-integer type, e.g. function pointer, member pointer etc.
-    template<typename T,T TVal>  struct  Value2Type   : public Type2Type<T>   { static const T value; };
+    template<typename T,T TVal>  struct  Value2Type   : public Type2Type<T>   { static const T value; };    // std::integral_constant<T, TVal>
     template<typename T,T TVal>  T const Value2Type<T,TVal>::value=TVal;
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    template<bool,typename True_T,typename False_T>         struct If_T                         : public Type2Type<True_T>     {} ;
+    template<bool,typename True_T,typename False_T>         struct If_T                         : public Type2Type<True_T>     {} ; //std::conditional<b, True_T, False_T>
     template<typename True_T,typename False_T>              struct If_T<false,True_T,False_T>   : public Type2Type<False_T>    {} ;
     template<typename B,typename True_T,typename False_T>   struct If_Evl : public If_T<B::value,True_T,False_T> {};
 
