@@ -114,13 +114,40 @@ https://msdn.microsoft.com/en-us/library/b0084kay.aspx
 
 //////////////////////////////////////////////////////////////////////////
 //C++11 sets the value of __cplusplus to 201103L
-//but any version VS always set __cplusplus=199711L
-#if __cplusplus >= 201103L || (defined(_MSC_VER) && _MSC_VER >= 1900)
+#if __cplusplus >= 201103L
 	#define CPP11_ENABLED       1
+#else
+	#define CPP11_ENABLED       0
+#endif
+
+//C++17 sets the value of __cplusplus to 201703L
+#if __cplusplus >= 201703L
+    #define CPP17_ENABLED 1
+#else
+    #if (defined(_MSC_VER) && _MSC_VER > 1929)
+        #define CPP17_ENABLED       1
+    #else
+        #define CPP17_ENABLED       0
+    #endif
+#endif
+
+//*/ bug fix
+#if 199711L == __cplusplus && defined(_MSC_VER)
+//but any version VS always set __cplusplus=199711L  and _MSC_VER=1929
+//vs can't detect whether the C++11 and C++17 is enabled. we set it manual
+    #pragma message("building on MS visual studio platform, set CPP11_ENABLED=1 and CPP17_ENABLED=0 manual. \r\n" __FILE__ "("  MAKESTRA(__LINE__) ")" )
+    #undef  CPP11_ENABLED    
+    #define CPP11_ENABLED       1
+
+    #undef  CPP17_ENABLED
+    #define CPP17_ENABLED       0
+#endif
+//*/
+
+#if CPP11_ENABLED
     #define STLNS               _STD
 	#define STLTR1NS			_STD
 #else
-	#define CPP11_ENABLED       0
 	#define STLNS               _STD
 	#define STLTR1NS			_STD tr1::
 	#define final
@@ -129,8 +156,8 @@ https://msdn.microsoft.com/en-us/library/b0084kay.aspx
 
 #if defined(_MSC_VER)
 	#define plat_info_cpp()   \
-			__pragma(message ("__cplusplus = " MAKESTRA(__cplusplus) " , CPP11_ENABLED = " MAKESTRA(CPP11_ENABLED) ))   
-
+			__pragma(message ("__cplusplus = " MAKESTRA(__cplusplus) " , CPP11_ENABLED = " MAKESTRA(CPP11_ENABLED) ))   \
+            __pragma(message ("__cplusplus = " MAKESTRA(__cplusplus) " , CPP17_ENABLED = " MAKESTRA(CPP17_ENABLED) ))
 #else
 	#define cplusplusList(_)																\
 		_(CPP98_03	,	199711L)															\

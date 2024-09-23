@@ -17,6 +17,7 @@ namespace MiniMPL
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     template<typename T1, typename T2>  struct IsSameType           : public FalseType {}; 
     template<typename T>                struct IsSameType<T,T>      : public TrueType  {};
+    template<typename T1, typename T2>  constexpr bool IsSameType_v = IsSameType<T1,T2>::value;
     
     template<typename T1, typename T2>  struct IsSameRawType        : public IsSameType<RAWTYPE(T1),RAWTYPE(T2)>{};
     template<typename T>                struct IsRawType            : public IsSameType<T,RAWTYPE(T)> {};

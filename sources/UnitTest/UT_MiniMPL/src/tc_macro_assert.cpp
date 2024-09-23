@@ -48,6 +48,11 @@ namespace UnitTest
     #endif	//end defined(_MSC_VER)
 #endif   //end ENABLE_MACRO_DEMO_ASSERT_BREAK==0
 
+#if __cplusplus >= 201703L
+        // static_assert_number( 5==5 , 8 );
+        // static_assert_type( int , char );
+#endif
+
         int Var32 = 123;
         AssertXI(false,(TXT("\ndemo AssertXI : Var32=%d,str=%s"),Var32,TXT("Demo")));
         AssertX(!TXT("this is one demo AssertX."));

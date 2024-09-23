@@ -32,9 +32,11 @@
 
 namespace UnitTest
 {
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     HasXXXType(abc);
     HasXXXType(int_T);
     HasXXXType(type);
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     HasXXXMethod(print,void (U::*)(),);
     HasXXXMethod(print,void (U::*)(),1);
@@ -46,6 +48,12 @@ namespace UnitTest
     HasXXXData(m_a);
     HasXXXData(m_ss2);
     HasXXXData(m_ss3);
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    HasXXXDataSequence(activation, lower_bound);
+
+    struct B_no     { int   lower_bound ;  };
+    struct A_has    { B_no  activation  ;  };
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     template<typename T , bool ... Vals >
@@ -74,7 +82,7 @@ namespace UnitTest
         showType(o);
         outputTxtStreamA("m_ss3.m_s3:"<< o.m_ss3.m_s3);
     }
-
+    
     template<typename T>
     void testMember_auto_recongnize(T o, ENABLE_IF((expectedSequence<T,false,false,false>::value)) )
     {
@@ -83,9 +91,10 @@ namespace UnitTest
         // outputTxtStreamA("[compile error ] m_a:" << o.m_a);
         // outputTxtStreamA("[compile error ] m_ss2:" << o.m_ss2);
         // outputTxtStreamA("[compile error ] m_ss3:" << o.m_ss3);
-    }    
+    }
     
-    inline void TestCase_hasXXX_combination()
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    inline void TestCase_matchSequence()
     {
         PrintTestcase();
         using namespace MiniMPL;
@@ -134,6 +143,14 @@ namespace UnitTest
         Static_Assert((HasType_type<Type2Type<S2> >::value));
         Static_Assert((HasType_type<Type2Type<S3> >::value));
         Static_Assert((HasType_type<Type2Type<S4> >::value));
+
+        Static_Assert(!(HasType_abc<S1>::value));
+        Static_Assert(!(HasType_abc<S2>::value));
+        Static_Assert(!(HasType_abc<S3>::value));
+        Static_Assert(!(HasType_abc<S4>::value));        
+
+        Static_Assert((HasType_int_T<structData>::value));
+        Static_Assert(!(HasType_abc<S4>::value));
     }
 
     inline void TestCase_hasXXX_function()
@@ -154,20 +171,16 @@ namespace UnitTest
         Static_Assert(!(HasMethod_print<Type2Type<bool> >::value));
         Static_Assert(!(HasMethod_print<Type2Type<char> >::value));
         Static_Assert(!(HasMethod_print<Type2Type<S4> >::value));
-
-        Static_Assert(!(HasType_abc<S1>::value));
-        Static_Assert(!(HasType_abc<S2>::value));
-        Static_Assert(!(HasType_abc<S3>::value));
-        Static_Assert(!(HasType_abc<S4>::value));        
-
-        Static_Assert((HasType_int_T<structData>::value));
-        Static_Assert(!(HasType_abc<S4>::value));
     }
 
     inline void TestCase_hasXXX_dataMember()
     {
         PrintTestcase();
         using namespace MiniMPL;
+
+        Static_Assert((has_sequence_member<A_has>::value));
+        Static_Assert(!(has_sequence_member<B_no>::value));
+
 
         Static_Assert((HasData_m_a<structData>::value));
         Static_Assert((HasData_m_a<ConstStruct>::value));
@@ -182,7 +195,7 @@ namespace UnitTest
     InitRunFunc(TestCase_hasXXX_type);
     InitRunFunc(TestCase_hasXXX_function);
     InitRunFunc(TestCase_hasXXX_dataMember);
-    InitRunFunc(TestCase_hasXXX_combination);
+    InitRunFunc(TestCase_matchSequence);
 #else //else of RUN_EXAMPLE_HASXXX
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

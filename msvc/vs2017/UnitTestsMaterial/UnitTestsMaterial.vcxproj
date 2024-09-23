@@ -86,6 +86,7 @@
     <ClInclude Include="$(projectDir)..\..\..\sources\UnitTest\UnitTestsMaterial\include\UT_material\tc_def_typeStruct.h" />
     <ClInclude Include="$(projectDir)..\..\..\sources\UnitTest\UnitTestsMaterial\include\UT_material\tc_def_unaryFunctionParamTransfer.h" />
     <ClInclude Include="$(projectDir)..\..\..\sources\UnitTest\UnitTestsMaterial\include\UT_material\td_def_callbackTemplate.h" />
+    <ClInclude Include="..\..\..\sources\UnitTest\UnitTestsMaterial\include\UT_material\winMsgWindProcHelper.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UnitTestsMaterial\src\classregister_Cls1.cpp" />
@@ -98,6 +99,7 @@
     <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UnitTestsMaterial\src\tc_def_NoCopy.cpp" />
     <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UnitTestsMaterial\src\tc_def_thread.cpp" />
     <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UnitTestsMaterial\src\tc_def_typeStruct.cpp" />
+    <ClCompile Include="..\..\..\sources\UnitTest\UnitTestsMaterial\src\winMsgWindProcHelper.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -9,12 +9,12 @@
 #include <MiniMPL/innerDetail/bitsetEnum_detail.hpp>
 #include <MiniMPL/isXXXEx.hpp>
 
-#define DefTypeBitWidth(T,W) template<>  struct MaskWidth< T >: public MiniMPL::Int2Type< W > {}
+// override default CEnumBitWidth defintion
+#define DefTypeSpecBitWidth(T,W) template<>  struct MaskWidth< T >: public MiniMPL::Int2Type< W > {}
+// #define DefTypeSpecBitWidth(T,W) template<>  struct MaskWidth< T >: public CEnumBitWidth< CEnumRange<T,T(0),T(detail::TMaxMaskValue< W >::value)>  > {}
 
 namespace MiniMPL
 {
-    template<typename T> struct MaskWidth;  //general template declare. use DefTypeBitWidth define instance
-
     template<typename TEnumList,typename TStorage>
     struct TBitFlagCombine
     {

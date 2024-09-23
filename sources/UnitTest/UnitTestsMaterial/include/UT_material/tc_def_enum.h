@@ -25,6 +25,8 @@ namespace UnitTest
         NS_Val_8   = 8,
         NS_Val_Max
     };
+
+    enum  wrong_enum_range { wrong_enum_range_1, wrong_enum_range_2 };
 }
 
 #endif // TC_DEF_ENUM_H__

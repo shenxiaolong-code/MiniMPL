@@ -20,6 +20,15 @@ extern std::ostream&    tcOut;
 
 namespace UnitTest
 {
+    // template<auto v>                     struct debug_number ;               // auto need C++ 17 . g++ -std=c++17 ...
+    template<__int64 v>                     struct debug_number ;
+    #define show_number( v )                { using vHelper = typename debug_number< v >::type ; }
+    #define static_assert_number( b , v )   if constexpr (!( b )) {  using vHelper = typename debug_number< v >::type ; }
+
+    template<typename T>                    struct debug_type;
+    #define show_type(   v )                { using tHelper = typename debug_type< v >::type ;   }
+    #define static_assert_type(   b , v )   if constexpr (!( b )) {  using tHelper = typename debug_type< v >::type   ; } 
+
     stlString getTypeName(const char* pStr);
     template<typename T> inline stlString getTypeName()
     {

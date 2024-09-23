@@ -16,11 +16,15 @@ template<typename EnumValue_T>  struct CEnumGetSmaller;
 namespace MiniMPL
 {
     //forward declaration
+    
     template<typename CEnumRange_T,typename CEnumRange_T::Enum_T Val>    struct CEnumValue;
 
     //CEnumRange : provide Enum/int range properties
+    // TODO : refactor to :  template<typename F,F F_max,F F_min=F{0}>   struct CEnumRange;
     template<typename F,F F_min,F F_max>    struct CEnumRange
     {
+        static_assert((F_max>=F_min),"F_max MUST is bigger or equal to F_min");
+
         typedef  F                                      Enum_T;
         typedef  CEnumRange<F,F_min,F_max>              EnumRange_T;
 
@@ -38,6 +42,15 @@ namespace MiniMPL
         template<bool bIncrease> struct Last : Type2Type<typename If_T<bIncrease,CEnumGetSmaller<EnumValue_T>,CEnumGetBigger<EnumValue_T> >::type::type > {};
         template<bool bIncrease> struct Next : Type2Type<typename If_T<bIncrease,CEnumGetBigger<EnumValue_T>,CEnumGetSmaller<EnumValue_T> >::type::type > {};
     };
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // one enum type might has serverl range. e.g.
+    // typedef MiniMPL::CEnumRange<ETypeInt,ETypeInt(0),ETypeInt(9)>   EInt_0_9;
+    // typedef MiniMPL::CEnumRange<ETypeInt,ETypeInt(3),ETypeInt(5)>   EInt_3_5;    
+    template<typename E>    struct CEnumRangeDefault;
+    #define declare_defalut_enum_attribute(F,F_min,F_max)                                               \
+    template<>  struct CEnumRangeDefault< F > : public Type2Type< CEnumRange<F,F_min,F_max> > {};       \
+    Static_Assert((F_max>=F_min))
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //Enum property algorithm

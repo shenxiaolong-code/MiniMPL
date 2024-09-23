@@ -7,7 +7,7 @@
 ***********************************************************************************************************************/
 #include <MiniMPL/innerDetail/addRemove_detail.hpp>
 
-#define RAWTYPE(X)		typename MiniMPL::GetRawType<X>::type
+#define RAWTYPE(X)		typename MiniMPL::GetRawType<X>::type       // same with std::decay_t<T>
 
 #define RT(X)           typename MiniMPL::AddRef<X>::type           //always get reference type
 #define NR(X)           typename MiniMPL::RemoveRef<X>::type        //always get non-reference type

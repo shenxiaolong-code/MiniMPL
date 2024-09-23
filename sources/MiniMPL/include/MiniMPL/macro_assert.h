@@ -44,6 +44,16 @@
 #define ASSERT_AND_LOG(X)			ASSERT_AND_LOG_INFO(X,(MAKESTR(X)))
 
 //////////////////////////////////////////////static assert begin///////////////////////////////////////////////////////
+// show the real number or type when static_assert fails
+#if CPP17_ENABLED
+    template<auto v>                        struct debug_number ;               // auto need C++ 17 . g++ -std=c++17 ...
+    #define show_number( v )                { using vHelper = typename debug_number< v >::type ; }
+    #define static_assert_number( b , v )   if constexpr (!( b )) {  using vHelper = typename debug_number< v >::type ; }
+#endif
+template<typename T>                        struct debug_type;
+#define show_type(   v )                    { using tHelper = typename debug_type< v >::type ;   }
+#define static_assert_type(   b , v )       if constexpr (!( b )) {  using tHelper = typename debug_type< v >::type   ; }    
+
 #define ENABLEFUNC_IF(X)    char(*)[(X)]=0      //sfinae rule :"Substitution Failure Is Not An Error". std::enable_if_t needs C++14
 #define ENABLE_IF           ENABLEFUNC_IF
 #define ENABLEFUNC_NOT(X)   ENABLEFUNC_IF(0==(X))
@@ -53,7 +63,7 @@
 #if ENABLE_STATIC_ASSERT_NEED_COMPLETE_TYPE
         template<bool> struct static_assert_failure;
         template<>     struct static_assert_failure<true>{};
-        #define Static_Assert(b) typedef static_assert_failure<sizeof(static_assert_failure<(bool)(b)>)> static_assert_type;
+        #define Static_Assert(b) typedef static_assert_failure<sizeof(static_assert_failure<(bool)(b)>)> static_assert_type_dummy;
 #else
         #define Static_Assert(b) typedef char(*MAKEVAR2(static_assert_failure,UNIQUEID))[(bool)(b)==true] ;   //fix multiple Static_Assert re-definition issue in same scope
 #endif

@@ -15,6 +15,7 @@ namespace MiniMPL
         enum{ value = (false==T::value) };
     };
 
+    // TODO : use C++11 variadic templates class ... to refactor me
     template<typename T1,typename T2,typename T3=TrueType,typename T4=TrueType,typename T5=TrueType >
     struct And_T
     {

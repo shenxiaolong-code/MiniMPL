@@ -29,8 +29,8 @@ public:                                                                         
     enum {value =  sizeof(MiniMPL::Yes_Type)==sizeof(test<T>(0)) };                                 \
 };
 
-#define HasXXXData(M)                                                                             \
-template<typename T>  struct HasData_##M                                                          \
+#define HasXXXData(M)                                                                               \
+template<typename T>  struct HasData_##M                                                            \
 {                                                                                                   \
 protected:                                                                                          \
     template <typename C> static MiniMPL::Yes_Type test( decltype( & C::M ) ) ;                     \
@@ -39,6 +39,16 @@ protected:                                                                      
 public:                                                                                             \
     enum {value =  sizeof(MiniMPL::Yes_Type)==sizeof(test<T>(0)) };                                 \
 };
+
+
+// detect if T has T.M1.M2  member
+#define HasXXXDataSequence( M1 , M2 )                                                                                       \
+HasXXXData( M1 ) ;                                                                                                          \
+HasXXXData( M2 ) ;                                                                                                          \
+template<typename  T , bool bMember1 = HasData_##M1< T >::value>                                                            \
+struct has_sequence_member            : public MiniMPL::FalseType {};                                                       \
+template<typename  T>                                                                                                       \
+struct has_sequence_member<T, true>   : public MiniMPL::BoolType<HasData_##M2<decltype( ((T*)0)->##M1 )>::value > {};       \
 
 namespace MiniMPL
 {

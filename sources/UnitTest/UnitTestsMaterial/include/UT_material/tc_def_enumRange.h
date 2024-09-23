@@ -8,8 +8,12 @@ Author              : Shen.Xiaolong(2009-2016), xlshen@126.com  xlshen2002@hotma
 #include <UT_material/tc_def_enum.h>
 #include <MiniMPL/enumTrait.hpp>
 
+namespace MiniMPL {
+    declare_defalut_enum_attribute(UnitTest::ETypeInt, UnitTest::ETypeInt(13), UnitTest::ETypeInt(24));    
+}
+
 namespace UnitTest
-{
+{    
     typedef MiniMPL::CEnumRange<ETypeInt,ETypeInt(0),ETypeInt(9)>   EInt_0_9;
     typedef MiniMPL::CEnumRange<ETypeInt,ETypeInt(3),ETypeInt(5)>   EInt_3_5;
 

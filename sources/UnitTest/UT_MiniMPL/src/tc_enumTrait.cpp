@@ -30,7 +30,7 @@
 #include <ut_material/tc_def_enumRange.h>
 
 namespace UnitTest
-{      
+{               
     inline void TestCase_enumTrait()
     {
         PrintTestcase();
@@ -41,6 +41,18 @@ namespace UnitTest
         typedef NonSeqEnumRange::Min_T                              NSEnumValueMin;
         typedef NonSeqEnumRange::Max_T                              NSEnumValueMax;
 
+        // assert F_max >= F_min
+        // using ETypeInt_Fail = CEnumRange<ETypeInt, ETypeInt(10), ETypeInt(5)>;
+        // using ETypeInt_OK = CEnumRange<ETypeInt, ETypeInt(5), ETypeInt(10)>;
+        // CEnumRange<ETypeInt, ETypeInt(10), ETypeInt(5)> ETypeInt_Fail;
+        CEnumRange<ETypeInt, ETypeInt(5), ETypeInt(10)> ETypeInt_OK;
+
+        //test MiniMPL.CEnumRange.Min_T/Max_T with CEnumRangeDefault
+        Static_Assert((CEnumRangeDefault<ETypeInt>::type::Min_T::value==13));
+        Static_Assert(!(CEnumRangeDefault<ETypeInt>::type::Min_T::value==14));
+        Static_Assert((CEnumRangeDefault<ETypeInt>::type::Max_T::value==24));
+        Static_Assert(!(CEnumRangeDefault<ETypeInt>::type::Max_T::value==7));
+        
         //test MiniMPL.CEnumRange.Min_T/Max_T
         Static_Assert((NonSeqEnumRange::Min_T::value==NS_Val_Min));
         Static_Assert((NonSeqEnumRange::Max_T::value==NS_Val_Max));

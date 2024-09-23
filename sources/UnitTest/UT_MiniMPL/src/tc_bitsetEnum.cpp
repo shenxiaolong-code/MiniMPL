@@ -27,6 +27,7 @@
 #ifdef COMPILE_EXAMPLE_BITSETENUM
 #include <MiniMPL/bitsetEnum.hpp>
 #include <UnitTestKit/tc_tracer.h>
+#include <ut_material/tc_def_enumRange.h>
 
 enum EFontStyle { FONT_NORMAL, FONT_BOLD, FONT_ITALIC };            //need 2 bit to hold (max val is 2)
 enum EFontName  { FONT_1, FONT_2, FONT_3, FONT_4, FONT_5};          //need 3 bit to hold (max val is 4)
@@ -39,21 +40,63 @@ namespace MiniMPL
 {
     template<>  struct MaskWidth<EFontStyle>       : public MiniMPL::Int2Type<2>    {};
     template<>  struct MaskWidth<EFontName>        : public MiniMPL::Int2Type<3>    {};
-    template<>  struct MaskWidth<ETextAlignment>   : public MiniMPL::Int2Type<2>    {};
-    DefTypeBitWidth(ETextFlow  ,   1   );
-    DefTypeBitWidth(char       ,   2   );
-    DefTypeBitWidth(EBorderLine,   4   );
-    DefTypeBitWidth(EFontSize  ,   8   );
+    // template<>  struct MaskWidth<ETextAlignment>   : public MiniMPL::Int2Type<2>    {};
+    declare_defalut_enum_attribute(ETextAlignment, ETextAlignment(0),TEXT_CENTER);    // use default bit width based on the max enum value.
+    DefTypeSpecBitWidth(ETextFlow  ,   1   );
+    DefTypeSpecBitWidth(char       ,   2   );
+    DefTypeSpecBitWidth(EBorderLine,   4   );
+    DefTypeSpecBitWidth(EFontSize  ,   8   );
     //  template<>  struct MaskWidth<ETextFlow>        : public MiniMPL::Int2Type<1>    {};
     //  template<>  struct MaskWidth<EBorderLine>      : public MiniMPL::Int2Type<4>    {};
     //  template<>  struct MaskWidth<EFontSize>        : public MiniMPL::Int2Type<8>    {};
-    DefTypeBitWidth(int  ,   3   );
+    DefTypeSpecBitWidth(int  ,   3   );
+}
+
+namespace MiniMPL {
+    declare_defalut_enum_attribute(UnitTest::wrong_enum_range, UnitTest::wrong_enum_range(13), UnitTest::wrong_enum_range(24));    // compile ok
+    // declare_defalut_enum_attribute(UnitTest::wrong_enum_range, UnitTest::wrong_enum_range(24), UnitTest::wrong_enum_range(13));    // compile fail
 }
 
 namespace UnitTest
 {
     typedef MAKE_TYPELIST_8(EFontStyle,EFontName,char,ETextAlignment,ETextFlow,EBorderLine,EFontSize,int)   TAttriListOK;
     typedef MAKE_TYPELIST_5(EFontStyle,EFontName,ETextFlow,ETextFlow,EFontSize)                             TAttriList_Deplicate;
+
+    inline void TestCase_bitsetEnum_width()
+    {           
+        PrintTestcase();
+        using namespace MiniMPL;
+        Static_Assert((log2N<0>::value==1));
+        Static_Assert((log2N<1>::value==1));
+        Static_Assert((log2N<2>::value==2));
+        Static_Assert((log2N<3>::value==2));
+        Static_Assert((log2N<4>::value==3));
+        Static_Assert((log2N<5>::value==3));
+        Static_Assert((log2N<6>::value==3));
+        Static_Assert((log2N<7>::value==3));
+        Static_Assert((log2N<8>::value==4));
+        Static_Assert((log2N<9>::value==4));
+        Static_Assert((log2N<10>::value==4));
+        Static_Assert((log2N<11>::value==4));
+        Static_Assert((log2N<12>::value==4));
+        Static_Assert((log2N<13>::value==4));
+        Static_Assert((log2N<14>::value==4));
+        Static_Assert((log2N<15>::value==4));
+        Static_Assert((log2N<16>::value==5));
+        Static_Assert((log2N<17>::value==5));
+        Static_Assert((log2N<31>::value==5));
+        Static_Assert((log2N<32>::value==6));
+        Static_Assert((log2N<63>::value==6));
+        Static_Assert((log2N<64>::value==7));
+        Static_Assert((log2N<127>::value==7));
+        Static_Assert((log2N<128>::value==8));
+        Static_Assert((log2N<255>::value==8));
+        Static_Assert((log2N<256>::value==9));
+        Static_Assert((log2N<1024>::value==11));
+
+        //
+        Static_Assert((CEnumBitWidth<CEnumRangeDefault<ETypeInt>::type>::value==4));
+    }
 
     inline void TestCase_bitsetEnum_flag()
     {           
@@ -142,6 +185,7 @@ namespace UnitTest
 
 #ifdef RUN_EXAMPLE_BITSETENUM
     InitRunFunc(TestCase_bitsetEnum);
+    InitRunFunc(TestCase_bitsetEnum_width);
 #else //else of RUN_EXAMPLE_BITSETENUM
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

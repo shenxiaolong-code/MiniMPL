@@ -31,6 +31,9 @@
     <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UnitTestsMaterial\src\tc_def_typeStruct.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\sources\UnitTest\UnitTestsMaterial\src\winMsgWindProcHelper.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(projectDir)..\..\..\sources\UnitTest\UnitTestsMaterial\include\UT_material\classregister_Cls1.h">
@@ -86,6 +89,9 @@
     </ClInclude>
     <ClInclude Include="$(projectDir)..\..\..\sources\UnitTest\UnitTestsMaterial\include\UT_material\tc_def_qualifier.hpp">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\UnitTest\UnitTestsMaterial\include\UT_material\winMsgWindProcHelper.h">
+      <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

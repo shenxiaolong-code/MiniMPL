@@ -5,26 +5,43 @@
 * Author              : Shen.Xiaolong(2009-2016), xlshen@126.com  xlshen2002@hotmail.com
 * Copyright           : free to use / modify / sale in free and commercial software with those head comments.
 ***********************************************************************************************************************/
+#include <MiniMPL\platformEnv.h>
 namespace MiniMPL
 {
-    struct									        NullType;
-    typedef char						            Yes_Type;
-    typedef struct { char dummy[2]; }	            No_Type;
+    struct								        NullType;
+    typedef char						        Yes_Type;
+    typedef struct { char dummy[2]; }	        No_Type;
+    template<typename T>                        using sfinae_helper_t = NullType;                             // need C++11, else use HasXXXType(type)
 
-    template<typename T>    struct Type2Type        { typedef T type;       };
+    template<typename T>                        struct Type2Type                                                                            { typedef T type;                   };
+    template <typename T, typename=NullType>    struct getType                                          : public Type2Type<T>               {                                   };
+    template <typename T>                       struct getType<T, sfinae_helper_t<typename T::type> >   : public getType<typename T::type>  {                                   };  // C++ template lazy mechanism. sfinae_helper_t will force to parse it immediately. here sfinae_helper_t is same to std::void_t
+    template<typename T>                        using  getType_t = typename getType<T>::type;             // get type embed type
 
-    template<bool x> struct BoolType                { enum  { value=(x) };  };      // std::bool_constant<x>
-    struct  TrueType      : public BoolType<true>   { };                            // std::true_type 
-    struct  FalseType     : public BoolType<false>  { };                            // std::false_type
+    template<typename T, T val>                 struct ValueType                                        : public Type2Type<T>               { static constexpr T value = val;   };  // ValueType should keep val type info : int, float, double, pointer, reference, enum
+    // template<auto val>                       struct ValueType{}                                      : public Type2Type<decltype(val)>   {                                   };  //C++20 support non-type template parameters keyword auto, it is more powerful.
+    template<typename T>                        constexpr bool getType_v = T::value;                      // get type embed value , see std::is_same_v.  inline constexpr requires C++17
 
-    //Int2Type::value is compile-period constant expression, it can apply for compile period calculation, e.g Static_Assert
-    //and the T can only integer or enum type
-    template<int TVal>       struct Int2Type        { enum { value=TVal  };  };     // std::integral_constant<int, TVal>
+    template<typename T>                                                struct Type2Value;
+    template<typename T, T val, template<typename V, V> class Impl_T >  struct Type2Value<Impl_T<T, val> > : public ValueType<T,val> {};
+    
+    template<bool x> 
+    using BoolType=ValueType<bool,x>;                                               // std::bool_constant<x>
+    using TrueType=BoolType<true>;                                                  // std::true_type 
+    using FalseType=BoolType<false>;                                                // std::false_type
 
-    //Value2Type::value is not compile-period constant expression, it can't apply for compile period calculation, e.g Static_Assert
-    //but it works well in runtime period, and it can hold non-integer type, e.g. function pointer, member pointer etc.
-    template<typename T,T TVal>  struct  Value2Type   : public Type2Type<T>   { static const T value; };    // std::integral_constant<T, TVal>
-    template<typename T,T TVal>  T const Value2Type<T,TVal>::value=TVal;
+    template<int TVal>
+    using Int2Type=ValueType<int,TVal>;                                             // std::integral_constant<int, TVal>
+    
+    // using string bind
+    template <const char* ptr>                  struct ConstString : public ValueType<const char*, ptr> {};
+    template <int>                              struct GetString;
+    // constexpr const char                     example_string[] = "demo binding integer with string";
+    // template <>                              struct GetString<111> : public ConstString<example_string> {};
+#if CPP17_ENABLED
+    template <int v>
+    inline constexpr decltype(GetString<v>::value) getString_v = GetString<v>::value;
+#endif
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     template<bool,typename True_T,typename False_T>         struct If_T                         : public Type2Type<True_T>     {} ; //std::conditional<b, True_T, False_T>

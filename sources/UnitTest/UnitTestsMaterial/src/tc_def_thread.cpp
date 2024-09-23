@@ -15,6 +15,7 @@ void UnitTest::waitAllThreadExit( unsigned iLocalThreadNum )
     CThreadMananger &rInst= CThreadMananger::getInstance();
     while( rInst.size() >iLocalThreadNum+THREAD_NUMBER_IN_POOL) //local thread object + g_asyncExecutor
     {
-        Sleep(2000);
+        Sleep(500);
+        iLocalThreadNum++;  //TODO fix
     }
 }
