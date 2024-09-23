@@ -188,6 +188,9 @@
     <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_tupleUnpacker.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_typeList_cpp11.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\include\UT_MiniMPL\ut_material.h" />

@@ -311,6 +311,12 @@
     <ClInclude Include="..\..\..\sources\MiniMPL\include\MiniMPL\tupleUnpacker.hpp">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\sources\MiniMPL\include\MiniMPL\typeList_cpp11.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\MiniMPL\include\MiniMPL\innerDetail\typeList_cpp11_detail.hpp">
+      <Filter>include\innerDetail</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\sources\MiniMPL\src\atomic_counter.cpp">

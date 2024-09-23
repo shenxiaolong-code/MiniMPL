@@ -163,12 +163,13 @@
     <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\UT_MiniMPL.cpp" />
     <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_stdwrapper.cpp" />
     <ClCompile Include="$(projectDir)..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_tupleUnpacker.cpp" />
+    <ClCompile Include="..\..\..\sources\UnitTest\UT_MiniMPL\src\tc_typeList_cpp11.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="UnitTestKit.vcxproj">
+    <ProjectReference Include="..\UnitTestKit\UnitTestKit.vcxproj">
       <Project>{abacd80f-2804-471c-9a98-e433c33fca85}</Project>
     </ProjectReference>
-    <ProjectReference Include="UnitTestsMaterial.vcxproj">
+    <ProjectReference Include="..\UnitTestsMaterial\UnitTestsMaterial.vcxproj">
       <Project>{c453e5d5-2b30-48c7-a5db-167490009b5d}</Project>
     </ProjectReference>
   </ItemGroup>
