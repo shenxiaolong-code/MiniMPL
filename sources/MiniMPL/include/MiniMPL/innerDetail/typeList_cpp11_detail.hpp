@@ -17,9 +17,9 @@ namespace MiniMPL
       template<            typename R, typename T, typename ... HeadTypes , typename ... TailTypes >    struct ReplaceNthTypeInListArgs<0,   R, TypeList<HeadTypes ... >, TypeList<T, TailTypes ...>> : public Type2Type<TypeList<HeadTypes ..., R, TailTypes ... >> { };
       template<size_t idx, typename R, typename T, typename ... HeadTypes , typename ... TailTypes >    struct ReplaceNthTypeInListArgs<idx, R, TypeList<HeadTypes ... >, TypeList<T, TailTypes ...>> : public ReplaceNthTypeInListArgs<idx-1, R, TypeList<HeadTypes ... , T>, TypeList<TailTypes ...>> { };
       
-      template<size_t idx, typename HeadTypes , typename TailTypes >                                    struct DeleteTypeFromTypeListArgs;
-      template<            typename D, typename ... HeadTypes , typename ... TailTypes >                struct DeleteTypeFromTypeListArgs<0,   TypeList<HeadTypes ... >, TypeList<D, TailTypes ...>> : public Type2Type<TypeList<HeadTypes ..., TailTypes ... >> { };
-      template<size_t idx, typename T, typename ... HeadTypes , typename ... TailTypes >                struct DeleteTypeFromTypeListArgs<idx, TypeList<HeadTypes ... >, TypeList<T, TailTypes ...>> : public DeleteTypeFromTypeListArgs<idx-1, TypeList<HeadTypes ... , T>, TypeList<TailTypes ...>> { };
+      template<size_t idx, typename HeadTypes , typename TailTypes >                                    struct DeleteNthTypeInTypeListArgs;
+      template<            typename D, typename ... HeadTypes , typename ... TailTypes >                struct DeleteNthTypeInTypeListArgs<0,   TypeList<HeadTypes ... >, TypeList<D, TailTypes ...>> : public Type2Type<TypeList<HeadTypes ..., TailTypes ... >> { };
+      template<size_t idx, typename T, typename ... HeadTypes , typename ... TailTypes >                struct DeleteNthTypeInTypeListArgs<idx, TypeList<HeadTypes ... >, TypeList<T, TailTypes ...>> : public DeleteNthTypeInTypeListArgs<idx-1, TypeList<HeadTypes ... , T>, TypeList<TailTypes ...>> { };
 
       template<size_t idx, typename I, typename HeadTypes , typename TailTypes , bool b=(idx==0)>       struct InsertTypeInTypeListArgs;     // perhaps hit a compiler bug when idx == 0 on MS VS2019 compiler if no bool b
       template<            typename I, typename ... HeadTypes , typename ... TailTypes >                struct InsertTypeInTypeListArgs<0,   I, TypeList<HeadTypes ... >, TypeList<   TailTypes ...>, true > : public Type2Type<TypeList<HeadTypes ..., I, TailTypes ... >> { };

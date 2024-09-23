@@ -50,12 +50,12 @@ namespace UnitTest
         Static_Assert((GetTypeListLength_v<tc_typeList> == 4));
 #endif
 
-        //test GetTypeFromTypeList
-        Static_Assert((IsSameType<GetTypeFromTypeList_t< 0, tc_typeList>,int>::value));
-        Static_Assert((IsSameType<GetTypeFromTypeList_t< 1, tc_typeList>,char>::value));
-        Static_Assert((IsSameType<GetTypeFromTypeList_t< 2, tc_typeList>,std::string>::value));
-        Static_Assert((IsSameType<GetTypeFromTypeList_t< 3, tc_typeList>,char*>::value));
-        Static_Assert(!(IsSameType<GetTypeFromTypeList_t<0, tc_typeList>,char>::value));
+        //test GetNthTypeInTypeList
+        Static_Assert((IsSameType<GetNthTypeInTypeList_t< 0, tc_typeList>,int>::value));
+        Static_Assert((IsSameType<GetNthTypeInTypeList_t< 1, tc_typeList>,char>::value));
+        Static_Assert((IsSameType<GetNthTypeInTypeList_t< 2, tc_typeList>,std::string>::value));
+        Static_Assert((IsSameType<GetNthTypeInTypeList_t< 3, tc_typeList>,char*>::value));
+        Static_Assert(!(IsSameType<GetNthTypeInTypeList_t<0, tc_typeList>,char>::value));
 
         //test ReplaceWrapperTemplate
         Static_Assert((IsSameType<ReplaceWrapperTemplate_t<tc_typeList,TypeList2>,TypeList2<int,char,std::string,char*>>::value));
@@ -68,11 +68,11 @@ namespace UnitTest
         Static_Assert((IsSameType<ReplaceNthTypeInList_t<3, S4, tc_typeList>,TypeList<int , char ,std::string, S4    >>::value));
 
 
-        //test DeleteTypeFromTypeList
-        Static_Assert((IsSameType<DeleteTypeFromTypeList_t<0, tc_typeList>,TypeList<    char,std::string, char*>>::value));
-        Static_Assert((IsSameType<DeleteTypeFromTypeList_t<1, tc_typeList>,TypeList<int,     std::string, char*>>::value));
-        Static_Assert((IsSameType<DeleteTypeFromTypeList_t<2, tc_typeList>,TypeList<int,char,             char*>>::value));
-        Static_Assert((IsSameType<DeleteTypeFromTypeList_t<3, tc_typeList>,TypeList<int,char,std::string       >>::value));
+        //test DeleteNthTypeInTypeList
+        Static_Assert((IsSameType<DeleteNthTypeInTypeList_t<0, tc_typeList>,TypeList<    char,std::string, char*>>::value));
+        Static_Assert((IsSameType<DeleteNthTypeInTypeList_t<1, tc_typeList>,TypeList<int,     std::string, char*>>::value));
+        Static_Assert((IsSameType<DeleteNthTypeInTypeList_t<2, tc_typeList>,TypeList<int,char,             char*>>::value));
+        Static_Assert((IsSameType<DeleteNthTypeInTypeList_t<3, tc_typeList>,TypeList<int,char,std::string       >>::value));
 
         //test InsertTypeInTypeList
         Static_Assert((IsSameType<InsertTypeInTypeList_t<0, S4, tc_typeList>,TypeList<S4  , int , char,         std::string, char* >>::value));
