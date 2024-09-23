@@ -1,7 +1,7 @@
 #ifndef __ADDREMOVE_DETAIL_HPP__
 #define __ADDREMOVE_DETAIL_HPP__
 /***********************************************************************************************************************
-* Description         : implemented for addRemove_detail.hpp
+* Description         : implemented for addRemove.hpp
                         add/remove qualifier : reference,const,CPointer,Volatile
 * Author              : Shen.Xiaolong(2009-2016), xlshen@126.com  xlshen2002@hotmail.com
 * Copyright           : free to use / modify / sale in free and commercial software with those head comments.

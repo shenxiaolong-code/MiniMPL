@@ -53,6 +53,7 @@ set projectName=MiniMPL
 :: set namespace config
 set bAddNamespace=1
 set defNamespace=MiniMPL
+set headFolderName=include/%projectName%
 goto :eof
 
 :quickConfig_OsBase

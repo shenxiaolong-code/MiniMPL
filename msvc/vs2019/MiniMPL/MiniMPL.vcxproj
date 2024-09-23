@@ -114,6 +114,7 @@
     <ClInclude Include="..\..\..\sources\MiniMPL\include\MiniMPL\innerDetail\traverseEnumRange_detail.hpp" />
     <ClInclude Include="..\..\..\sources\MiniMPL\include\MiniMPL\innerDetail\traverseTypeContainer_detail.hpp" />
     <ClInclude Include="..\..\..\sources\MiniMPL\include\MiniMPL\innerDetail\traverseTypeList_detail.hpp" />
+    <ClInclude Include="..\..\..\sources\MiniMPL\include\MiniMPL\innerDetail\typeList_cpp11_detail.hpp" />
     <ClInclude Include="..\..\..\sources\MiniMPL\include\MiniMPL\innerDetail\unaryFunctionAssemble_detail.hpp" />
     <ClInclude Include="..\..\..\sources\MiniMPL\include\MiniMPL\innerDetail\unaryFunction_detail.hpp" />
     <ClInclude Include="..\..\..\sources\MiniMPL\include\MiniMPL\innerDetail\valueCompare_detail.hpp" />
@@ -152,6 +153,7 @@
     <ClInclude Include="..\..\..\sources\MiniMPL\include\MiniMPL\tupleUnpacker.hpp" />
     <ClInclude Include="..\..\..\sources\MiniMPL\include\MiniMPL\typeList.hpp" />
     <ClInclude Include="..\..\..\sources\MiniMPL\include\MiniMPL\typeListMacro.hpp" />
+    <ClInclude Include="..\..\..\sources\MiniMPL\include\MiniMPL\typeList_cpp11.hpp" />
     <ClInclude Include="..\..\..\sources\MiniMPL\include\MiniMPL\typeLogic.hpp" />
     <ClInclude Include="..\..\..\sources\MiniMPL\include\MiniMPL\unaryFunction.hpp" />
     <ClInclude Include="..\..\..\sources\MiniMPL\include\MiniMPL\unaryFunctionAssemble.hpp" />

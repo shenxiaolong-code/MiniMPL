@@ -1,5 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="UserMacros">
+    <CorePath>$(SolutionDir)..\..</CorePath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <MSBuildWarningsAsMessages>$(MSBuildWarningsAsMessages);MSB8029;MSB4011;MSB8012;</MSBuildWarningsAsMessages>
+  </PropertyGroup>
   <ImportGroup Label="PropertySheets">
     <Import Project="linker_switches_exe.props" Condition="'$(ConfigurationType)'=='Application'" />
     <Import Project="linker_switches_dll.props" Condition="'$(ConfigurationType)'=='DynamicLibrary'"  />

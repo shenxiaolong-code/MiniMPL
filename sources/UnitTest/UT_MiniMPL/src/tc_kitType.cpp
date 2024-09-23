@@ -69,10 +69,10 @@ namespace UnitTest
 
         using namespace MiniMPL;
 
-       // test getType , getType_t and getType_v
+       // test getType , getType_t and getValue_v
        Static_Assert((TrueType::value == true));
-       Static_Assert((getType_v<TrueType> == true));
-       static_assert(getType_v<TrueType> == true, "The value should be true.");
+       Static_Assert((getValue_v<TrueType> == true));
+       static_assert(getValue_v<TrueType> == true, "The value should be true.");
 
        std::cout << "[before C++17] GetString<111>::value   = " << MiniMPL::GetString<111>::value  << std::endl;
 #if CPP17_ENABLED
