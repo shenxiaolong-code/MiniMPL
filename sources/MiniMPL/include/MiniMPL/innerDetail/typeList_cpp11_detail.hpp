@@ -13,6 +13,11 @@ namespace MiniMPL
     template <typename ... Args>                                                                        struct TypeList;    // fw declare
     namespace InnerDetail
     {
+      template<typename HeadTypes , typename TailTypes >                                                struct ReverseTypeListArgs;
+      template<typename ... NewTypes>                                                                   struct ReverseTypeListArgs<TypeList<NewTypes ... >, TypeList<>>                : public Type2Type<TypeList<NewTypes ... >> { };
+      template<typename T, typename ... NewTypes , typename ... RawTypes >                              struct ReverseTypeListArgs<TypeList<NewTypes ... >, TypeList<T, RawTypes ...>> : public ReverseTypeListArgs<TypeList<T, NewTypes ...>, TypeList<RawTypes ...>> { };
+      
+      
       template<size_t idx, typename R, typename HeadTypes , typename TailTypes >                        struct ReplaceNthTypeInTypeListArgs;
       template<            typename R, typename T, typename ... HeadTypes , typename ... TailTypes >    struct ReplaceNthTypeInTypeListArgs<0,   R, TypeList<HeadTypes ... >, TypeList<T, TailTypes ...>> : public Type2Type<TypeList<HeadTypes ..., R, TailTypes ... >> { };
       template<size_t idx, typename R, typename T, typename ... HeadTypes , typename ... TailTypes >    struct ReplaceNthTypeInTypeListArgs<idx, R, TypeList<HeadTypes ... >, TypeList<T, TailTypes ...>> : public ReplaceNthTypeInTypeListArgs<idx-1, R, TypeList<HeadTypes ... , T>, TypeList<TailTypes ...>> { };

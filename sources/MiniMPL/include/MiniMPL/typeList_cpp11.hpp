@@ -10,11 +10,14 @@
 #include <MiniMPL/kitType.hpp>
 #include <MiniMPL/innerDetail/typeList_cpp11_detail.hpp>
 
+
 namespace MiniMPL
 {    
     template <typename ... Args>                                                                        struct TypeList;        // definition is not necessary ， declaration is enough
     
     ///////////////////////////////////////////////////////////////////// test type list ////////////////////////////////////////////////////////////////////////////////////////////
+    template<typename TList>                                                                            struct ReverseTypeList; 
+
     template<typename TList>                                                                            struct GetTypeListLength;
     template<template <typename ...> class TList,typename ... Types >                                   struct GetTypeListLength<TList<Types ...>>      : public Size2Type<sizeof...(Types)> {};
 #if CPP17_ENABLED
@@ -25,21 +28,39 @@ namespace MiniMPL
     template<typename T, template <typename ...> class TList>                                           struct TypeIsInTypeList<T,TList<> >             : public FalseType                              {};
     template<typename T, template <typename ...> class TList, typename ... Types >                      struct TypeIsInTypeList<T,TList<T, Types...> >  : public TrueType                               {};
     template<typename T, typename R, template <typename ...> class TList, typename ... Types >          struct TypeIsInTypeList<T,TList<R, Types...> >  : public TypeIsInTypeList<T,TList<Types...> >   {};
+#if CPP17_ENABLED
+    template<typename T, typename TList>                                                                using inline constexpr size_t  TypeIsInTypeList_v=TypeIsInTypeList<T, TList>::value;
+#endif
 
-    template<typename T, typename TList, bool bInList=TypeIsInTypeList<T,TList>::value>                 struct GetTypeFirstIndexInTypeList;
-    template<typename T, typename TList>                                                                struct GetTypeFirstIndexInTypeList<T,TList,              false> : public Int2Type<-1>                                                       {};
-    template<typename T, template <typename ...> class TList, typename ... Types >                      struct GetTypeFirstIndexInTypeList<T,TList<T, Types...>, true > : public Int2Type<0>                                                        {};
-    template<typename T, typename R, template <typename ...> class TList, typename ... Types >          struct GetTypeFirstIndexInTypeList<T,TList<R, Types...>, true > : public Int2Type<1+GetTypeFirstIndexInTypeList<T,TList<Types...>>::value>  {};
+    template<typename T, typename TList, bool bInList=TypeIsInTypeList<T,TList>::value>                 struct FindTypeFirstIndexInTypeList;
+    template<typename T, typename TList>                                                                struct FindTypeFirstIndexInTypeList<T,TList,              false> : public Int2Type<-1>                                                       {};
+    template<typename T, template <typename ...> class TList, typename ... Types >                      struct FindTypeFirstIndexInTypeList<T,TList<T, Types...>, true > : public Int2Type<0>                                                        {};
+    template<typename T, typename R, template <typename ...> class TList, typename ... Types >          struct FindTypeFirstIndexInTypeList<T,TList<R, Types...>, true > : public Int2Type<1+FindTypeFirstIndexInTypeList<T,TList<Types...>>::value> {};
+#if CPP17_ENABLED
+    template<typename T, typename TList>                                                                using inline constexpr size_t  FindTypeFirstIndexInTypeList_v=FindTypeFirstIndexInTypeList<T, TList>::value;
+#endif
+
+    template<typename T, typename TList, bool bInList=TypeIsInTypeList<T,TList>::value>                 struct FindTypeLastIndexInTypeList;
+    template<typename T, typename TList>                                                                struct FindTypeLastIndexInTypeList<T,TList, false> : public Int2Type<-1>                                                        {};
+    template<typename T, typename TList>                                                                struct FindTypeLastIndexInTypeList<T,TList, true>  : public Int2Type<GetTypeListLength<TList>::value - FindTypeFirstIndexInTypeList<T,typename ReverseTypeList<TList>::type>::value - 1> {};
+#if CPP17_ENABLED
+    template<typename T, typename TList>                                                                using inline constexpr size_t  FindTypeLastIndexInTypeList_v=FindTypeLastIndexInTypeList<T, TList>::value;
+#endif
 
     ///////////////////////////////////////////////////////////////////// manipulate type list ////////////////////////////////////////////////////////////////////////////////////////////  
     template <typename T1, template <typename ...> class dst>                                           struct ReplaceWrapperTemplate;
     template <template <typename ...> class src, template <typename...> class dst, typename... Args>    struct ReplaceWrapperTemplate<src<Args...>, dst> : public Type2Type<dst<Args...>> {};
     template <typename T1, template <typename ...> class dst>                                           using  ReplaceWrapperTemplate_t = typename ReplaceWrapperTemplate<T1,dst>::type;
 
-    template<size_t idx, typename TList>                                                                struct GetNthTypeInTypeList;
-    template<typename T, template <typename ...> class TList, typename ... Types >                      struct GetNthTypeInTypeList<0,TList<T, Types...>>       : public Type2Type<T>                                   {};
-    template<size_t idx, template <typename ...> class TList, typename T, typename ... Types >          struct GetNthTypeInTypeList<idx, TList<T, Types ...>>   : public GetNthTypeInTypeList<idx-1, TList<Types ...>>  {};
-    template<size_t idx, typename TList>                                                                using  GetNthTypeInTypeList_t =  typename  GetNthTypeInTypeList<idx,TList>::type;
+    template<typename TList>                                                                            struct ReverseTypeList; 
+    template<template <typename ...> class TList, typename ... Types >                                  struct ReverseTypeList<TList<Types...>> : public ReplaceWrapperTemplate<typename InnerDetail::ReverseTypeListArgs<TypeList<>, TypeList<Types ...> >::type,TList> {};
+    template<typename TList>                                                                            using  ReverseTypeList_t = typename ReverseTypeList<TList>::type;
+
+
+    template<size_t idx, typename TList>                                                                struct FindNthTypeInTypeList;
+    template<typename T, template <typename ...> class TList, typename ... Types >                      struct FindNthTypeInTypeList<0,TList<T, Types...>>       : public Type2Type<T>                                   {};
+    template<size_t idx, template <typename ...> class TList, typename T, typename ... Types >          struct FindNthTypeInTypeList<idx, TList<T, Types ...>>   : public FindNthTypeInTypeList<idx-1, TList<Types ...>> {};
+    template<size_t idx, typename TList>                                                                using  FindNthTypeInTypeList_t =  typename  FindNthTypeInTypeList<idx,TList>::type;
 
     template<size_t idx, typename R, typename TList>                                                    struct ReplaceNthTypeInTypeList;
     template<size_t idx, typename R, template <typename ...> class TList, typename ... Types >          struct ReplaceNthTypeInTypeList<idx, R, TList<Types...>> : public ReplaceWrapperTemplate<typename InnerDetail::ReplaceNthTypeInTypeListArgs<idx, R , TypeList<>, TypeList<Types ...> >::type,TList> {};
