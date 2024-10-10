@@ -46,15 +46,15 @@ namespace UnitTest
 
         //test GetTypeListLength
         Static_Assert((GetTypeListLength<tc_typeList>::value == 4));
-        Static_Assert((GetTypeListLength<MiniMPL::TypeList <int,       std::string,  char*> >::value == 3));
-        Static_Assert((GetTypeListLength<MiniMPL::TypeList <int, char, std::string>         >::value == 3));
-        Static_Assert((GetTypeListLength<MiniMPL::TypeList <int, char,               char*> >::value == 3));
-        Static_Assert((GetTypeListLength<         TypeList2<int,       std::string,  char*> >::value == 3));
-        Static_Assert((GetTypeListLength<         TypeList2<int, char, std::string>         >::value == 3));
-        Static_Assert((GetTypeListLength<         TypeList2<int, char,               char*> >::value == 3));
-        Static_Assert((GetTypeListLength<         TypeList3<int,       std::string,  char*> >::value == 3));
-        Static_Assert((GetTypeListLength<         TypeList3<int, char, std::string>         >::value == 3));
-        Static_Assert((GetTypeListLength<         TypeList3<int, char,               char*> >::value == 3));
+        Static_Assert((GetTypeListLength< TypeList <int,       std::string,  char*> >::value == 3));
+        Static_Assert((GetTypeListLength< TypeList <int, char, std::string>         >::value == 3));
+        Static_Assert((GetTypeListLength< TypeList <int, char,               char*> >::value == 3));
+        Static_Assert((GetTypeListLength< TypeList2<int,       std::string,  char*> >::value == 3));
+        Static_Assert((GetTypeListLength< TypeList2<int, char, std::string>         >::value == 3));
+        Static_Assert((GetTypeListLength< TypeList2<int, char,               char*> >::value == 3));
+        Static_Assert((GetTypeListLength< TypeList3<int,       std::string,  char*> >::value == 3));
+        Static_Assert((GetTypeListLength< TypeList3<int, char, std::string>         >::value == 3));
+        Static_Assert((GetTypeListLength< TypeList3<int, char,               char*> >::value == 3));
         
 #if CPP17_ENABLED
         Static_Assert((GetTypeListLength_v<tc_typeList> == 4));
@@ -68,20 +68,34 @@ namespace UnitTest
         Static_Assert(!(TypeIsInTypeList<float,         tc_typeList>::value));
         Static_Assert(!(TypeIsInTypeList<double,        tc_typeList>::value));
 
-        //test GetTypeFirstIndexInTypeList
-        Static_Assert((GetTypeFirstIndexInTypeList<int,         tc_typeList>::value == 0));
-        Static_Assert((GetTypeFirstIndexInTypeList<char,        tc_typeList>::value == 1));
-        Static_Assert((GetTypeFirstIndexInTypeList<std::string, tc_typeList>::value == 2));
-        Static_Assert((GetTypeFirstIndexInTypeList<char*,       tc_typeList>::value == 3));
-        Static_Assert((GetTypeFirstIndexInTypeList<float,       tc_typeList>::value == -1));
-        Static_Assert((GetTypeFirstIndexInTypeList<double,      tc_typeList>::value == -1));
+        //test FindTypeFirstIndexInTypeList
+        Static_Assert((FindTypeFirstIndexInTypeList<int,         tc_typeList>::value == 0));
+        Static_Assert((FindTypeFirstIndexInTypeList<char,        tc_typeList>::value == 1));
+        Static_Assert((FindTypeFirstIndexInTypeList<std::string, tc_typeList>::value == 2));
+        Static_Assert((FindTypeFirstIndexInTypeList<char*,       tc_typeList>::value == 3));
+        Static_Assert((FindTypeFirstIndexInTypeList<float,       tc_typeList>::value == -1));
+        Static_Assert((FindTypeFirstIndexInTypeList<double,      tc_typeList>::value == -1));
 
-        //test GetNthTypeInTypeList
-        Static_Assert((IsSameType<GetNthTypeInTypeList_t< 0, tc_typeList>,int>::value));
-        Static_Assert((IsSameType<GetNthTypeInTypeList_t< 1, tc_typeList>,char>::value));
-        Static_Assert((IsSameType<GetNthTypeInTypeList_t< 2, tc_typeList>,std::string>::value));
-        Static_Assert((IsSameType<GetNthTypeInTypeList_t< 3, tc_typeList>,char*>::value));
-        Static_Assert(!(IsSameType<GetNthTypeInTypeList_t<0, tc_typeList>,char>::value));
+        //test FindTypeLastIndexInTypeList
+        Static_Assert((FindTypeLastIndexInTypeList<int,         tc_typeList>::value == 0));
+        Static_Assert((FindTypeLastIndexInTypeList<char,        tc_typeList>::value == 1));
+        Static_Assert((FindTypeLastIndexInTypeList<std::string, tc_typeList>::value == 2));
+        Static_Assert((FindTypeLastIndexInTypeList<char*,       tc_typeList>::value == 3));
+        Static_Assert((FindTypeLastIndexInTypeList<float,       tc_typeList>::value == -1));
+        Static_Assert((FindTypeLastIndexInTypeList<double,      tc_typeList>::value == -1));             
+
+        //test FindNthTypeInTypeList
+        Static_Assert((IsSameType<FindNthTypeInTypeList_t< 0, tc_typeList>,int>::value));
+        Static_Assert((IsSameType<FindNthTypeInTypeList_t< 1, tc_typeList>,char>::value));
+        Static_Assert((IsSameType<FindNthTypeInTypeList_t< 2, tc_typeList>,std::string>::value));
+        Static_Assert((IsSameType<FindNthTypeInTypeList_t< 3, tc_typeList>,char*>::value));
+        Static_Assert(!(IsSameType<FindNthTypeInTypeList_t<0, tc_typeList>,char>::value));
+
+        //test ReverseTypeList
+        Static_Assert((IsSameType<ReverseTypeList_t<tc_typeList>,                           TypeList<char*,std::string,char,int>>::value));
+        Static_Assert((IsSameType<ReverseTypeList_t<TypeList<int,char,std::string,char*>>,  TypeList<char*,std::string,char,int>>::value));
+        Static_Assert((IsSameType<ReverseTypeList_t<TypeList<int, char>>,                   TypeList<char, int>>::value));
+        Static_Assert((IsSameType<ReverseTypeList_t<TypeList<int, char, std::string>>,      TypeList<std::string, char, int>>::value));
 
         //test ReplaceWrapperTemplate
         Static_Assert((IsSameType<ReplaceWrapperTemplate_t<tc_typeList,TypeList2>,TypeList2<int,char,std::string,char*>>::value));
