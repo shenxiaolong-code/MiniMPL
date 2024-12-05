@@ -8,7 +8,7 @@
 #include <MiniMPL/innerDetail/macro_traitimpl.hpp>
 #include <MiniMPL/kitType.hpp>
 #include <MiniMPL/typeLogic.hpp>
-#include <MiniMPL/InnerDetail/isFuncPointer_detail.hpp>
+#include <MiniMPL/innerDetail/isFuncPointer_detail.hpp>
 
 namespace MiniMPL
 {

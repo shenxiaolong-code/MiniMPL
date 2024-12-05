@@ -7,7 +7,7 @@
 * Copyright           : free to use / modify / sale in free and commercial software with those head comments.
 ***********************************************************************************************************************/
 #include <MiniMPL/productSpecialDef.h>
-#include <MiniMPL/InnerDetail/fromToString_detail.hpp>
+#include <MiniMPL/innerDetail/fromToString_detail.hpp>
 
 #if 1==USE_UNICODE_STRING
     #define     toString            toStringW

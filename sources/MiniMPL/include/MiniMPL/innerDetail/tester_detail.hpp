@@ -6,9 +6,9 @@ Description         :
 Author              : Shen.Xiaolong(2009-2016), xlshen@126.com  xlshen2002@hotmail.com
 Copyright           : free to use / modify / sale in free and commercial software with those head comments.
 ***********************************************************************************************************************/
-#include <MiniMPL\macroDef.h>
-#include <MiniMPL\isXXXEx.hpp>
-#include <MiniMPL\sameQualifier.hpp>
+#include <MiniMPL/macroDef.h>
+#include <MiniMPL/isXXXEx.hpp>
+#include <MiniMPL/sameQualifier.hpp>
 
 namespace MiniMPL
 {       

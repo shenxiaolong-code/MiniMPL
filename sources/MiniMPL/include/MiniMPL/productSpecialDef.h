@@ -54,10 +54,12 @@ typedef stlString::value_type       stlChar;
 
 //////////////////////////////////////////Assert replac/////////////////////////////////////////////////////////////////
 //define macro _Assert_Trigger to implement assert : different platform might support different assert statement
-#if defined(_M_IX86)
-inline void _myProjectAssert()      { __asm  { int 3    }; };
-#else //defined (_M_IA64)
-inline void _myProjectAssert()      { __asm  { int 0x2c }; };
+#ifdef _MSC_VER 
+    inline void _myProjectAssert() { __asm { int 3 } } 
+#elif defined(__GNUC__) 
+    inline void _myProjectAssert() { asm volatile("int $3"); }
+#else
+    #error "Unsupported compiler"
 #endif
 
 //**********************************************************************************************************************

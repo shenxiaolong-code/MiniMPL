@@ -11,18 +11,19 @@
 #include <iostream>
 
 //////////////////////////////log interface & macro begin////////////////////////////////////////////
-#if GNUCPP
-	// C99  :	_Pragma ("message( \"the cl msg way\")")  => #pragma message("the cl msg way")
+#ifdef _MSC_VER 
+    // two leading underscores - Microsoft specific extension
+	#define		outputCompileMsg(x)			__pragma(message ( x ))
+    #define     CDECL_CALL                 __cdecl
+#elif defined(__GNUC__) 
+    // C99  :	_Pragma ("message( \"the cl msg way\")")  => #pragma message("the cl msg way")
 	#define     do_pragma_msg(x)            _Pragma (#x)    
 	#define		outputCompileMsg( x )		do_pragma_msg (message ( x))
+    #define     CDECL_CALL                  // No need for CDECL_CALL in GCC
 	// #define	outputCompileMsg( x )		do_pragma_msg (message ( "[somePrefix] " x))
-#endif // GNUCPP
-
-
-#ifdef MSVC
-	// two leading underscores - Microsoft specific extension
-	#define		outputCompileMsg(x)			__pragma(message ( x ))
-#endif // MSVC
+#else
+    #error "Unsupported compiler"
+#endif
 
 namespace MiniMPL
 {

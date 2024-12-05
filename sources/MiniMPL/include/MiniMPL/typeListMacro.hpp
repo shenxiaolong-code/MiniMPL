@@ -15,7 +15,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 #ifndef MAKE_TYPELISTMACROS_INC_
 #define MAKE_TYPELISTMACROS_INC_
-#include <MiniMPL/typelist.hpp>
+#include <MiniMPL/typeList.hpp>
 
 // $Id: TypelistMacros.h 749 2006-10-17 19:49:26Z syntheticpp $
 

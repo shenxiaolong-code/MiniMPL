@@ -8,8 +8,8 @@
 #include <MiniMPL/isXXX.hpp>
 #include <MiniMPL/productSpecialDef.h>
 #include <MiniMPL/typeLogic.hpp>
-#include <MiniMPL/InnerDetail/isXXXEx_detail.hpp>
-#include <MiniMPL/InnerDetail/isFuncPointer_detail.hpp>
+#include <MiniMPL/innerDetail/isXXXEx_detail.hpp>
+#include <MiniMPL/innerDetail/isFuncPointer_detail.hpp>
 #include <MiniMPL/addRemove.hpp>
 
 namespace MiniMPL

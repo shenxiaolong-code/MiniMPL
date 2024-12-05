@@ -5,7 +5,7 @@
 * Author              : Shen.Xiaolong(2009-2016), xlshen@126.com  xlshen2002@hotmail.com
 * Copyright           : free to use / modify / sale in free and commercial software with those head comments.
 ***********************************************************************************************************************/
-#include <MiniMPL\platformEnv.h>
+#include <MiniMPL/platformEnv.h>
 #include <cstddef>
 
 namespace MiniMPL
