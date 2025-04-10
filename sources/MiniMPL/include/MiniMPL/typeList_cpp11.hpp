@@ -46,6 +46,18 @@ namespace MiniMPL
 #if CPP17_ENABLED
     template<typename T, typename TList>                                                                using inline constexpr size_t  FindTypeLastIndexInTypeList_v=FindTypeLastIndexInTypeList<T, TList>::value;
 #endif
+    ///////////////////////////////////////////////////////////////////// collect type list ////////////////////////////////////////////////////////////////////////////////////////////  
+    template<size_t   N, typename TList>                                                                struct GetFirstNTypes;
+    template<template <typename ...> class TList, typename ... Types>                                   struct GetFirstNTypes<0, TList<Types...>> : public Type2Type<TypeList<>> {};
+    template<size_t   N, template <typename ...> class TList, typename ... Types>                       struct GetFirstNTypes<N, TList<Types...>> : public InnerDetail::GetFirstNTypesImpl<N, TypeList<Types...>, TypeList<> > {};
+    template<size_t   N, typename TList>                                                                using  GetFirstNTypes_t = typename GetFirstNTypes<N, TList>::type;
+
+    template<size_t idx, typename TList>                                                                struct GetAllTypesFromIdx;
+    template<size_t idx, template <typename ...> class TList, typename ... Types>                       struct GetAllTypesFromIdx<idx, TList<Types...>> : public InnerDetail::GetAllTypesFromIdxImpl<idx,Types...> {};
+    template<size_t idx, typename TList>                                                                using  GetAllTypesFromIdx_t = typename GetAllTypesFromIdx<idx, TList>::type;
+
+    template<size_t N, typename TList>                                                                  struct GetLastNTypes : public GetAllTypesFromIdx<GetTypeListLength<TList>::value - N, TList> {};
+    template<size_t N, typename TList>                                                                  using  GetLastNTypes_t = typename GetLastNTypes<N, TList>::type;
 
     ///////////////////////////////////////////////////////////////////// manipulate type list ////////////////////////////////////////////////////////////////////////////////////////////  
     template <typename T1, template <typename ...> class dst>                                           struct ReplaceWrapperTemplate;

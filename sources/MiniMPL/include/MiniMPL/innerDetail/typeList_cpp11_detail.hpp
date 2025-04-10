@@ -17,6 +17,13 @@ namespace MiniMPL
       template<typename ... NewTypes>                                                                   struct ReverseTypeListArgs<TypeList<NewTypes ... >, TypeList<>>                : public Type2Type<TypeList<NewTypes ... >> { };
       template<typename T, typename ... NewTypes , typename ... RawTypes >                              struct ReverseTypeListArgs<TypeList<NewTypes ... >, TypeList<T, RawTypes ...>> : public ReverseTypeListArgs<TypeList<T, NewTypes ...>, TypeList<RawTypes ...>> { };
       
+      template<size_t   N, typename     TListIn,   typename     TListOut>                               struct GetFirstNTypesImpl;
+      template<typename T, typename ... TailTypes, typename ... HeadTypes>                              struct GetFirstNTypesImpl<1, TypeList<T, TailTypes...>, TypeList<HeadTypes...>> : public Type2Type<TypeList<HeadTypes..., T>> {};
+      template<size_t   N, typename     T,         typename ... TailTypes, typename ... HeadTypes>      struct GetFirstNTypesImpl<N, TypeList<T, TailTypes...>, TypeList<HeadTypes...>> : public GetFirstNTypesImpl<N-1, TypeList<TailTypes...>, TypeList<HeadTypes..., T>> {};
+
+      template<size_t idx, typename ... Types>                                                          struct GetAllTypesFromIdxImpl;
+      template<                                typename ... Types>                                      struct GetAllTypesFromIdxImpl<0,      Types...> : public Type2Type<TypeList<Types...>> {};
+      template<size_t idx, typename     T,     typename ... Types>                                      struct GetAllTypesFromIdxImpl<idx, T, Types...> : public GetAllTypesFromIdxImpl<idx-1, Types...> {};
       
       template<size_t idx, typename R, typename HeadTypes , typename TailTypes >                        struct ReplaceNthTypeInTypeListArgs;
       template<            typename R, typename T, typename ... HeadTypes , typename ... TailTypes >    struct ReplaceNthTypeInTypeListArgs<0,   R, TypeList<HeadTypes ... >, TypeList<T, TailTypes ...>> : public Type2Type<TypeList<HeadTypes ..., R, TailTypes ... >> { };

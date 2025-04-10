@@ -124,6 +124,27 @@ namespace UnitTest
         Static_Assert((IsSameType<ReverseTypeList_t<TypeList<int, char>>,                   TypeList<char, int>>::value));
         Static_Assert((IsSameType<ReverseTypeList_t<TypeList<int, char, std::string>>,      TypeList<std::string, char, int>>::value));
 
+        //GetFirstNTypes
+        Static_Assert((IsSameType<GetFirstNTypes_t<0, tc_typeList>, TypeList<>>::value));
+        Static_Assert((IsSameType<GetFirstNTypes_t<1, tc_typeList>, TypeList<int>>::value));
+        Static_Assert((IsSameType<GetFirstNTypes_t<2, tc_typeList>, TypeList<int,char>>::value));
+        Static_Assert((IsSameType<GetFirstNTypes_t<3, tc_typeList>, TypeList<int,char,std::string>>::value));
+        Static_Assert((IsSameType<GetFirstNTypes_t<4, tc_typeList>, TypeList<int,char,std::string,char*>>::value));
+
+        //GetAllTypesFromIdx
+        //compiler bug : https://blog.csdn.net/Tonny0832/article/details/147120348?spm=1011.2124.3001.6209
+        Static_Assert((IsSameType<GetAllTypesFromIdx_t<0, tc_typeList>, TypeList<int,char,std::string,char*>>::value));
+        Static_Assert((IsSameType<GetAllTypesFromIdx_t<1, tc_typeList>, TypeList<char,std::string, char*>>::value));
+        Static_Assert((IsSameType<GetAllTypesFromIdx_t<2, tc_typeList>, TypeList<std::string,char*>>::value));
+        Static_Assert((IsSameType<GetAllTypesFromIdx_t<3, tc_typeList>, TypeList<char*>>::value));
+
+        //GetLastNTypes
+        Static_Assert((IsSameType<GetLastNTypes_t<0, tc_typeList>, TypeList<>>::value));
+        Static_Assert((IsSameType<GetLastNTypes_t<1, tc_typeList>, TypeList<char*>>::value));
+        Static_Assert((IsSameType<GetLastNTypes_t<2, tc_typeList>, TypeList<std::string,char*>>::value));
+        Static_Assert((IsSameType<GetLastNTypes_t<3, tc_typeList>, TypeList<char,std::string,char*>>::value));
+        Static_Assert((IsSameType<GetLastNTypes_t<4, tc_typeList>, TypeList<int,char,std::string,char*>>::value));
+
         //test ReplaceWrapperTemplate
         Static_Assert((IsSameType<ReplaceWrapperTemplate_t<tc_typeList,TypeList2>,TypeList2<int,char,std::string,char*>>::value));
         Static_Assert((IsSameType<ReplaceWrapperTemplate_t<tc_typeList,TypeList3>,TypeList3<int,char,std::string,char*>>::value));
