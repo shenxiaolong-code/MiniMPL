@@ -12,23 +12,26 @@
 #include <MiniMPL/kitType.hpp>
 #include <MiniMPL/macroDef.h>
 
-#define HasXXXType(M)                                                                                                                           \
-    template<typename U,typename S=MiniMPL::NullType>    struct MAKEVAR(HasType_,M) : MiniMPL::FalseType {};                                    \
-    template<typename S> struct MAKEVAR(HasType_,M)<S,typename MiniMPL::sfinae_helper<typename MAKEVAR(S::,M)>::type> : MiniMPL::TrueType  {}
+// detect whether a type S has a embed sub-type named M
+#define HasXXXType(M)                                                                                                                                           \
+    template<typename U,typename S=MiniMPL::NullType>    struct HasType_##M                                                          : MiniMPL::FalseType {};   \
+    template<typename S>                                 struct HasType_##M <S,typename MiniMPL::sfinae_helper<typename S::M>::type> : MiniMPL::TrueType  {}
 
+// detect whether a type T has a method named M , which the TF is signatue to recognize the function override. M2 is optional if the structure name is unique.
 //M : methodName , TF : method signature , M2 : optional additional method flag to recognize function overload
 #define HasXXXMethod(M,TF,M2)                                                                       \
 template<typename T>  struct HasMethod##M2##_##M                                                    \
 {                                                                                                   \
 protected:                                                                                          \
     template <typename U,TF> struct sfinae_v_helper{};                                              \
-    template <typename U>   static MiniMPL::Yes_Type test(sfinae_v_helper<U,MAKEVAR(&U::,M)> * );   \
+    template <typename U>   static MiniMPL::Yes_Type test(sfinae_v_helper<U, &U::M > * );           \
     template <typename U>   static MiniMPL::No_Type  test(...);                                     \
                                                                                                     \
 public:                                                                                             \
     enum {value =  sizeof(MiniMPL::Yes_Type)==sizeof(test<T>(0)) };                                 \
 };
 
+// detect whether a type S has a data member named M
 #define HasXXXData(M)                                                                               \
 template<typename T>  struct HasData_##M                                                            \
 {                                                                                                   \
@@ -41,7 +44,7 @@ public:                                                                         
 };
 
 
-// detect if T has T.M1.M2  member
+// detect if T has sequence T.M1.M2  member
 #define HasXXXDataSequence( M1 , M2 )                                                                                       \
 HasXXXData( M1 ) ;                                                                                                          \
 HasXXXData( M2 ) ;                                                                                                          \

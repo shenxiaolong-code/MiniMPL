@@ -14,6 +14,7 @@
 
 namespace MiniMPL
 {
+    enum EnumType{};
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     template<typename T1, typename T2>  struct IsSameType           : public FalseType {}; 
     template<typename T>                struct IsSameType<T,T>      : public TrueType  {};

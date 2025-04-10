@@ -18,7 +18,7 @@ namespace MiniMPL
         template<typename RawT> struct RawCharTypeImpl;
         template<> struct RawCharTypeImpl<char*>     : public Type2Type<char>        {};
         template<> struct RawCharTypeImpl<wchar_t*>  : public Type2Type<wchar_t>     {};
-        template<typename C> struct RawCharTypeImpl<stlStringPack(C )>          : public Type2Type<C> {};
+        template<typename C> struct RawCharTypeImpl<stlStringPack<C >>          : public Type2Type<C> {};
         template<typename C,unsigned iLEN> struct RawCharTypeImpl<C[iLEN]>      : public Type2Type<C> {};
         template<typename C,unsigned iLEN> struct RawCharTypeImpl<C(&)[iLEN]>   : public Type2Type<C> {};
         template<typename C,unsigned iLEN> struct RawCharTypeImpl<C(*)[iLEN]>   : public Type2Type<C> {};

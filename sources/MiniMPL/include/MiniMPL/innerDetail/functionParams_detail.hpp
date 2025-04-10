@@ -55,7 +55,7 @@ namespace MiniMPL
         template<typename R,typename P1,typename P2,typename P3,typename P4,typename P5> struct FunctionParamsImpl<R    (P1,P2,P3,P4,P5)> : public FunctionParamsPack<R,ParamPackage<P1,P2,P3,P4,P5> >    { };
 
         //__stdcall calling convention
-#ifndef UNDER_CE
+#if defined(_MSC_VER) && !defined(UNDER_CE)
         /* WinCE doesn't differ __stdcall and __cdecl (__stdcall is MS spec), see windef.h
         #ifdef UNDER_CE
         #define __stdcall __cdecl	// Note this doesn't match the desktop definition
@@ -85,7 +85,7 @@ namespace MiniMPL
         template<typename R,typename P1,typename P2,typename P3,typename P4,typename P5> struct FunctionParamsImpl<R (__stdcall *)(P1,P2,P3,P4,P5)> : public FunctionParamsPack<R,ParamPackage<P1,P2,P3,P4,P5> >    { };
         template<typename R,typename P1,typename P2,typename P3,typename P4,typename P5> struct FunctionParamsImpl<R (__stdcall &)(P1,P2,P3,P4,P5)> : public FunctionParamsPack<R,ParamPackage<P1,P2,P3,P4,P5> >    { };
         template<typename R,typename P1,typename P2,typename P3,typename P4,typename P5> struct FunctionParamsImpl<R  __stdcall   (P1,P2,P3,P4,P5)> : public FunctionParamsPack<R,ParamPackage<P1,P2,P3,P4,P5> >    { };
-#endif // UNDER_CE
+#endif // defined(_MSC_VER) && !defined(UNDER_CE)
 
         //this calling convention ,NO reference-to-member-function in C++
         template<typename R,typename O> struct FunctionParamsImpl<R (O::*)()> : public MemFunctionParamsImpl<R,O,ParamPackage<> >    { };

@@ -24,7 +24,7 @@
 #define UtilCondition(X)			!!(X)
 #define PrefixAssert				TXT("\n[Assert]\t")
 
-#define AssertXI(X,Info)			(void)(UtilCondition(X) || ( outputTxt(PrefixAssert),outputTxtV##Info, ALWAYS_LOG_HERE(),Assert_Trigger() , 0 ) )
+#define AssertXI(X,Info)			(void)(UtilCondition(X) || ( outputTxt(PrefixAssert),outputTxtV Info , ALWAYS_LOG_HERE(),Assert_Trigger() , 0 ) )
 #define AssertX(X)					AssertXI(X,(MAKESTR(X)))
 #define AssertP(P)					AssertXI(P,(TXT("NULL Pointer: ") MAKESTR(P)))
 #define AssertB(B)					AssertXI(B,(TXT("Value 0: ") MAKESTR(B)))
@@ -33,7 +33,7 @@
 #define PrefixException				TXT("\n[Exception]\t")
 #define ChkExceptionThrow()			throw 1
 
-#define ChkExceptionInfo(X,Info)	(void)( UtilCondition(X) || ( outputTxt(PrefixException),outputTxtV##Info, ALWAYS_LOG_HERE(),ChkExceptionThrow(), 0) )
+#define ChkExceptionInfo(X,Info)	(void)( UtilCondition(X) || ( outputTxt(PrefixException),outputTxtV Info , ALWAYS_LOG_HERE(),ChkExceptionThrow(), 0) )
 #define ChkExceptionX(X)			ChkExceptionInfo(X,(MAKESTR(X)))
 #define ChkExceptionP(P)			ChkExceptionInfo(P,(TXT("NULL Pointer: ") MAKESTR(P)))
 #define ChkExceptionB(B)			ChkExceptionInfo(B,(TXT("Value 0: ") MAKESTR(B)))

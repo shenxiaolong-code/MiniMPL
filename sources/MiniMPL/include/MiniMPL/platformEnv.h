@@ -144,16 +144,6 @@ https://msdn.microsoft.com/en-us/library/b0084kay.aspx
 #endif
 //*/
 
-#if CPP11_ENABLED
-    #define STLNS               _STD
-	#define STLTR1NS			_STD
-#else
-	#define STLNS               _STD
-	#define STLTR1NS			_STD tr1::
-	#define final
-	#define override
-#endif
-
 #if defined(_MSC_VER)
 	#define plat_info_cpp()   \
 			__pragma(message ("__cplusplus = " MAKESTRA(__cplusplus) " , CPP11_ENABLED = " MAKESTRA(CPP11_ENABLED) ))   \

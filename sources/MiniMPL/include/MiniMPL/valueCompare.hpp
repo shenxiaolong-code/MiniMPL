@@ -9,11 +9,13 @@
 #include <MiniMPL/memberPtr.hpp>
 #include <MiniMPL/comparer.hpp>
 
-#ifndef max
-    #define max(a,b)            (((a) > (b)) ? (a) : (b))
-#endif
-#ifndef min
-    #define min(a,b)            (((a) < (b)) ? (a) : (b))
+#if defined(_MSC_VER)
+    #ifndef max
+        #define max(a,b)            (((a) > (b)) ? (a) : (b))
+    #endif
+    #ifndef min
+        #define min(a,b)            (((a) < (b)) ? (a) : (b))
+    #endif
 #endif
 
 #ifndef LimitVal

@@ -9,7 +9,7 @@
 namespace MiniMPL
 {
 #if defined(_WIN32)
-    inline void __cdecl outputDebugger(const wchar_t* pStr)
+    inline void CDECL_CALL outputDebugger(const wchar_t* pStr)
     {
         if (IsDebuggerPresent())
         {
@@ -17,7 +17,7 @@ namespace MiniMPL
         }
     }
 
-    inline void __cdecl outputDebugger(const char* pStr)
+    inline void CDECL_CALL outputDebugger(const char* pStr)
     {
         if (IsDebuggerPresent())
         {
@@ -26,8 +26,8 @@ namespace MiniMPL
     }    
 #else
     //OS dependent,Not impl,issue a linker error to block procedure
-    void __cdecl outputDebugger(const wchar_t* pStr);
-    void __cdecl outputDebugger(const wchar_t* pStr);
+    void CDECL_CALL outputDebugger(const wchar_t* pStr);
+    void CDECL_CALL outputDebugger(const wchar_t* pStr);
 #endif
 }
 
@@ -52,14 +52,14 @@ namespace MiniMPL
 #endif
 
     //////////////////////////////////////////////////////////////////////////
-    inline void __cdecl dbgOutput(const wchar_t* pStr)
+    inline void CDECL_CALL dbgOutput(const wchar_t* pStr)
     {
         CHECK_NULL_ELSE_RETURN_VAL(pStr,);        
         std::wcout << pStr;
         outputDebugger(pStr);
     }
 
-    inline void __cdecl dbgOutput(const char* pStr)
+    inline void CDECL_CALL dbgOutput(const char* pStr)
     {
         CHECK_NULL_ELSE_RETURN_VAL(pStr,);
         std::cout << pStr;
@@ -67,7 +67,7 @@ namespace MiniMPL
     }
 
 #define MaxOutputBufLen         2048
-    void __cdecl dbgOutputV (const wchar_t* format,...)
+    void CDECL_CALL dbgOutputV (const wchar_t* format,...)
     {
         wchar_t		Buf[MaxOutputBufLen] = {0};
 
@@ -78,7 +78,7 @@ namespace MiniMPL
 
         dbgOutput(Buf);  //output to console and debugger output window
     }
-    void __cdecl dbgOutputV (const char* format,...)
+    void CDECL_CALL dbgOutputV (const char* format,...)
     {
         char		Buf[MaxOutputBufLen] = {0};
 

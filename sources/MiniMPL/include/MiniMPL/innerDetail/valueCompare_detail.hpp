@@ -32,7 +32,7 @@ namespace MiniMPL
             template<bool bStlStr>  struct GetCString
             {
                 template<typename TChar>
-                static TChar const* CStr(stlStringPack(TChar) const& rStr){ return rStr.c_str();    }
+                static TChar const* CStr(stlStringPack<TChar> const& rStr){ return rStr.c_str();    }
             };
             template<>              struct GetCString<false>
             {

@@ -13,26 +13,23 @@
 //define STL string
 #include <string>
 
-typedef STLNS string         stlStringA;
-typedef STLNS wstring        stlStringW;
+using stlStringA=std::string;
+using stlStringW=std::wstring;
 #if 1==USE_UNICODE_STRING
-typedef stlStringW          stlString;
-#else                                 
-typedef stlStringA          stlString;
+    using stlString=stlStringW;
+#else
+    using stlString=stlStringA;
 #endif
-typedef stlString::value_type       stlChar;
-#define stlStringPack(x)            STLNS basic_string< x >
-#define NewStlStringParam(Head,Tail)    Head,Tail
+using stlChar=stlString::value_type;
+template<typename T> using stlStringPack=std::basic_string<T>;
 
 //define STL vector and smart pointer
 #include <vector>
-#define stlVector               STLNS vector
+#define stlVector               std::vector
 
 #include <map>
-#define stlPair                 STLNS pair
-#define makePair                STLNS make_pair
-#define stlMap                  STLNS map
-#define MapInsert(R,K,V)        (R).insert(makePair((K),(V)))
+#define stlMap                  std::map
+#define MapInsert(R,K,V)        (R).insert(std::make_pair((K),(V)))
 
 //define smart pointer.
 //Note:take care of std::auto_ptr, it will transfer ownership. 
@@ -42,8 +39,8 @@ typedef stlString::value_type       stlChar;
     #define stlSmartptr     ::MiniMPL::RefCountSmartPtr
 #else
     #include <memory>
-    #define stlSmartptr         STLTR1NS shared_ptr 
-    #define stlSmartptrBase     STLTR1NS enable_shared_from_this
+    #define stlSmartptr         std::shared_ptr 
+    #define stlSmartptrBase     std::enable_shared_from_this
 
     #define DeclarePtr(T)       typedef stlSmartptr< T >   T##Ptr
 #endif

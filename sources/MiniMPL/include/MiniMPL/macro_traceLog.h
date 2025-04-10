@@ -28,11 +28,11 @@
 namespace MiniMPL
 {
     //output to console and debugger output window
-    void __cdecl dbgOutput(const wchar_t* pStr);
-    void __cdecl dbgOutput(const char* pStr);
+    void CDECL_CALL dbgOutput(const wchar_t* pStr);
+    void CDECL_CALL dbgOutput(const char* pStr);
 
-    void __cdecl dbgOutputV(const wchar_t* format, ...);
-    void __cdecl dbgOutputV(const char* format, ...);
+    void CDECL_CALL dbgOutputV(const wchar_t* format, ...);
+    void CDECL_CALL dbgOutputV(const char* format, ...);
 }
 
 #define outputTxt           MiniMPL::dbgOutput

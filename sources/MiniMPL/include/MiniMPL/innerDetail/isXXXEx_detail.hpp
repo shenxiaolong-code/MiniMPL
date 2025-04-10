@@ -5,6 +5,7 @@
 	author:		Shen.Xiaolong(2009-2016), xlshen@126.com  xlshen2002@hotmail.com
 	purpose:	detail implement for isXXX.hpp
 *************************************************************************************/
+#include <cstdint>
 #include <MiniMPL/kitType.hpp>
 #include <MiniMPL/macro_makeVar.h>
 #include <MiniMPL/addRemove.hpp>
@@ -16,6 +17,7 @@ namespace MiniMPL
     HasXXXType(iterator_category); 
     HasXXXType(iterator);
 
+    template<typename T1, typename T2>  struct IsSameRawType;
     template<typename T>    struct IsSmartPointerImpl                   : public FalseType{};
     template<typename T>    struct IsSmartPointerImpl<stlSmartptr<T> >  : public TrueType {};
 
@@ -48,6 +50,13 @@ namespace MiniMPL
     template<typename DeriveT>  struct BaseDeriveTester<void,DeriveT>   : public FalseType{};
     template<typename BaseT>    struct BaseDeriveTester<BaseT,void>     : public FalseType{};
 
+#if defined(_MSC_VER)
+    using   int64_t=__int64;
+    using   uint64_t=unsigned __int64;
+#else
+    using   int64_t=__int64_t;
+    using   uint64_t=unsigned __int64_t;
+#endif
     template<typename T1, typename T2>  struct IsSameType;//fw declare
     template<typename T>        struct BuildInTypeTester 
     {
@@ -59,7 +68,7 @@ namespace MiniMPL
         enum{isChar     = Or_T<tester<char>, tester<unsigned char>,tester<signed char>,tester<wchar_t> >::value };
         enum{isInteger  = Or_T<tester<bool>,  BoolType<isChar>,
             Or_T<tester<short>, tester<unsigned short>, tester<int>,    tester<unsigned int>         >,
-            Or_T<tester<long>,  tester<unsigned long>,  tester<__int64>,    tester<unsigned __int64> > >::value };
+            Or_T<tester<long>,  tester<unsigned long>,  tester<int64_t>,    tester<uint64_t> > >::value };
 
         enum{isBuildin=Or_T<IsCPointer<T>,BoolType<isFloat>,BoolType<isInteger> >::value };
         enum{value=Or_T<IsCPointer<T>,BoolType<isFloat>,BoolType<isInteger> >::value };

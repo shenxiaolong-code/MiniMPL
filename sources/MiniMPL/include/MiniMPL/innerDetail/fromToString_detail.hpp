@@ -85,7 +85,7 @@ namespace MiniMPL
         template<typename TStr>     inline bool isInvalidBuf(TStr& rStr)           { return false;                              }
         template<typename Char_T>   inline bool isInvalidBuf(Char_T const* pStr)   { return !pStr;                              }
 
-        template<typename Char_T>   inline bool isNullStr(const stlStringPack(Char_T)& rStr) { return rStr.size()==0;           }
+        template<typename Char_T>   inline bool isNullStr(const stlStringPack<Char_T>& rStr) { return rStr.size()==0;           }
         template<typename Char_T>   inline bool isNullStr(Char_T const* pStr)   { return isInvalidBuf(pStr) || *pStr==Char_T('\0'); }
 
         template<typename TStr>     void zeroStr(TStr&){};
@@ -105,7 +105,7 @@ namespace MiniMPL
                     return true;
                 }
 
-                inline bool recvString(stlStringPack(Char_T) const& rFrom)
+                inline bool recvString(stlStringPack<Char_T> const& rFrom)
                 {
                     memcpy(m_pStr,rFrom.c_str(),rFrom.size()*sizeof(Char_T));
                     return true;
@@ -118,10 +118,10 @@ namespace MiniMPL
                     return true;
                 }
             };
-            template<typename Char_T> struct ResultString<stlStringPack(Char_T)>
+            template<typename Char_T> struct ResultString<stlStringPack<Char_T>>
             {
-                stlStringPack(Char_T)& m_rStr;
-                ResultString(stlStringPack(Char_T)& rStr):m_rStr(rStr){};
+                stlStringPack<Char_T>& m_rStr;
+                ResultString(stlStringPack<Char_T>& rStr):m_rStr(rStr){};
 
                 template<typename FromStr>
                 inline bool recvString(FromStr const& pFrom)
@@ -148,7 +148,7 @@ namespace MiniMPL
                     }
                     return iLEN>=iSize;
                 }
-                inline bool recvString(stlStringPack(Char_T) const& rFrom)
+                inline bool recvString(stlStringPack<Char_T> const& rFrom)
                 {
                     unsigned iSize=rFrom.size();
                     CheckBufTooSmall(iSize,iLEN);
@@ -173,7 +173,7 @@ namespace MiniMPL
                 }
 
                 template<typename ToStr>
-                static inline bool execute(stlStringPack(Form_T) const& rFrom,ToStr& rTo)
+                static inline bool execute(stlStringPack<Form_T> const& rFrom,ToStr& rTo)
                 {
                     return execute(rFrom.c_str(),rTo);
                 }
@@ -244,7 +244,7 @@ namespace MiniMPL
             };
 
             template<typename char_T>
-            static inline bool execute(stlStringPack(char_T) const& rStr,To_T& val)   
+            static inline bool execute(stlStringPack<char_T> const& rStr,To_T& val)   
             { 
                 return execute(rStr.c_str(),val);
             };
@@ -284,15 +284,15 @@ namespace MiniMPL
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         template<typename From_T,typename TStlString,bool bFromString=IsString<RAWTYPE(From_T)>::value> struct CToString;
         //from non-string to string
-        template<typename From_T,typename char_T> struct CToString<From_T,stlStringPack(char_T),false> : protected EraseFloatTail0<From_T> 
+        template<typename From_T,typename char_T> struct CToString<From_T,stlStringPack<char_T>,false> : protected EraseFloatTail0<From_T> 
         {
             template<typename From_T>
-            static inline stlStringPack(char_T) execute(From_T const& dst)
+            static inline stlStringPack<char_T> execute(From_T const& dst)
             {
                 char_T buf[128] ={0};  //for max unsigned int64, 128 should be enough
                 GetPrintfFuncS<char_T>::value(buf,128,GetFmtArr<char_T>::value[CFormatIdx<From_T>::value],dst);
                 eraseTail0(buf);
-                return stlStringPack(char_T)(buf);
+                return stlStringPack<char_T>(buf);
             }
         };
         

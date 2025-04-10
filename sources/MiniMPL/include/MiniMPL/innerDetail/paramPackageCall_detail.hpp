@@ -12,8 +12,8 @@ Copyright           : free to use / modify / sale in free and commercial softwar
 #include <MiniMPL/pointer2value.hpp>
 #include <MiniMPL/paramPackShift.hpp>
 
-#define _tagF(X)    ENABLE_IF(MiniMPL::IsFunctionPointer<##X>::value)
-#define _tagMF(X)   ENABLE_IF((MiniMPL::IsMemberFunctionPointer<##X>::value))
+#define _tagF(X)    ENABLE_IF(MiniMPL::IsFunctionPointer< X >::value)
+#define _tagMF(X)   ENABLE_IF((MiniMPL::IsMemberFunctionPointer< X >::value))
 
 namespace MiniMPL
 {
