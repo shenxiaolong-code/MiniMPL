@@ -113,60 +113,60 @@ https://msdn.microsoft.com/en-us/library/b0084kay.aspx
 #endif 
 
 //////////////////////////////////////////////////////////////////////////
-//C++11 sets the value of __cplusplus to 201103L
-#if __cplusplus >= 201103L
-	#define CPP11_ENABLED       1
-#else
-	#define CPP11_ENABLED       0
-#endif
-
-//C++17 sets the value of __cplusplus to 201703L
-#if __cplusplus >= 201703L
-    #define CPP17_ENABLED 1
-#else
-    #if (defined(_MSC_VER) && _MSC_VER > 1929)
-        #define CPP17_ENABLED       1
-    #else
-        #define CPP17_ENABLED       0
+#ifndef CPP_STD
+    #ifndef _MSC_VER                                // non MSVC compiler
+    #if __cplusplus < 201103L
+           #define CPP_STD      3                   // C++98/03
+        #elif __cplusplus == 201103L
+           #define CPP_STD      11                  // C++11
+        #elif __cplusplus == 201402L
+           #define CPP_STD      14                  // C++14
+        #elif __cplusplus == 201703L
+           #define CPP_STD      17                  // C++17
+        #elif __cplusplus == 202002L
+           #define CPP_STD      20                  // C++20
+        #else
+           #define CPP_STD      99                  // future C++ standard
+        #endif
+    #else                                           // MSVC compiler
+        #if defined(_MSVC_LANG)                     // introduced in Visual Studio 2015 update 3
+            #if _MSVC_LANG == 201103L
+                #define CPP_STD       11            // C++11
+            #elif _MSVC_LANG == 201402L
+                #define CPP_STD       14            // C++14
+            #elif _MSVC_LANG == 201703L
+                #define CPP_STD       17            // C++17
+            #elif _MSVC_LANG == 202002L
+                #define CPP_STD       20            // C++20
+            #else
+                #define CPP_STD       11            // assume min C++11 is supported
+            #endif
+        #else
+            // bug fix for previous visual studio 2015 update 3
+            // _MSVC_LANG is not defined in previous versions of Visual Studio 2015
+            // any version VS always set __cplusplus=199711L  and _MSC_VER=1929
+            // vs can't detect whether the C++11 and C++17 is enabled. we set it manual
+            #pragma message("building on MS visual studio platform, set CPP_STD=11 \r\n" __FILE__ "("  MAKESTRA(__LINE__) ")" )
+            #define CPP_STD  11                     // C++11
+        #endif
     #endif
-#endif
+#endif // CPP_STD
 
-//*/ bug fix
-#if 199711L == __cplusplus && defined(_MSC_VER)
-//but any version VS always set __cplusplus=199711L  and _MSC_VER=1929
-//vs can't detect whether the C++11 and C++17 is enabled. we set it manual
-    #pragma message("building on MS visual studio platform, set CPP11_ENABLED=1 and CPP17_ENABLED=0 manual. \r\n" __FILE__ "("  MAKESTRA(__LINE__) ")" )
-    #undef  CPP11_ENABLED    
-    #define CPP11_ENABLED       1
-
-    #undef  CPP17_ENABLED
-    #define CPP17_ENABLED       0
-#endif
-//*/
-
-#if defined(_MSC_VER)
-	#define plat_info_cpp()   \
-			__pragma(message ("__cplusplus = " MAKESTRA(__cplusplus) " , CPP11_ENABLED = " MAKESTRA(CPP11_ENABLED) ))   \
-            __pragma(message ("__cplusplus = " MAKESTRA(__cplusplus) " , CPP17_ENABLED = " MAKESTRA(CPP17_ENABLED) ))
+#ifdef _MSC_VER
+    #define print_platform_env_info()                         \
+        __pragma(message ("__cplusplus = " MAKESTRA(__cplusplus) " , CPP_STD = " MAKESTRA(CPP_STD) ))
 #else
-	#define cplusplusList(_)																\
-		_(CPP98_03	,	199711L)															\
-		_(CPP11		,	201103L)															\
-		_(CPP14		,	201402L)															\
-		_(CPP17		,	201703L)
+    #define cplusplusList(_)					    \
+		_(CPP98_03	,	199711L)				    \
+		_(CPP11		,	201103L)				    \
+		_(CPP14		,	201402L)				    \
+		_(CPP17		,	201703L)                    \
+        _(CPP20		,	202002L)
 	#define cplusplusItem(a,b) __pragma(message (#a " = " MAKESTRA(b) ))
-
-	#define plat_info_cpp()    cplusplusList(cplusplusItem)								\
+    #define print_platform_env_info()    cplusplusList(cplusplusItem)		    \
 			__pragma(message("current __cplusplus = " MAKESTRA(__cplusplus)))
-#endif
+#endif // _MSC_VER
 
-#if defined(__PGI)
-    #define PGICPP      /* Portland Group PGCC/PGCPP */
-#endif 
-
-#if defined(__SUNPRO_C) || defined(__SUNPRO_CC)
-    #define SolarisCPP      /* Oracle Solaris Studio */
-#endif
 //////////////////////////////////////////////////////////////////////////
 #if defined(MSVC)
     #if 1==_CPPRTTI

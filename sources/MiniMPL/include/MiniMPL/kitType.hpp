@@ -20,9 +20,17 @@ namespace MiniMPL
     template <typename T>                       struct getType<T, sfinae_helper_t<typename T::type> >   : public getType<typename T::type>  {                                   };  // C++ template lazy mechanism. sfinae_helper_t will force to parse it immediately. here sfinae_helper_t is same to std::void_t
     template<typename T>                        using  getType_t = typename getType<T>::type;             // get type embed type
 
+#if CPP_STD >= 17
+    template<auto val>                          struct ValueType                                        : public Type2Type<decltype(val)>   {                                   };  //C++17 support non-type template parameters keyword auto, it is more powerful.
+#else
     template<typename T, T val>                 struct ValueType                                        : public Type2Type<T>               { static constexpr T value = val;   };  // ValueType should keep val type info : int, float, double, pointer, reference, enum
-    // template<auto val>                       struct ValueType{}                                      : public Type2Type<decltype(val)>   {                                   };  //C++20 support non-type template parameters keyword auto, it is more powerful.
-    template<typename T>                        constexpr bool getValue_v = T::value;                                                                                               // get type embed value , see std::is_same_v.  inline constexpr requires C++17
+#endif // CPP_STD >= 17
+
+    template<typename T, T val>                 using  ValueType_t = typename ValueType<T, val>::type;      // get type embed value , see std::integral_constant
+    template<typename T>                        using  GetValue = ValueType<T, T::value>;                   // get type embed value , see std::integral_constant
+#if CPP_STD >= 17
+    template<typename T>                        constexpr bool getValue_v = T::value;                       // get type embed value , see std::is_same_v.  inline constexpr requires C++17
+#endif // CPP_STD >= 17
 
     template<typename T>                                                struct Type2Value;
     template<typename T, T val, template<typename V, V> class Impl_T >  struct Type2Value<Impl_T<T, val> > : public ValueType<T,val> {};
@@ -38,9 +46,9 @@ namespace MiniMPL
     template <int>                              struct GetString;
     // constexpr const char                     example_string[] = "demo binding integer with string";
     // template <>                              struct GetString<111> : public ConstString<example_string> {};
-#if CPP17_ENABLED
+#if CPP_STD >= 17
     template <int v>                            inline constexpr decltype(GetString<v>::value) getString_v = GetString<v>::value;
-#endif
+#endif // CPP_STD >= 17
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     template<bool,typename True_T,typename False_T>         struct If_T                         : public Type2Type<True_T>     {} ; //std::conditional<b, True_T, False_T>

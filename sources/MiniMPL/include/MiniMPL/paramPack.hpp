@@ -31,7 +31,7 @@ namespace MiniMPL
     template<typename TP1,typename TP2,typename TP3,typename TP4,typename TP5,typename TP6,typename TP7> 
     struct IsParamPackage<ParamPackage<TP1,TP2,TP3,TP4,TP5,TP6,TP7> > : public TrueType{};
 
-#if CPP11_ENABLED
+#if CPP_STD >= 11
     // Get Nth formal parameters type, Nth begin from 0 , need Cpp11 support
     template<typename T>                                            struct getFormalParamterType ;
     template <class... TArgs , template< class ... > class T >      struct getFormalParamterType< T <TArgs ...> > 
@@ -40,7 +40,7 @@ namespace MiniMPL
     };
     template<typename T , unsigned Nth> 
     using getFormalParamterType_t=typename getFormalParamterType<T>::template apply<Nth> ;
-#endif
+#endif // CPP_STD >= 11
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     template<> 
@@ -135,14 +135,25 @@ namespace MiniMPL
         return ParamPackage<TP1&,TP2&,TP3&,TP4&,TP5&,TP6&>(p1,p2,p3,p4,p5,p6);
     }
 
-#if CPP11_ENABLED
+#if CPP_STD >= 11
 	template<typename... TArgs>
 	struct ParamPackage11 : std::tuple<TArgs...> 
 	{
 		ParamPackage11(TArgs... args) : std::tuple<TArgs...>(args...) {};
 	};
 
-#endif
+#endif // CPP_STD >= 11
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // for C++11, use std::tuple instead of ParamPackage
+    template<typename... TArgs>
+    using ParamPackage_T = typename std::conditional<CPP_STD >= 11, std::tuple<TArgs...>, ParamPackage<TArgs...> >::type;
+
+    template<typename... TArgs>
+    using ParamPackageSize_T = typename ParamPackageSize<ParamPackage_T<TArgs...> >::type;
+
+    template<typename T,unsigned Idx>
+    using ParamPackageAt_T = typename ParamPackageAt<ParamPackage_T<T>,Idx>::type;
 
 }
 

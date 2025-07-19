@@ -20,32 +20,32 @@ namespace MiniMPL
 
     template<typename TList>                                                                            struct GetTypeListLength;
     template<template <typename ...> class TList,typename ... Types >                                   struct GetTypeListLength<TList<Types ...>>      : public Size2Type<sizeof...(Types)> {};
-#if CPP17_ENABLED
+#if CPP_STD >= 17
     template<typename TList>                                                                            using inline constexpr size_t  GetTypeListLength_v=GetTypeListLength<TList>::value;
-#endif
+#endif // CPP_STD >= 17
 
     template<typename T, typename TList>                                                                struct TypeIsInTypeList;
     template<typename T, template <typename ...> class TList>                                           struct TypeIsInTypeList<T,TList<> >             : public FalseType                              {};
     template<typename T, template <typename ...> class TList, typename ... Types >                      struct TypeIsInTypeList<T,TList<T, Types...> >  : public TrueType                               {};
     template<typename T, typename R, template <typename ...> class TList, typename ... Types >          struct TypeIsInTypeList<T,TList<R, Types...> >  : public TypeIsInTypeList<T,TList<Types...> >   {};
-#if CPP17_ENABLED
+#if CPP_STD >= 17
     template<typename T, typename TList>                                                                using inline constexpr size_t  TypeIsInTypeList_v=TypeIsInTypeList<T, TList>::value;
-#endif
+#endif // CPP_STD >= 17
 
     template<typename T, typename TList, bool bInList=TypeIsInTypeList<T,TList>::value>                 struct FindTypeFirstIndexInTypeList;
     template<typename T, typename TList>                                                                struct FindTypeFirstIndexInTypeList<T,TList,              false> : public Int2Type<-1>                                                       {};
     template<typename T, template <typename ...> class TList, typename ... Types >                      struct FindTypeFirstIndexInTypeList<T,TList<T, Types...>, true > : public Int2Type<0>                                                        {};
     template<typename T, typename R, template <typename ...> class TList, typename ... Types >          struct FindTypeFirstIndexInTypeList<T,TList<R, Types...>, true > : public Int2Type<1+FindTypeFirstIndexInTypeList<T,TList<Types...>>::value> {};
-#if CPP17_ENABLED
+#if CPP_STD >= 17
     template<typename T, typename TList>                                                                using inline constexpr size_t  FindTypeFirstIndexInTypeList_v=FindTypeFirstIndexInTypeList<T, TList>::value;
-#endif
+#endif // CPP_STD >= 17
 
     template<typename T, typename TList, bool bInList=TypeIsInTypeList<T,TList>::value>                 struct FindTypeLastIndexInTypeList;
     template<typename T, typename TList>                                                                struct FindTypeLastIndexInTypeList<T,TList, false> : public Int2Type<-1>                                                        {};
     template<typename T, typename TList>                                                                struct FindTypeLastIndexInTypeList<T,TList, true>  : public Int2Type<GetTypeListLength<TList>::value - FindTypeFirstIndexInTypeList<T,typename ReverseTypeList<TList>::type>::value - 1> {};
-#if CPP17_ENABLED
+#if CPP_STD >= 17
     template<typename T, typename TList>                                                                using inline constexpr size_t  FindTypeLastIndexInTypeList_v=FindTypeLastIndexInTypeList<T, TList>::value;
-#endif
+#endif // CPP_STD >= 17
     ///////////////////////////////////////////////////////////////////// collect type list ////////////////////////////////////////////////////////////////////////////////////////////  
     template<size_t   N, typename TList>                                                                struct GetFirstNTypes;
     template<template <typename ...> class TList, typename ... Types>                                   struct GetFirstNTypes<0, TList<Types...>> : public Type2Type<TypeList<>> {};

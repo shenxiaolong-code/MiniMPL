@@ -11,7 +11,7 @@
 
 namespace MiniMPL
 {
-#if CPP11_ENABLED
+#if CPP_STD >= 11
 	template <typename... Ts>					struct Max_T;
 	template <typename T1, typename T2>			struct Max_T<T1, T2> 	: public If_T< (sizeof(T1) > sizeof(T2)), T1, T2 >	{};
 	template <typename T1, typename... Ts>		struct Max_T<T1, Ts...>	: public Max_T<T1, typename Max_T<Ts...>::type >	{};
@@ -35,7 +35,7 @@ namespace MiniMPL
 	{
 		return Mins(p1, Mins(pargs...));
 	}
-#endif
+#endif  // CPP_STD >= 11
 
 	namespace StdWrapper
 	{

@@ -71,13 +71,15 @@ namespace UnitTest
 
        // test getType , getType_t and getValue_v
        Static_Assert((TrueType::value == true));
+#if CPP_STD >= 17
        Static_Assert((getValue_v<TrueType> == true));
        static_assert(getValue_v<TrueType> == true, "The value should be true.");
+#else // CPP_STD < 17
 
        std::cout << "[before C++17] GetString<111>::value   = " << MiniMPL::GetString<111>::value  << std::endl;
-#if CPP17_ENABLED
+#if CPP_STD >= 17
        std::cout << "[From C++17  ] getString_v<111>::value = " << getString_v<111>                << std::endl;
-#endif
+#endif // CPP_STD >= 17
 
        Static_Assert((MiniMPL::IsSameType<getType_t<MiniMPL::If_T<true,int,char>>,int>::value));
        Static_Assert((MiniMPL::IsSameType<typename getType<EmbedType_3>::type,int>::value));

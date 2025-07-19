@@ -42,7 +42,7 @@ namespace UnitTest
         plat_info_vs();
 
         #pragma message("\r\nC++11 support info:")
-        plat_info_cpp();
+        print_platform_env_info();
 
 		#pragma message("\r\nAssemble info:")
 		asm_info();

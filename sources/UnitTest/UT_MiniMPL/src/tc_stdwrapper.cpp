@@ -85,14 +85,14 @@ namespace UnitTest
 		AssertB((GetMinInt()	== _minValue));
 		AssertB((GetMinUShort() == _minValue));
 
-#if CPP11_ENABLED
+#if CPP_STD >= 11
 		AssertB(( Maxs(1,2,3,4,5) == 5));
 		AssertB((Maxs(-1, -2, -3, -4, -5) == -1));
 		AssertB((Maxs(-1, -2, 3, 4, 5) == 5));
 		AssertB((Mins(1, 2, 3, 4, 5) == 1));
 		AssertB((Mins(-1, -2, -3, -4, -5) == -5));
 		AssertB((Mins(-1, -2, 3, 4, 5) == -2));
-#endif		
+#endif // CPP_STD >= 11
 	}
 
 	inline void TestCase_sharedArrayGenerator()

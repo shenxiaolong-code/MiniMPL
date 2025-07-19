@@ -21,9 +21,11 @@ namespace MiniMPL
     template<typename T>    struct IsSmartPointerImpl                   : public FalseType{};
     template<typename T>    struct IsSmartPointerImpl<stlSmartptr<T> >  : public TrueType {};
 
+#ifdef _MSC_VER
+    #pragma warning( push )
+    #pragma warning( disable : 4800 )     //warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+#endif    
 
-#pragma warning( push )
-#pragma warning( disable : 4800 )     //warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
     template<typename FromT,typename ToT>	struct ConvertTester
     {   
         static MiniMPL::No_Type			    test(...);
@@ -35,7 +37,9 @@ namespace MiniMPL
     template<typename T>	struct ConvertTester<T,T>   :public TrueType{};
     template<typename T>	struct ConvertTester<T,void>:public FalseType{};
     template<typename T>	struct ConvertTester<void,T>:public FalseType{};
-#pragma warning( pop )
+#ifdef _WIN32
+    #pragma warning( pop )
+#endif
 
     template<typename BaseT, typename DeriveT>  struct BaseDeriveTester
     { //in order to independent on OS and compiler , don't use MS specific : __is_base_of 

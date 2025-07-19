@@ -45,15 +45,17 @@
 
 //////////////////////////////////////////////static assert begin///////////////////////////////////////////////////////
 // show the real number or type when static_assert fails
-#if CPP17_ENABLED
+#if CPP_STD >= 17
     template<auto v>                        struct debug_number ;               // auto need C++ 17 . g++ -std=c++17 ...
     #define show_number( v )                { using vHelper = typename debug_number< v >::type ; }
     #define static_assert_number( b , v )   if constexpr (!( b )) {  using vHelper = typename debug_number< v >::type ; }
-#endif
+#endif // CPP_STD >= 17
 template<typename T>                        struct debug_type;
 #define show_type(   v )                    { using tHelper = typename debug_type< v >::type ;   }
 #define static_assert_type(   b , v )       if constexpr (!( b )) {  using tHelper = typename debug_type< v >::type   ; }    
 
+//C++11 : #define ENABLEFUNC_IF(condition) typename std::enable_if<(condition), void>::type* = nullptr
+//        #define ENABLEFUNC_IF(...) char (*)[((__VA_ARGS__) ? 1 : 0)] = nullptr
 #define ENABLEFUNC_IF(X)    char(*)[(X)]=0      //sfinae rule :"Substitution Failure Is Not An Error". std::enable_if_t needs C++14
 #define ENABLE_IF           ENABLEFUNC_IF
 #define ENABLEFUNC_NOT(X)   ENABLEFUNC_IF(0==(X))

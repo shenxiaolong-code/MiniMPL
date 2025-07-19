@@ -31,7 +31,7 @@
 
 namespace UnitTest
 {
-#if CPP11_ENABLED
+#if CPP_STD >= 11
 	inline void TestCase_paramPack_cpp11()
 	{
 		PrintTestcase();
@@ -58,7 +58,7 @@ namespace UnitTest
         typedef getType_TensorC<complex_type>::type                     TensorC_T;
         Static_Assert((IsSameType<TensorC_T,float>::value));
     }
-#endif
+#endif // CPP_STD >= 11
 
     inline void TestCase_paramPack()
     {
@@ -106,10 +106,10 @@ namespace UnitTest
 
 #ifdef RUN_EXAMPLE_PARAMPACK
     InitRunFunc(TestCase_paramPack);
-#if CPP11_ENABLED
+#if CPP_STD >= 11
 	InitRunFunc(TestCase_paramPack_cpp11);
     InitRunFunc(TestCase_getFormalParamterType_cpp11);
-#endif
+#endif // CPP_STD >= 11
 #else //else of RUN_EXAMPLE_PARAMPACK
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

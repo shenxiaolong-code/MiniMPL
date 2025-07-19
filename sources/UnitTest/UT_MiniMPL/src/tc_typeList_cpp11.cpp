@@ -56,12 +56,12 @@ namespace UnitTest
         Static_Assert((GetTypeListLength< TypeList3<int, char, std::string>         >::value == 3));
         Static_Assert((GetTypeListLength< TypeList3<int, char,               char*> >::value == 3));
         
-#if CPP17_ENABLED
+#if CPP_STD >= 17
         Static_Assert((GetTypeListLength_v< tc_typeList > == 4));
         Static_Assert((GetTypeListLength_v< TypeList <int,       std::string,  char*> > == 3));
         Static_Assert((GetTypeListLength_v< TypeList <int, char, std::string>         > == 3));
         Static_Assert((GetTypeListLength_v< TypeList <int, char,               char*> > == 3));
-#endif
+#endif // CPP_STD >= 17
 
         //test TypeIsInTypeList
         Static_Assert((TypeIsInTypeList<int,            tc_typeList>::value  == true  ));
@@ -70,14 +70,14 @@ namespace UnitTest
         Static_Assert((TypeIsInTypeList<char*,          tc_typeList>::value  == true  ));
         Static_Assert((TypeIsInTypeList<float,          tc_typeList>::value  == false ));
         Static_Assert((TypeIsInTypeList<double,         tc_typeList>::value  == false ));
-#if CPP17_ENABLED
+#if CPP_STD >= 17
         Static_Assert((TypeIsInTypeList_v<int,            tc_typeList> == true  ));
         Static_Assert((TypeIsInTypeList_v<char,           tc_typeList> == true  ));
         Static_Assert((TypeIsInTypeList_v<std::string,    tc_typeList> == true  ));
         Static_Assert((TypeIsInTypeList_v<char*,          tc_typeList> == true  ));
         Static_Assert((TypeIsInTypeList_v<float,          tc_typeList> == false ));
         Static_Assert((TypeIsInTypeList_v<double,         tc_typeList> == false ));
-#endif
+#endif // CPP_STD >= 17
 
         //test FindTypeFirstIndexInTypeList
         Static_Assert((FindTypeFirstIndexInTypeList<int,         tc_typeList>::value == 0  ));
@@ -86,14 +86,14 @@ namespace UnitTest
         Static_Assert((FindTypeFirstIndexInTypeList<char*,       tc_typeList>::value == 3  ));
         Static_Assert((FindTypeFirstIndexInTypeList<float,       tc_typeList>::value == -1 ));
         Static_Assert((FindTypeFirstIndexInTypeList<double,      tc_typeList>::value == -1 ));
-#if CPP17_ENABLED
+#if CPP_STD >= 17
         Static_Assert((FindTypeFirstIndexInTypeList_v< int,         tc_typeList > ==  0  ));
         Static_Assert((FindTypeFirstIndexInTypeList_v< char,        tc_typeList > ==  1  ));
         Static_Assert((FindTypeFirstIndexInTypeList_v< std::string, tc_typeList > ==  2  ));
         Static_Assert((FindTypeFirstIndexInTypeList_v< char*,       tc_typeList > ==  3  ));
         Static_Assert((FindTypeFirstIndexInTypeList_v< float,       tc_typeList > ==  -1 ));
         Static_Assert((FindTypeFirstIndexInTypeList_v< double,      tc_typeList > ==  -1 ));
-#endif
+#endif // CPP_STD >= 17
 
         //test FindTypeLastIndexInTypeList
         Static_Assert((FindTypeLastIndexInTypeList<int,         tc_typeList>::value == 0  ));
@@ -102,14 +102,14 @@ namespace UnitTest
         Static_Assert((FindTypeLastIndexInTypeList<char*,       tc_typeList>::value == 3  ));
         Static_Assert((FindTypeLastIndexInTypeList<float,       tc_typeList>::value == -1 ));
         Static_Assert((FindTypeLastIndexInTypeList<double,      tc_typeList>::value == -1 ));             
-#if CPP17_ENABLED
+#if CPP_STD >= 17
         Static_Assert((FindTypeLastIndexInTypeList_v< int,         tc_typeList > == 0  ));
         Static_Assert((FindTypeLastIndexInTypeList_v< char,        tc_typeList > == 1  ));
         Static_Assert((FindTypeLastIndexInTypeList_v< std::string, tc_typeList > == 2  ));
         Static_Assert((FindTypeLastIndexInTypeList_v< char*,       tc_typeList > == 3  ));
         Static_Assert((FindTypeLastIndexInTypeList_v< float,       tc_typeList > == -1 ));
         Static_Assert((FindTypeLastIndexInTypeList_v< double,      tc_typeList > == -1 ));
-#endif
+#endif // CPP_STD >= 17
 
         //test FindNthTypeInTypeList
         Static_Assert((IsSameType<FindNthTypeInTypeList_t< 0, tc_typeList>,int>::value));

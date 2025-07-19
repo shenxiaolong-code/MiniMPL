@@ -8,8 +8,8 @@
 #include <MiniMPL/libConfig.h>
 #include <MiniMPL/platformEnv.h>
 
-#if CPP11_ENABLED
-    #define STDTRNS			::std             //C++11 is supported
+#if CPP_STD >= 11
+    #define STDTRNS			::std             	//C++11 is supported
 	#if _MSC_VER < 1900
 		#define CompileValue	constexpr		//warning C4814: 'MiniMPL::StdWrapper::MaxValue::operator T': in C++14 'constexpr' will not imply 'const'; consider explicitly specifying 'const'
 	#else
@@ -18,7 +18,7 @@
 #else
     #define STDTRNS			::std::tr1			//C++11 is not supported
 	#define CompileValue
-#endif	//CPP11_ENABLED
+#endif	// CPP_STD >= 11
 
 #define  TRAIT_MPL          ::MiniMPL::InnerDetail
 
