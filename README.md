@@ -1,7 +1,5 @@
-# Project Introduction
-This library focuses on high-performance, zero-dependency, C++03-and-above compatible template metaprogramming infrastructure, suitable for advanced template metaprogramming, type traits, CRTP, and cross-platform infrastructure scenarios.
 
-## Goals
+## Project Introduction
 1. Provide high-value foundational components for C++ template metaprogramming, with core features depending only on C++03 compilers, and no reliance on any standard or third-party libraries.
 2. Offer basic system components (threading, synchronization, communication, etc.) to facilitate cross-platform application development.
 
